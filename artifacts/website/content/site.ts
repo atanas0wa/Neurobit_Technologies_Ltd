@@ -189,3 +189,73 @@ export const footer = {
   legalLinks: [{ label: "Privacy Policy", href: "/privacy/" }],
   signoff: "Made in Sofia",
 };
+
+/*
+ * Privacy policy. Inline links use [text](url). Have this reviewed by
+ * counsel before launch — see the README checklist.
+ */
+export const privacy = {
+  title: "Privacy Policy",
+  description: `How ${company.name} collects, uses and protects personal data under the GDPR.`,
+  updated: "23 October 2026",
+  intro: `This policy explains what personal data ${company.legalName} collects through this website, why, and what rights you have under the EU General Data Protection Regulation (GDPR).`,
+  sections: [
+    {
+      heading: "Who is responsible",
+      paragraphs: [
+        `The data controller is ${company.legalName}, ${company.address.street}, ${company.address.postalCode} ${company.address.city}, ${company.address.country}, ${company.registration}.`,
+        `For anything related to your personal data, email [${company.email}](mailto:${company.email}).`,
+      ],
+    },
+    {
+      heading: "What we collect",
+      paragraphs: ["We collect as little as we can. This website uses no cookies, no analytics and no advertising trackers."],
+      list: [
+        "**Contact form.** Your name, email address and the message you write. Formspree also records technical data with each submission, such as your IP address, browser type and the time of submission, to prevent spam.",
+        "**Server logs.** When you visit the site, our hosting provider processes your IP address, the page requested, your browser's user agent and a timestamp. This is needed to deliver the site and protect it from abuse.",
+        "**Email.** If you email us directly, we receive your email address and whatever you choose to include.",
+      ],
+    },
+    {
+      heading: "Why we use it, and on what legal basis",
+      list: [
+        "**To reply to your enquiry** and, if you ask, prepare a proposal: steps taken at your request before entering into a contract (Art. 6(1)(b) GDPR). Where an enquiry is not about a contract, our legitimate interest in answering messages sent to us (Art. 6(1)(f) GDPR).",
+        "**To run and secure the website** using server logs: our legitimate interest in operating a reliable, secure site (Art. 6(1)(f) GDPR).",
+      ],
+      after: ["We do not sell your data, use it for marketing without asking, or make automated decisions about you."],
+    },
+    {
+      heading: "Who processes it for us",
+      paragraphs: [
+        "We use a small number of service providers, each bound by a data processing agreement:",
+      ],
+      list: [
+        "**Formspree, Inc. (United States)** receives contact form submissions and forwards them to our inbox. See [Formspree's privacy policy](https://formspree.io/legal/privacy-policy/).",
+        "**Vercel Inc. (United States)** hosts this website and processes server logs. See [Vercel's privacy notice](https://vercel.com/legal/privacy-notice).",
+        "**Our business email provider** stores the messages we receive.",
+      ],
+      after: [
+        "Formspree and Vercel are based in the United States, so form submissions and server logs may be transferred outside the European Economic Area. Where this happens, the transfer relies on the safeguards the GDPR provides for, such as the European Commission's Standard Contractual Clauses or the EU–US Data Privacy Framework, as applicable to each provider.",
+      ],
+    },
+    {
+      heading: "How long we keep it",
+      list: [
+        "**Enquiries** are kept for up to 24 months after our last exchange, then deleted. If you become a client, we keep correspondence for as long as the contract and Bulgarian law require.",
+        "**Form submissions in Formspree** are deleted from our Formspree account once they have reached our inbox.",
+        "**Server logs** are kept by our hosting provider for a short period under its own retention rules.",
+      ],
+    },
+    {
+      heading: "Your rights",
+      paragraphs: [
+        `You have the right to access your personal data, have it corrected or erased, restrict or object to its processing, and receive it in a portable format. To exercise any of these rights, email [${company.email}](mailto:${company.email}). We reply within one month.`,
+        "If you believe we have mishandled your data, you can complain to the Bulgarian Commission for Personal Data Protection, 2 Prof. Tsvetan Lazarov Blvd., 1592 Sofia, [www.cpdp.bg](https://www.cpdp.bg), or to the supervisory authority in your own EU country.",
+      ],
+    },
+    {
+      heading: "Changes to this policy",
+      paragraphs: ["If we change how we handle personal data, we will update this page and the date at the top."],
+    },
+  ],
+};
