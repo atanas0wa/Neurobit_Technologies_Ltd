@@ -6,7 +6,7 @@ import { Nav } from "@/components/Nav";
 import "./globals.css";
 
 const inter = Inter({
-  subsets: ["latin", "cyrillic"],
+  subsets: ["latin"],
   weight: ["300", "400", "600"],
   variable: "--font-inter",
   display: "swap",
