@@ -178,3 +178,14 @@ export const contact = {
     },
   },
 };
+
+export const footer = {
+  tagline: "Software engineering for startups, SMEs and financial institutions.",
+  columns: {
+    company: "Company",
+    contact: "Contact",
+    legal: "Legal",
+  },
+  legalLinks: [{ label: "Privacy Policy", href: "/privacy/" }],
+  signoff: "Made in Sofia",
+};
