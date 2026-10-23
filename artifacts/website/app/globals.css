@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens — single source of truth.
+ * Font families point at the next/font variables first (set on <html> in
+ * app/layout.tsx), because next/font serves the faces under hashed names.
+ */
+@theme {
+  --color-void: #05070A;
+  --color-panel: #0B0F17;
+  --color-line: #1C2330;
+  --color-snow: #F5F7FA;
+  --color-mist: #A3ACB9;
+  --color-slate: #6B7280;
+  --color-signal: #2F6BFF;
+  --color-terminal: #3DDC97;
+  --color-cyan: #22D3EE;
+
+  --font-sans: var(--font-inter), "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+
+  --text-label: 13px;
+  --text-label--line-height: 1.2;
+  --text-label--letter-spacing: 0.06em;
+
+  --text-body: 18px;
+  --text-body--line-height: 1.5;
+
+  --text-h4: 32px;
+  --text-h4--line-height: 1.2;
+  --text-h4--letter-spacing: -0.02em;
+
+  --text-h3: 42px;
+  --text-h3--line-height: 1.15;
+  --text-h3--letter-spacing: -0.04em;
+
+  --text-h2: 56px;
+  --text-h2--line-height: 1.1;
+  --text-h2--letter-spacing: -0.04em;
+
+  --text-h1: 78px;
+  --text-h1--line-height: 1.05;
+  --text-h1--letter-spacing: -0.04em;
+
+  --text-display: 104px;
+  --text-display--line-height: 1;
+  --text-display--letter-spacing: -0.045em;
+
+  --spacing: 6px;
+
+  --radius-3xl: 24px;
+  --radius-full: 9999px;
+
+  --container-page: 1280px;
+}
+
+/*
+ * Fluid type: the scale above is the desktop ceiling. Below it, headings
+ * shrink with the viewport (display bottoms out around 52–56px on phones).
+ */
+@layer base {
+  :root {
+    --text-display: clamp(52px, 2.2rem + 5.6vw, 104px);
+    --text-h1: clamp(44px, 2rem + 4vw, 78px);
+    --text-h2: clamp(36px, 1.6rem + 2.8vw, 56px);
+    --text-h3: clamp(30px, 1.4rem + 1.8vw, 42px);
+    --text-h4: clamp(24px, 1.2rem + 0.9vw, 32px);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 96px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-signal);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: var(--color-signal);
+    color: var(--color-snow);
+  }
+}
+
+body {
+  background: var(--color-void);
+  color: var(--color-snow);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Faint 24px dot grid that fades out toward the edges. */
+@utility dot-grid {
+  background-image: radial-gradient(circle at center, rgb(255 255 255 / 0.04) 1.2px, transparent 1.4px);
+  background-size: 24px 24px;
+  background-position: center;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, #000 20%, transparent 100%);
+}
