@@ -109,3 +109,15 @@ export const approach = {
     },
   ],
 };
+
+export const stack = {
+  label: "Stack",
+  title: "Proven tools, chosen per project.",
+  intro: "We pick boring technology where reliability matters and newer tools where they earn their place. Everything here runs in production for our clients today.",
+  groups: [
+    { name: "Frontend", items: ["TypeScript", "React", "Next.js", "React Native", "Tailwind CSS"] },
+    { name: "Backend", items: ["Node.js", "Go", "Python", "GraphQL", "gRPC"] },
+    { name: "Cloud", items: ["AWS", "Google Cloud", "Vercel", "Docker", "Kubernetes", "Terraform"] },
+    { name: "Data", items: ["PostgreSQL", "Redis", "Kafka", "ClickHouse", "pgvector"] },
+  ],
+};
