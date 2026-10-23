@@ -68,7 +68,7 @@ export function Nav() {
             href={nav.cta.href}
             className={`inline-flex items-center rounded-full border px-4 py-2 text-[14px] font-semibold transition-colors duration-300 ${
               filledCta
-                ? "border-signal bg-signal text-white hover:border-[#1F5BF0] hover:bg-[#1F5BF0]"
+                ? "border-signal bg-signal text-white hover:border-signal-hover hover:bg-signal-hover"
                 : "border-line text-snow hover:border-mist"
             }`}
           >

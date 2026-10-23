@@ -8,7 +8,7 @@ export function ButtonLink({ className = "", ...props }: LinkProps) {
   return (
     <Link
       {...props}
-      className={`inline-flex items-center rounded-full bg-signal px-4 py-2 text-[14px] font-semibold text-white transition-colors hover:bg-[#1F5BF0] ${className}`}
+      className={`inline-flex items-center rounded-full bg-signal px-4 py-2 text-[14px] font-semibold text-white transition-colors hover:bg-signal-hover ${className}`}
     />
   );
 }
