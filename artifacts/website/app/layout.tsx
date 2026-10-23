@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
-import { company } from "@/content/site";
+import { company, services } from "@/content/site";
 import { Footer } from "@/components/Footer";
 import { Nav } from "@/components/Nav";
 import "./globals.css";
@@ -26,6 +26,7 @@ export const metadata: Metadata = {
     template: `%s — ${company.name}`,
   },
   description: company.description,
+  alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     siteName: company.name,
@@ -34,6 +35,27 @@ export const metadata: Metadata = {
     description: company.description,
   },
   twitter: { card: "summary_large_image" },
+};
+
+const organization = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: company.name,
+  legalName: company.legalName,
+  url: company.url,
+  logo: `${company.url}/icon.svg`,
+  description: company.description,
+  email: company.email,
+  telephone: company.phone,
+  vatID: company.vat,
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: company.address.street,
+    addressLocality: company.address.city,
+    postalCode: company.address.postalCode,
+    addressCountry: company.address.countryCode,
+  },
+  knowsAbout: services.items.map((item) => item.label),
 };
 
 export const viewport: Viewport = {
@@ -54,6 +76,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Nav />
         <main id="main">{children}</main>
         <Footer />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organization).replace(/</g, "\\u003c") }}
+        />
       </body>
     </html>
   );
