@@ -148,3 +148,33 @@ export const about = {
     overlap: "Overlaps UK, EU, US East",
   },
 };
+
+export const contact = {
+  label: "Contact",
+  title: "Tell us what you're building.",
+  intro: "A few sentences are enough. An engineer, not a salesperson, replies within one working day.",
+  details: [
+    { label: "Email", value: company.email, href: `mailto:${company.email}` },
+    { label: "Phone", value: company.phone, href: `tel:${company.phone.replace(/\s/g, "")}` },
+    {
+      label: "Office",
+      value: `${company.address.street}, ${company.address.postalCode} ${company.address.city}, ${company.address.country}`,
+    },
+  ],
+  form: {
+    name: "Name",
+    email: "Email",
+    message: "Message",
+    messageHint: "What are you building, and by when?",
+    submit: "Send message",
+    sending: "Sending…",
+    success: "Thanks — your message is in. We'll reply within one working day.",
+    error: "Something went wrong. Please try again, or email us directly at",
+    subject: "New enquiry from the website",
+    consent: {
+      before: "By sending this form you agree that we use your details to reply to your enquiry, as described in our",
+      link: "Privacy Policy",
+      after: ". Submissions are processed by Formspree.",
+    },
+  },
+};

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { nav } from "@/content/site";
 import { Logo } from "./Logo";
@@ -8,33 +9,38 @@ import { ButtonLink, Container } from "./ui";
 
 /*
  * Transparent at the top, solid with blur once the page scrolls.
- * The CTA pill is outlined while the hero's filled CTA is on screen and
- * fills once it scrolls away, so a view never shows two filled buttons.
+ * The CTA pill is outlined while another filled button (hero CTA, form
+ * submit) is on screen and fills otherwise, so a view never shows two.
  */
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [filledCta, setFilledCta] = useState(false);
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
 
-    const heroCta = document.getElementById("hero-cta");
-    let observer: IntersectionObserver | undefined;
-    if (heroCta) {
-      observer = new IntersectionObserver(([entry]) => setFilledCta(!entry.isIntersecting));
-      observer.observe(heroCta);
-    } else {
-      setFilledCta(true);
-    }
+    // Every in-page filled button carries data-primary-cta.
+    const visible = new Set<Element>();
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) visible.add(entry.target);
+        else visible.delete(entry.target);
+      }
+      setFilledCta(visible.size === 0);
+    });
+    const ctas = document.querySelectorAll("[data-primary-cta]");
+    ctas.forEach((el) => observer.observe(el));
+    if (ctas.length === 0) setFilledCta(true);
 
     return () => {
       window.removeEventListener("scroll", onScroll);
-      observer?.disconnect();
+      observer.disconnect();
     };
-  }, []);
+  }, [pathname]);
 
   useEffect(() => {
     if (!open) return;

@@ -24,7 +24,7 @@ export function Hero() {
           <p className="mt-6 max-w-[560px] text-body font-light text-mist">{hero.subline}</p>
 
           <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
-            <ButtonLink id="hero-cta" href={hero.primary.href}>
+            <ButtonLink data-primary-cta href={hero.primary.href}>
               {hero.primary.label}
             </ButtonLink>
             <ArrowLink href={hero.secondary.href}>{hero.secondary.label}</ArrowLink>
