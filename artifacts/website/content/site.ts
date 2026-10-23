@@ -81,3 +81,31 @@ export const services = {
     },
   ],
 };
+
+export const approach = {
+  label: "Approach",
+  title: "Four steps. No surprises.",
+  intro: "The same process for a two-month build and a two-year platform. You always know what ships next and what it costs.",
+  steps: [
+    {
+      title: "Discover",
+      body: "We map the problem, the users and the constraints. You get a written scope, an architecture sketch and a fixed estimate.",
+      duration: "1–2 weeks",
+    },
+    {
+      title: "Build",
+      body: "Two-week cycles with a working build at the end of each. You follow progress in staging, not in slide decks.",
+      duration: "6–16 weeks",
+    },
+    {
+      title: "Launch",
+      body: "Load tests, a security review, monitoring and a rollback plan, all in place before the first real user.",
+      duration: "1–2 weeks",
+    },
+    {
+      title: "Support",
+      body: "We stay on call. Agreed response times, patching, and a roadmap for what comes next.",
+      duration: "Ongoing",
+    },
+  ],
+};
