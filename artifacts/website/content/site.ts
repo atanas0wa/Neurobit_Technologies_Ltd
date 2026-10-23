@@ -121,3 +121,30 @@ export const stack = {
     { name: "Data", items: ["PostgreSQL", "Redis", "Kafka", "ClickHouse", "pgvector"] },
   ],
 };
+
+export const about = {
+  label: "About",
+  title: "A small, senior team in Sofia.",
+  intro:
+    "Kodera Labs was founded by engineers who spent a decade building banking and e-commerce systems. We stay small on purpose: every project is led by someone who writes code.",
+  reasons: [
+    {
+      title: "Senior by default",
+      body: "Every engineer has shipped production systems for six years or more. No one learns on your budget.",
+    },
+    {
+      title: "Plain contracts",
+      body: "Fixed scope or monthly. You own the code, the repositories and the cloud accounts from day one.",
+    },
+    {
+      title: "EU time, EU law",
+      body: "We work on Central European Time with overlap for the UK and US East. Your data stays in the EU unless you decide otherwise.",
+    },
+  ],
+  location: {
+    coordinates: ["42.6977° N", "23.3219° E"],
+    place: "Sofia, Bulgaria",
+    timezone: "CET · UTC+1 / +2",
+    overlap: "Overlaps UK, EU, US East",
+  },
+};
