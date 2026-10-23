@@ -43,3 +43,41 @@ export const hero = {
   facts: ["Senior-only teams", "Fixed scope or dedicated", "EU-based, GDPR-native"],
   diagramTiers: ["Client", "Edge", "Services", "Data"],
 };
+
+export const services = {
+  label: "Services",
+  title: "Six things we do well.",
+  intro: "We take on fewer projects and go deeper on each. Every engagement is led by an engineer who writes code.",
+  items: [
+    {
+      label: "Web platforms",
+      title: "Portals, tools and SaaS that stay fast.",
+      body: "Customer portals, internal tools and SaaS products. Typed end to end, tested, and fast on a mid-range phone.",
+    },
+    {
+      label: "Mobile apps",
+      title: "One codebase, two native apps.",
+      body: "iOS and Android from one React Native codebase, with native modules where it matters. Offline-first when the network isn't there.",
+    },
+    {
+      label: "Fintech & payments",
+      title: "Money moves correctly, or not at all.",
+      body: "Card acquiring, open banking (PSD2), SEPA and reconciliation. Integrations built to pass a bank's security review.",
+    },
+    {
+      label: "AI automation",
+      title: "Automation you can measure.",
+      body: "Document extraction, support triage and internal assistants. Measured against a baseline before launch, with a human in the loop where errors cost money.",
+    },
+    {
+      label: "Dedicated teams",
+      title: "Senior engineers inside your team.",
+      body: "Senior engineers who join your stand-ups and your repository. Monthly terms, two-week trial, no lock-in.",
+    },
+    {
+      label: "Audits & rescue",
+      title: "A second opinion, in writing.",
+      body: "Code and architecture review for systems that have outgrown their first version. Written findings and a plan in two weeks.",
+    },
+  ],
+};

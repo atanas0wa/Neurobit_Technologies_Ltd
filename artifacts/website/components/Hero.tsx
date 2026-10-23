@@ -7,7 +7,7 @@ export function Hero() {
     <section aria-labelledby="hero-title" className="relative isolate overflow-hidden">
       <div className="dot-grid pointer-events-none absolute inset-0 -z-10" aria-hidden="true" />
 
-      <Container className="grid min-h-svh items-center gap-10 pt-[120px] pb-10 lg:grid-cols-12 lg:gap-6 lg:pb-16">
+      <Container className="grid min-h-svh items-center gap-10 pt-[120px] pb-0 lg:grid-cols-12 lg:gap-6">
         <div className="lg:col-span-7">
           <p className="inline-flex items-center gap-2.5 font-mono text-label font-medium uppercase text-terminal">
             <span className="relative flex size-[7px]" aria-hidden="true">
