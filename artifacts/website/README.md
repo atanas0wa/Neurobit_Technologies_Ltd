@@ -100,4 +100,4 @@ Any static host can serve `out/` as an alternative. If you use another host, mak
   - [ ] Name the business email provider if counsel wants it named.
   - [ ] Confirm the supervisory authority link (www.cpdp.bg) and address.
 - [ ] Update `privacy.updated` whenever the policy changes.
-- [ ] Run Lighthouse against the deployed URL. Pre-launch results with gzip were 96–100 on mobile and desktop. The one accessibility flag is white text on `#2F6BFF` at 4.499:1, just under AA's 4.5:1.
+- [ ] Run Lighthouse against the deployed URL. Pre-launch results with gzip were 96–100 on mobile and desktop. `--color-signal` is `#2E6AFF` so white button text clears AA (4.54:1).

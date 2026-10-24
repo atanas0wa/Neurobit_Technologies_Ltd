@@ -38,10 +38,10 @@ export function About() {
               ))}
               <path d="M200 16 V184 M200 216 V384 M16 200 H184 M216 200 H384" strokeOpacity="0.35" />
             </g>
-            <g stroke="#2F6BFF" strokeOpacity="0.5" fill="none">
+            <g stroke="#2E6AFF" strokeOpacity="0.5" fill="none">
               <path d="M200 200 L318 104 M200 200 L96 296 M200 200 L330 262" />
             </g>
-            <g fill="#2F6BFF">
+            <g fill="#2E6AFF">
               <circle cx="318" cy="104" r="2.5" />
               <circle cx="96" cy="296" r="2.5" />
               <circle cx="330" cy="262" r="2.5" />

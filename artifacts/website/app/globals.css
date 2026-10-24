@@ -12,7 +12,7 @@
   --color-snow: #F5F7FA;
   --color-mist: #A3ACB9;
   --color-slate: #6B7280;
-  --color-signal: #2F6BFF;
+  --color-signal: #2E6AFF;
   --color-signal-hover: #1F5BF0;
   --color-terminal: #3DDC97;
   --color-cyan: #22D3EE;
@@ -91,7 +91,7 @@
 
   ::selection {
     background: var(--color-signal);
-    color: var(--color-snow);
+    color: #fff;
   }
 }
 

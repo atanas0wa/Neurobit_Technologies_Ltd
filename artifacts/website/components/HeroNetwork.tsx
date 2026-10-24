@@ -13,7 +13,7 @@ import { useEffect, useRef } from "react";
  */
 
 const COLORS = {
-  signal: [47, 107, 255],
+  signal: [46, 106, 255],
   cyan: [34, 211, 238],
   terminal: [61, 220, 151],
 } as const;

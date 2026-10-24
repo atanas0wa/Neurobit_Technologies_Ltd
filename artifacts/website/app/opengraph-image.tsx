@@ -10,12 +10,12 @@ export const contentType = "image/png";
 // A fixed slice of the hero network: [x, y, colour] nodes and links between them.
 const nodes: [number, number, string][] = [
   [830, 170, "#22D3EE"],
-  [960, 250, "#2F6BFF"],
+  [960, 250, "#2E6AFF"],
   [1090, 170, "#3DDC97"],
   [830, 400, "#22D3EE"],
-  [960, 360, "#2F6BFF"],
-  [1090, 330, "#2F6BFF"],
-  [960, 480, "#2F6BFF"],
+  [960, 360, "#2E6AFF"],
+  [1090, 330, "#2E6AFF"],
+  [960, 480, "#2E6AFF"],
   [1090, 470, "#3DDC97"],
 ];
 const links = [
@@ -54,7 +54,7 @@ export default async function OpenGraphImage() {
             y1={nodes[a][1]}
             x2={nodes[b][0]}
             y2={nodes[b][1]}
-            stroke="#2F6BFF"
+            stroke="#2E6AFF"
             strokeOpacity="0.55"
             strokeWidth="1.5"
           />
