@@ -1,0 +1,26 @@
+kind = "web"
+previewPath = "/"
+title = "Website"
+version = "1.0.0"
+id = "Kd7rWbS2qLx9VnPf4HtJe"
+
+[[services]]
+localPort = 3000
+name = "web"
+paths = ["/"]
+
+[services.env]
+PORT = "3000"
+
+[services.development]
+run = "pnpm --filter @workspace/website run dev"
+
+[services.production]
+serve = "static"
+publicDir = "artifacts/website/out"
+
+[services.production.build]
+args = ["pnpm", "--filter", "@workspace/website", "run", "build"]
+
+[services.production.build.env]
+NODE_ENV = "production"

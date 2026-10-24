@@ -169,6 +169,7 @@ export const contact = {
     submit: "Send message",
     sending: "Sending…",
     success: "Thanks — your message is in. We'll reply within one working day.",
+    mailto: "Your email app should open with the message filled in. If it doesn't, email us at",
     error: "Something went wrong. Please try again, or email us directly at",
     subject: "New enquiry from the website",
     consent: {

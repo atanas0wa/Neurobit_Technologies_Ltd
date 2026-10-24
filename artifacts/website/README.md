@@ -58,6 +58,16 @@ Other scripts:
 
 The build downloads Inter and JetBrains Mono from Google Fonts once and self-hosts them, so visitors make no requests to Google. If the build machine is offline, the OG image falls back to a default font.
 
+## Run in Replit
+
+The site is registered as a Replit artifact in `.replit-artifact/artifact.toml`, served at `/` on port 3000.
+
+1. Click **Run**, or start the workflow **artifacts/website: web** from the Workflows pane.
+2. Open the **Preview** tab. The site loads at the root of the dev URL (`https://<repl>.replit.dev/`).
+3. To publish, use **Publish**. Replit runs `next build` and serves the static `out/` folder.
+
+`next.config.ts` lists `**.replit.dev` in `allowedDevOrigins`, so hot reload works through Replit's preview proxy. To set the Formspree ID on Replit, add `NEXT_PUBLIC_FORMSPREE_ID` under **Secrets**.
+
 ## Contact form (Formspree)
 
 1. Create a form at [formspree.io](https://formspree.io) and send it to the inbox that should receive enquiries.
@@ -65,7 +75,7 @@ The build downloads Inter and JetBrains Mono from Google Fonts once and self-hos
 3. Set `NEXT_PUBLIC_FORMSPREE_ID` in `.env.local` for development and in Vercel → Project → Settings → Environment Variables for production.
 4. In Formspree, restrict the form to your production domain.
 
-Spam protection uses Formspree's `_gotcha` honeypot field, which is hidden off-screen. Formspree silently drops submissions where it's filled in. If the ID is missing, the form shows an error message that includes the email address.
+Spam protection uses Formspree's `_gotcha` honeypot field, which is hidden off-screen. Formspree silently drops submissions where it's filled in. If the ID is missing (local dev, Replit preview), submitting opens the visitor's email app with the message filled in, addressed to `company.email`. If the request to Formspree fails, the form shows an error message that includes the email address.
 
 ## Editing content
 
