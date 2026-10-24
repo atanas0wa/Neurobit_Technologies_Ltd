@@ -32,16 +32,16 @@ export function About() {
         <div className="relative my-4 aspect-square" aria-hidden="true">
           <div className="dot-grid absolute inset-0" />
           <svg viewBox="0 0 400 400" className="absolute inset-0 size-full">
-            <g fill="none" stroke="#22D3EE">
+            <g fill="none" className="stroke-cyan">
               {[56, 112, 168].map((r) => (
                 <circle key={r} cx="200" cy="200" r={r} strokeOpacity={0.28 - r / 1000} strokeDasharray={r === 168 ? "2 6" : undefined} />
               ))}
               <path d="M200 16 V184 M200 216 V384 M16 200 H184 M216 200 H384" strokeOpacity="0.35" />
             </g>
-            <g stroke="#2E6AFF" strokeOpacity="0.5" fill="none">
+            <g strokeOpacity="0.5" fill="none" className="stroke-signal">
               <path d="M200 200 L318 104 M200 200 L96 296 M200 200 L330 262" />
             </g>
-            <g fill="#2E6AFF">
+            <g className="fill-signal">
               <circle cx="318" cy="104" r="2.5" />
               <circle cx="96" cy="296" r="2.5" />
               <circle cx="330" cy="262" r="2.5" />

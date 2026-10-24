@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { nav } from "@/content/site";
 import { Logo } from "./Logo";
+import { ThemeToggle } from "./ThemeToggle";
 import { ButtonLink, Container } from "./ui";
 
 /*
@@ -60,45 +61,49 @@ export function Nav() {
       <Container className="flex h-[72px] items-center justify-between">
         <Logo />
 
-        <nav aria-label="Primary" className="hidden items-center gap-6 md:flex">
-          <ul className="flex items-center gap-6">
-            {nav.links.map((link) => (
-              <li key={link.href}>
-                <Link href={link.href} className="rounded-sm text-[14px] text-mist transition-colors hover:text-snow">
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <Link
-            href={nav.cta.href}
-            className={`inline-flex items-center rounded-full border px-4 py-2 text-[14px] font-semibold transition-colors duration-300 ${
-              filledCta
-                ? "border-signal bg-signal text-white hover:border-signal-hover hover:bg-signal-hover"
-                : "border-line text-snow hover:border-mist"
-            }`}
-          >
-            {nav.cta.label}
-          </Link>
-        </nav>
+        <div className="flex items-center gap-3">
+          <nav aria-label="Primary" className="hidden items-center gap-6 md:flex">
+            <ul className="flex items-center gap-6">
+              {nav.links.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="rounded-sm text-[14px] text-mist transition-colors hover:text-snow">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <Link
+              href={nav.cta.href}
+              className={`inline-flex items-center rounded-full border px-4 py-2 text-[14px] font-semibold transition-colors duration-300 ${
+                filledCta
+                  ? "border-signal bg-signal text-white hover:border-signal-hover hover:bg-signal-hover"
+                  : "border-line text-snow hover:border-mist"
+              }`}
+            >
+              {nav.cta.label}
+            </Link>
+          </nav>
 
-        <button
-          type="button"
-          className="-mr-2 flex size-[44px] items-center justify-center rounded-full md:hidden"
-          aria-expanded={open}
-          aria-controls="mobile-menu"
-          aria-label={open ? "Close menu" : "Open menu"}
-          onClick={() => setOpen((v) => !v)}
-        >
-          <span className="relative block h-[10px] w-[20px]">
-            <span
-              className={`absolute left-0 h-px w-full bg-snow transition-transform ${open ? "top-[5px] rotate-45" : "top-0"}`}
-            />
-            <span
-              className={`absolute left-0 h-px w-full bg-snow transition-transform ${open ? "top-[5px] -rotate-45" : "top-[10px]"}`}
-            />
-          </span>
-        </button>
+          <ThemeToggle />
+
+          <button
+            type="button"
+            className="-mr-2 flex size-[44px] items-center justify-center rounded-full md:hidden"
+            aria-expanded={open}
+            aria-controls="mobile-menu"
+            aria-label={open ? "Close menu" : "Open menu"}
+            onClick={() => setOpen((v) => !v)}
+          >
+            <span className="relative block h-[10px] w-[20px]">
+              <span
+                className={`absolute left-0 h-px w-full bg-snow transition-transform ${open ? "top-[5px] rotate-45" : "top-0"}`}
+              />
+              <span
+                className={`absolute left-0 h-px w-full bg-snow transition-transform ${open ? "top-[5px] -rotate-45" : "top-[10px]"}`}
+              />
+            </span>
+          </button>
+        </div>
       </Container>
 
       {open && (

@@ -37,6 +37,9 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image" },
 };
 
+// Runs before first paint so a saved light theme never flashes dark.
+const themeScript = `try{if(localStorage.getItem("theme")==="light")document.documentElement.dataset.theme="light"}catch(e){}`;
+
 const organization = {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -65,7 +68,10 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrains.variable}`}>
+    <html lang="en" data-theme="dark" className={`${inter.variable} ${jetbrains.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body>
         <a
           href="#main"

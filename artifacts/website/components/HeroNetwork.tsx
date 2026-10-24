@@ -10,15 +10,24 @@ import { useEffect, useRef } from "react";
  *
  * Runs only while on screen and the tab is visible; under
  * prefers-reduced-motion it renders a single static frame.
+ * Colours come from the theme tokens and are re-read when the theme changes.
  */
 
-const COLORS = {
-  signal: [46, 106, 255],
-  cyan: [34, 211, 238],
-  terminal: [61, 220, 151],
-} as const;
-
+const TONES = ["signal", "cyan", "terminal"] as const;
+type Tone = (typeof TONES)[number];
 type Rgb = readonly [number, number, number];
+
+const COLORS = { signal: "signal", cyan: "cyan", terminal: "terminal" } as const satisfies Record<Tone, Tone>;
+
+function readPalette(): Record<Tone, Rgb> {
+  const style = getComputedStyle(document.documentElement);
+  const palette = {} as Record<Tone, Rgb>;
+  for (const tone of TONES) {
+    const hex = style.getPropertyValue(`--color-${tone}`).trim().replace("#", "");
+    palette[tone] = [0, 2, 4].map((i) => parseInt(hex.slice(i, i + 2), 16) || 0) as unknown as Rgb;
+  }
+  return palette;
+}
 
 type Node = {
   x: number; // 0..1 of width
@@ -26,7 +35,7 @@ type Node = {
   ox: number; // satellite offset, in units of min(width, height)
   oy: number;
   r: number;
-  color: Rgb;
+  color: Tone;
   phase: number;
   hub: boolean;
 };
@@ -34,7 +43,7 @@ type Node = {
 type Edge = {
   a: number;
   b: number;
-  color: Rgb;
+  color: Tone;
   base: number;
   speed: number;
   phase: number;
@@ -64,7 +73,7 @@ function buildGraph() {
   const edges: Edge[] = [];
   const tiers: number[][] = [];
 
-  const edge = (a: number, b: number, color: Rgb, base: number, blinks: boolean) =>
+  const edge = (a: number, b: number, color: Tone, base: number, blinks: boolean) =>
     edges.push({ a, b, color, base, blinks, speed: 0.25 + rand() * 0.45, phase: rand() * Math.PI * 2 });
 
   HUBS_PER_TIER.forEach((count, t) => {
@@ -150,6 +159,7 @@ export function HeroNetwork({ tiers }: { tiers: readonly string[] }) {
     if (!canvas || !ctx) return;
 
     const { nodes, edges, packets } = buildGraph();
+    let palette = readPalette();
     const motion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
     let width = 0;
@@ -193,7 +203,7 @@ export function HeroNetwork({ tiers }: { tiers: readonly string[] }) {
           alpha *= e.blinks ? wave * wave : 0.45 + 0.55 * wave;
         }
         if (alpha < 0.01) continue;
-        ctx.strokeStyle = rgba(e.color, alpha);
+        ctx.strokeStyle = rgba(palette[e.color], alpha);
         ctx.beginPath();
         ctx.moveTo(px[e.a], py[e.a]);
         ctx.lineTo(px[e.b], py[e.b]);
@@ -205,7 +215,7 @@ export function HeroNetwork({ tiers }: { tiers: readonly string[] }) {
           const e = edges[p.edge];
           const k = (t * p.speed + p.offset) % 1;
           const fade = Math.sin(k * Math.PI);
-          ctx.fillStyle = rgba(COLORS.cyan, 0.9 * fade);
+          ctx.fillStyle = rgba(palette.cyan, 0.9 * fade);
           ctx.beginPath();
           ctx.arc(px[e.a] + (px[e.b] - px[e.a]) * k, py[e.a] + (py[e.b] - py[e.a]) * k, 1.5, 0, Math.PI * 2);
           ctx.fill();
@@ -216,12 +226,12 @@ export function HeroNetwork({ tiers }: { tiers: readonly string[] }) {
         const n = nodes[i];
         const pulse = animated ? 0.5 + 0.5 * Math.sin(t * 1.1 + n.phase) : 0.5;
         if (n.hub) {
-          ctx.fillStyle = rgba(n.color, 0.08 + 0.1 * pulse);
+          ctx.fillStyle = rgba(palette[n.color], 0.08 + 0.1 * pulse);
           ctx.beginPath();
           ctx.arc(px[i], py[i], n.r + 3 + pulse * 4, 0, Math.PI * 2);
           ctx.fill();
         }
-        ctx.fillStyle = rgba(n.color, n.hub ? 0.95 : 0.55 + 0.35 * pulse);
+        ctx.fillStyle = rgba(palette[n.color], n.hub ? 0.95 : 0.55 + 0.35 * pulse);
         ctx.beginPath();
         ctx.arc(px[i], py[i], n.r, 0, Math.PI * 2);
         ctx.fill();
@@ -266,11 +276,18 @@ export function HeroNetwork({ tiers }: { tiers: readonly string[] }) {
     });
     visibility.observe(canvas);
 
+    const themeObserver = new MutationObserver(() => {
+      palette = readPalette();
+      if (!frame) draw(time, !motion.matches);
+    });
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+
     motion.addEventListener("change", update);
     document.addEventListener("visibilitychange", update);
 
     return () => {
       stop();
+      themeObserver.disconnect();
       resizeObserver.disconnect();
       visibility.disconnect();
       motion.removeEventListener("change", update);

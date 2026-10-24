@@ -85,6 +85,8 @@ All copy is in `content/site.ts`, including service descriptions, process steps,
 
 `app/globals.css` holds the `@theme` tokens: colours, fonts, the type scale, 6px spacing, radii and container width. Under the `@theme` block, a `@layer base` rule makes headings fluid below desktop, so the display size scales from 104px down to about 52–56px on phones.
 
+**Light and dark themes.** Dark is the default. The toggle at the right of the header (`components/ThemeToggle.tsx`) sets `<html data-theme="light">` and saves the choice in `localStorage`. An inline script in `app/layout.tsx` applies it before first paint. The light values live under `:root[data-theme="light"]` in `globals.css`, with the same token names, so components use `bg-void`, `text-snow` and so on in both themes. Use the `light:` variant only when something must differ beyond the tokens. Don't hard-code colours: SVGs use `fill-*`/`stroke-*` classes, and the hero canvas reads the tokens at runtime.
+
 Rules the components follow:
 
 - One filled (`bg-signal`) button per view. Every filled in-page button carries `data-primary-cta`, and the nav pill stays outlined while one is on screen.
