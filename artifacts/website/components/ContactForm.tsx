@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState, type FormEvent } from "react";
-import { company, contact } from "@/content/site";
+import type { Content } from "@/content/en";
 import { buttonClass } from "./ui";
 
 const FORMSPREE_ID = process.env.NEXT_PUBLIC_FORMSPREE_ID;
@@ -13,9 +13,17 @@ const field =
   "mt-2 block w-full border-0 border-b border-slate bg-transparent px-0 py-2 text-body font-light text-snow transition-colors hover:border-mist focus:border-signal";
 const fieldLabel = "block font-mono text-label font-medium uppercase text-mist";
 
-export function ContactForm() {
+/* Copy comes in as props so the client bundle carries only one language. */
+export function ContactForm({
+  copy,
+  email,
+  privacyHref,
+}: {
+  copy: Content["contact"]["form"];
+  email: string;
+  privacyHref: string;
+}) {
   const [status, setStatus] = useState<Status>("idle");
-  const copy = contact.form;
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -24,7 +32,7 @@ export function ContactForm() {
     if (!FORMSPREE_ID) {
       const data = new FormData(form);
       const body = `${data.get("message")}\n\n${data.get("name")} <${data.get("email")}>`;
-      window.location.href = `mailto:${company.email}?subject=${encodeURIComponent(copy.subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = `mailto:${email}?subject=${encodeURIComponent(copy.subject)}&body=${encodeURIComponent(body)}`;
       setStatus("mailto");
       return;
     }
@@ -101,8 +109,8 @@ export function ContactForm() {
           {status === "mailto" && (
             <span className="text-snow">
               {copy.mailto}{" "}
-              <a href={`mailto:${company.email}`} className="underline underline-offset-4 hover:text-mist">
-                {company.email}
+              <a href={`mailto:${email}`} className="underline underline-offset-4 hover:text-mist">
+                {email}
               </a>
               .
             </span>
@@ -110,8 +118,8 @@ export function ContactForm() {
           {status === "error" && (
             <span className="text-snow">
               {copy.error}{" "}
-              <a href={`mailto:${company.email}`} className="underline underline-offset-4 hover:text-mist">
-                {company.email}
+              <a href={`mailto:${email}`} className="underline underline-offset-4 hover:text-mist">
+                {email}
               </a>
               .
             </span>
@@ -121,7 +129,7 @@ export function ContactForm() {
 
       <p className="max-w-[560px] text-[14px] font-light leading-normal text-mist">
         {copy.consent.before}{" "}
-        <Link href="/privacy/" className="text-snow underline underline-offset-4 hover:text-mist">
+        <Link href={privacyHref} className="text-snow underline underline-offset-4 hover:text-mist">
           {copy.consent.link}
         </Link>
         {copy.consent.after}

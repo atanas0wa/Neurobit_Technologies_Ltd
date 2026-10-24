@@ -17,7 +17,7 @@ function applyTheme(theme: Theme) {
  * script in app/layout.tsx applies it before first paint. Icons switch
  * through the `light:` variant, so they're right before hydration too.
  */
-export function ThemeToggle() {
+export function ThemeToggle({ toLight, toDark }: { toLight: string; toDark: string }) {
   const [theme, setTheme] = useState<Theme>("dark");
 
   useEffect(() => {
@@ -37,7 +37,7 @@ export function ThemeToggle() {
     }
   }
 
-  const label = theme === "light" ? "Switch to dark mode" : "Switch to light mode";
+  const label = theme === "light" ? toDark : toLight;
 
   return (
     <button

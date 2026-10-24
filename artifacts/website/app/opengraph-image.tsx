@@ -1,8 +1,11 @@
 import { ImageResponse } from "next/og";
-import { company, hero } from "@/content/site";
+import { company, site } from "@/content/site";
 import { ogFonts } from "@/lib/fonts";
 
 export const dynamic = "force-static";
+
+// One image for both languages, in English: the OG fonts load the Latin subset only.
+const { hero } = site("en");
 export const alt = `${company.name} — ${hero.headline}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
@@ -77,7 +80,7 @@ export default async function OpenGraphImage() {
           }}
         >
           <div style={{ width: 10, height: 10, borderRadius: 10, background: "#3DDC97" }} />
-          {`${company.name} · ${company.address.city}`}
+          {`${company.name} · Sofia`}
         </div>
         <div style={{ maxWidth: 680, fontSize: 84, lineHeight: 1, letterSpacing: "-0.045em", color: "#F5F7FA" }}>{hero.headline}</div>
         <div

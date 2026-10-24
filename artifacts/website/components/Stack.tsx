@@ -1,7 +1,8 @@
-import { stack } from "@/content/site";
+import { site, type Locale } from "@/content/site";
 import { Section } from "./Section";
 
-export function Stack() {
+export function Stack({ locale }: { locale: Locale }) {
+  const { stack } = site(locale);
   return (
     <Section id="stack" label={stack.label} title={stack.title} intro={stack.intro}>
       <div className="rounded-3xl border border-line bg-panel p-4 sm:p-5 md:p-8">

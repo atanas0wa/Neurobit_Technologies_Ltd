@@ -1,38 +1,44 @@
-# Kodera Labs website
+# Neurobit Technologies website
 
-Informational site for an IT development company: one long homepage plus a GDPR privacy page. Next.js 16 (App Router, static export), TypeScript, Tailwind CSS v4.
-
-> **Placeholder company.** "Kodera Labs", its address, phone, registration and VAT numbers are placeholders. Replace them in `content/site.ts` before launch.
+Company site for Нюробит Технолоджис ООД (Neurobit Technologies), a software development company in Sofia. One long homepage plus Privacy and Cookie Policy pages, in Bulgarian (default, at `/`) and English (at `/en/`). Next.js 16 (App Router, static export), TypeScript, Tailwind CSS v4.
 
 ## Structure
 
 ```
 artifacts/website/
 ├── app/
-│   ├── globals.css           Design tokens (@theme) and base styles: the single source of truth
-│   ├── layout.tsx            Fonts, metadata, Organization JSON-LD, nav + footer
-│   ├── page.tsx              Homepage: section order
-│   ├── privacy/page.tsx      Privacy Policy
-│   ├── opengraph-image.tsx   1200×630 OG image, rendered at build time
+│   ├── globals.css           Design tokens (@theme), light theme, base styles
+│   ├── (bg)/                 Bulgarian root layout: /, /privacy/, /cookies/
+│   ├── (en)/en/              English root layout: /en/, /en/privacy/, /en/cookies/
+│   ├── global-not-found.tsx  404 page (needed because there are two root layouts)
+│   ├── opengraph-image.tsx   1200×630 OG image (English), rendered at build time
 │   ├── icon.svg              Favicon
-│   ├── sitemap.ts            /sitemap.xml
+│   ├── sitemap.ts            /sitemap.xml with hreflang alternates
 │   └── robots.ts             /robots.txt
 ├── components/
-│   ├── Nav.tsx               Transparent → blurred on scroll; mobile menu
-│   ├── Hero.tsx              Headline, CTAs, facts row
+│   ├── SiteLayout.tsx        Shared <html>: fonts, metadata, JSON-LD, nav + footer
+│   ├── HomePage.tsx          Homepage section order
+│   ├── Nav.tsx               Transparent → blurred on scroll; language and theme switches; mobile menu
+│   ├── Hero.tsx              Headline, CTAs, services row
 │   ├── HeroNetwork.tsx       Canvas node network (client component)
-│   ├── Services.tsx          Six services, two columns
-│   ├── Approach.tsx          Four numbered steps
+│   ├── Services.tsx          Three services, two columns
+│   ├── Approach.tsx          Process: five numbered steps
 │   ├── Stack.tsx             Technologies panel
-│   ├── About.tsx             Team, reasons, location readout
+│   ├── About.tsx             Company, how we work, location readout
 │   ├── Contact.tsx           Contact details + form
 │   ├── ContactForm.tsx       Formspree form (client component)
+│   ├── LegalPage.tsx         Privacy and Cookie Policy layout
+│   ├── ThemeToggle.tsx       Light/dark switch
 │   ├── Footer.tsx
 │   ├── Section.tsx           Shared section layouts (label → headline → body)
 │   ├── RichText.tsx          Renders [text](url) and **bold** from content
 │   ├── Logo.tsx
 │   └── ui.tsx                Button, arrow link, label, container
-├── content/site.ts           All copy, company details and the privacy policy
+├── content/
+│   ├── company.ts            Company name, legal name, ЕИК, emails, domain
+│   ├── en.ts                 English copy (defines the Content type)
+│   ├── bg.ts                 Bulgarian copy (same shape, type-checked against en.ts)
+│   └── site.ts               Locales, site(locale), localePath(), switchPath()
 ├── lib/fonts.ts              TTF loader for the OG image
 ├── next.config.ts            output: "export"
 └── vercel.json               Serves the OG image as image/png
@@ -79,7 +85,13 @@ Spam protection uses Formspree's `_gotcha` honeypot field, which is hidden off-s
 
 ## Editing content
 
-All copy is in `content/site.ts`, including service descriptions, process steps, the stack, the About copy, contact details, footer text and the privacy policy. Components only render it. Inline links in the privacy policy use `[text](url)`, and bold uses `**text**`.
+Company details shared by both languages (name, legal name, ЕИК, emails, domain) are in `content/company.ts`. All copy is in `content/bg.ts` and `content/en.ts`, including the services, process steps, stack, About copy, contact details, footer text, and the privacy and cookie policies. Components only render it. `bg.ts` is typed as `Content`, the shape of `en.ts`, so a key missing from either file fails the typecheck.
+
+Write site paths without the language prefix (`"/#contact"`, `"/privacy/"`); components add `/en` for English. Inline links inside legal text use `[text](url)` with the full path for that language, and bold uses `**text**`.
+
+### Languages
+
+Each language has its own root layout in a route group: `app/(bg)` and `app/(en)`. That gives every page the right `<html lang>`, and each page carries `hreflang` alternates for the other language. The BG/EN switch in the header points to the same page in the other language. To add a page, create it in both groups.
 
 ## Design tokens
 
@@ -98,18 +110,21 @@ Rules the components follow:
 1. Push the repository to GitHub, GitLab or Bitbucket and import it in Vercel.
 2. Set **Root Directory** to `artifacts/website`. Vercel detects Next.js and the pnpm workspace. Leave the build and output settings at their defaults; `output: "export"` makes Vercel serve the static files.
 3. Add the `NEXT_PUBLIC_FORMSPREE_ID` environment variable.
-4. Add your domain, then set `company.url` in `content/site.ts` to the same origin. The canonical URLs, sitemap, robots.txt, OG image URLs and JSON-LD are all derived from it.
+4. Add your domain, then set `company.url` in `content/company.ts` to the same origin. The canonical URLs, sitemap, robots.txt, OG image URLs and JSON-LD are all derived from it.
 
 Any static host can serve `out/` as an alternative. If you use another host, make sure `/opengraph-image` is served with `Content-Type: image/png`. `vercel.json` does this on Vercel.
 
 ## Pre-launch checklist
 
-- [ ] Replace placeholder company details in `content/site.ts`: name, legal name, URL, email, phone, address, registration, VAT.
+- [ ] Confirm the company details in `content/company.ts`. The domain `neurobit.bg` is inferred from the email addresses.
 - [ ] Set `NEXT_PUBLIC_FORMSPREE_ID` and send a test submission from the production domain.
-- [ ] Have the privacy policy reviewed by counsel. In particular:
-  - [ ] Confirm the EU→US transfer mechanism (SCCs or the Data Privacy Framework) for Formspree and Vercel against their DPAs. The policy currently words this generally.
+- [ ] Both legal pages are marked "Draft, review with a lawyer" (`legal.draft` in `content/*.ts`). Remove that label once they are approved.
+- [ ] Have the privacy and cookie policies reviewed by counsel. In particular:
+  - [ ] Name the hosting provider once it's settled. The policy currently says "our hosting provider".
+  - [ ] Confirm the cookie policy's reliance on Art. 4a of the Electronic Communications Act for the theme preference in local storage.
+  - [ ] Confirm the EU→US transfer mechanism (SCCs or the Data Privacy Framework) for Formspree and the hosting provider against their DPAs. The policy currently words this generally.
   - [ ] Confirm the retention commitments: 24 months for enquiries, and deleting Formspree submissions once they reach the inbox. Set up the process that makes them true.
   - [ ] Name the business email provider if counsel wants it named.
   - [ ] Confirm the supervisory authority link (www.cpdp.bg) and address.
-- [ ] Update `privacy.updated` whenever the policy changes.
+- [ ] Update `privacy.updated` and `cookies.updated` in both languages whenever a policy changes.
 - [ ] Run Lighthouse against the deployed URL. Pre-launch results with gzip were 96–100 on mobile and desktop. `--color-signal` is `#2E6AFF` so white button text clears AA (4.54:1).

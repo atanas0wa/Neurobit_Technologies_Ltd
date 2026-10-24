@@ -1,7 +1,8 @@
-import { about } from "@/content/site";
+import { site, type Locale } from "@/content/site";
 import { Section } from "./Section";
 
-export function About() {
+export function About({ locale }: { locale: Locale }) {
+  const { about } = site(locale);
   const { location } = about;
   return (
     <Section

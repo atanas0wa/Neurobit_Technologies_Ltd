@@ -1,7 +1,8 @@
-import { services } from "@/content/site";
+import { site, type Locale } from "@/content/site";
 import { WideSection } from "./Section";
 
-export function Services() {
+export function Services({ locale }: { locale: Locale }) {
+  const { services } = site(locale);
   return (
     <WideSection id="services" label={services.label} title={services.title} intro={services.intro}>
       <ul className="grid gap-x-12 gap-y-10 md:grid-cols-2 md:gap-y-16">

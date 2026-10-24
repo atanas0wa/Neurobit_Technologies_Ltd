@@ -1,8 +1,9 @@
-import { hero } from "@/content/site";
+import { localePath, site, type Locale } from "@/content/site";
 import { HeroNetwork } from "./HeroNetwork";
 import { ArrowLink, ButtonLink, Container } from "./ui";
 
-export function Hero() {
+export function Hero({ locale }: { locale: Locale }) {
+  const { hero } = site(locale);
   return (
     <section aria-labelledby="hero-title" className="relative isolate overflow-hidden">
       <div className="dot-grid pointer-events-none absolute inset-0 -z-10" aria-hidden="true" />
@@ -24,10 +25,10 @@ export function Hero() {
           <p className="mt-6 max-w-[560px] text-body font-light text-mist">{hero.subline}</p>
 
           <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
-            <ButtonLink data-primary-cta href={hero.primary.href}>
+            <ButtonLink data-primary-cta href={localePath(locale, hero.primary.href)}>
               {hero.primary.label}
             </ButtonLink>
-            <ArrowLink href={hero.secondary.href}>{hero.secondary.label}</ArrowLink>
+            <ArrowLink href={localePath(locale, hero.secondary.href)}>{hero.secondary.label}</ArrowLink>
           </div>
 
           <ul className="mt-12 flex flex-wrap gap-x-6 gap-y-2 border-t border-line pt-5 font-mono text-label font-medium uppercase text-mist">

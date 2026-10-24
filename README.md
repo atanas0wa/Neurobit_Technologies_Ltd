@@ -1,6 +1,6 @@
-# Kodera Labs
+# Neurobit Technologies
 
-pnpm workspace on Node.js 24. The marketing website is in [`artifacts/website`](artifacts/website/README.md).
+pnpm workspace on Node.js 24. The company website (Bulgarian and English) is in [`artifacts/website`](artifacts/website/README.md).
 
 ## Run the website
 

@@ -1,18 +1,18 @@
 import Link from "next/link";
-import { company, footer } from "@/content/site";
+import { company, localePath, site, type Locale } from "@/content/site";
 import { Logo } from "./Logo";
 import { Container } from "./ui";
 
 const heading = "font-mono text-label font-medium uppercase text-mist";
 const link = "transition-colors hover:text-snow";
 
-export function Footer() {
-  const { address } = company;
+export function Footer({ locale }: { locale: Locale }) {
+  const { footer, ui } = site(locale);
   return (
     <footer className="border-t border-line">
       <Container className="grid gap-10 py-12 md:grid-cols-12 md:gap-6 md:py-16">
         <div className="md:col-span-4">
-          <Logo />
+          <Logo href={localePath(locale, "/")} label={ui.home} />
           <p className="mt-4 max-w-[320px] text-[15px] font-light text-mist">{footer.tagline}</p>
         </div>
 
@@ -20,12 +20,8 @@ export function Footer() {
           <h2 className={heading}>{footer.columns.company}</h2>
           <address className="mt-4 space-y-1 text-[15px] font-light not-italic text-mist">
             <p className="text-snow">{company.legalName}</p>
-            <p>{address.street}</p>
-            <p>
-              {address.postalCode} {address.city}, {address.country}
-            </p>
-            <p>{company.registration}</p>
-            <p>VAT {company.vat}</p>
+            <p>{footer.registration}</p>
+            <p>{footer.location}</p>
           </address>
         </div>
 
@@ -38,8 +34,8 @@ export function Footer() {
               </a>
             </li>
             <li>
-              <a href={`tel:${company.phone.replace(/\s/g, "")}`} className={link}>
-                {company.phone}
+              <a href={`mailto:${company.devEmail}`} className={link}>
+                {company.devEmail}
               </a>
             </li>
           </ul>
@@ -50,7 +46,7 @@ export function Footer() {
           <ul className="mt-4 space-y-1 text-[15px] font-light text-mist">
             {footer.legalLinks.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className={link}>
+                <Link href={localePath(locale, item.href)} className={link}>
                   {item.label}
                 </Link>
               </li>
@@ -62,7 +58,7 @@ export function Footer() {
       <Container>
         <div className="flex flex-wrap justify-between gap-4 border-t border-line py-6 font-mono text-label font-medium uppercase text-mist">
           <p>
-            © {new Date().getFullYear()} {company.legalName}
+            © {new Date().getFullYear()} {company.name}. {footer.rights}
           </p>
           <p className="flex items-center gap-2">
             <span className="size-1.5 rounded-full bg-terminal" aria-hidden="true" />

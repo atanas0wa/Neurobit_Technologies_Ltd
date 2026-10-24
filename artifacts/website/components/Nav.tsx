@@ -3,7 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { nav } from "@/content/site";
+import type { Content } from "@/content/en";
+import { switchPath, type Locale } from "@/content/site";
 import { Logo } from "./Logo";
 import { ThemeToggle } from "./ThemeToggle";
 import { ButtonLink, Container } from "./ui";
@@ -12,8 +13,19 @@ import { ButtonLink, Container } from "./ui";
  * Transparent at the top, solid with blur once the page scrolls.
  * The CTA pill is outlined while another filled button (hero CTA, form
  * submit) is on screen and fills otherwise, so a view never shows two.
+ * Copy and hrefs arrive localized from the layout.
  */
-export function Nav() {
+export function Nav({
+  nav,
+  ui,
+  homeHref,
+  otherLocale,
+}: {
+  nav: Content["nav"];
+  ui: Content["ui"];
+  homeHref: string;
+  otherLocale: Locale;
+}) {
   const [scrolled, setScrolled] = useState(false);
   const [filledCta, setFilledCta] = useState(false);
   const [open, setOpen] = useState(false);
@@ -59,7 +71,7 @@ export function Nav() {
       }`}
     >
       <Container className="flex h-[72px] items-center justify-between">
-        <Logo />
+        <Logo href={homeHref} label={ui.home} />
 
         <div className="flex items-center gap-3">
           <nav aria-label="Primary" className="hidden items-center gap-6 md:flex">
@@ -84,14 +96,26 @@ export function Nav() {
             </Link>
           </nav>
 
-          <ThemeToggle />
+          {/* Plain <a>: each language has its own root layout, so switching is a full page load.
+              On phones the switch lives in the mobile menu, so the logo keeps its line. */}
+          <a
+            href={switchPath(pathname, otherLocale)}
+            hrefLang={otherLocale}
+            lang={otherLocale}
+            aria-label={ui.language.aria}
+            title={ui.language.label}
+            className="hidden size-[44px] items-center justify-center rounded-full border border-line font-mono md:flex text-label font-medium text-mist transition-colors hover:border-mist hover:text-snow"
+          >
+            {ui.language.short}
+          </a>
+          <ThemeToggle toLight={ui.themeToLight} toDark={ui.themeToDark} />
 
           <button
             type="button"
             className="-mr-2 flex size-[44px] items-center justify-center rounded-full md:hidden"
             aria-expanded={open}
             aria-controls="mobile-menu"
-            aria-label={open ? "Close menu" : "Open menu"}
+            aria-label={open ? ui.menuClose : ui.menuOpen}
             onClick={() => setOpen((v) => !v)}
           >
             <span className="relative block h-[10px] w-[20px]">
@@ -122,6 +146,14 @@ export function Nav() {
             <ButtonLink href={nav.cta.href} onClick={() => setOpen(false)} className="mt-3 self-start">
               {nav.cta.label}
             </ButtonLink>
+            <a
+              href={switchPath(pathname, otherLocale)}
+              hrefLang={otherLocale}
+              lang={otherLocale}
+              className="mt-4 self-start py-2 font-mono text-label font-medium uppercase text-mist hover:text-snow"
+            >
+              {ui.language.label}
+            </a>
           </Container>
         </nav>
       )}

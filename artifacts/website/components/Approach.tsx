@@ -1,7 +1,8 @@
-import { approach } from "@/content/site";
+import { site, type Locale } from "@/content/site";
 import { WideSection } from "./Section";
 
-export function Approach() {
+export function Approach({ locale }: { locale: Locale }) {
+  const { approach } = site(locale);
   return (
     <WideSection id="approach" side="right" label={approach.label} title={approach.title} intro={approach.intro}>
       <ol className="border-b border-line">
@@ -15,9 +16,11 @@ export function Approach() {
             </span>
             <h3 className="text-h3 font-regular text-snow md:col-span-4">{step.title}</h3>
             <p className="max-w-[560px] text-body font-light text-mist md:col-span-5">{step.body}</p>
-            <p className="font-mono text-label font-medium uppercase text-mist md:col-span-2 md:text-right">
-              {step.duration}
-            </p>
+            {step.duration && (
+              <p className="font-mono text-label font-medium uppercase text-mist md:col-span-2 md:text-right">
+                {step.duration}
+              </p>
+            )}
           </li>
         ))}
       </ol>

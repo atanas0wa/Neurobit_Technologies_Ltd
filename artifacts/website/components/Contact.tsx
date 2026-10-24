@@ -1,8 +1,9 @@
-import { contact } from "@/content/site";
+import { company, localePath, site, type Locale } from "@/content/site";
 import { ContactForm } from "./ContactForm";
 import { Section } from "./Section";
 
-export function Contact() {
+export function Contact({ locale }: { locale: Locale }) {
+  const { contact } = site(locale);
   return (
     <Section
       id="contact"
@@ -29,7 +30,7 @@ export function Contact() {
       }
     >
       <div className="lg:pt-10">
-        <ContactForm />
+        <ContactForm copy={contact.form} email={company.email} privacyHref={localePath(locale, "/privacy/")} />
       </div>
     </Section>
   );
