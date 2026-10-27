@@ -1,0 +1,5 @@
+Done in 1.6s using pnpm v10.26.1
+typecheck exit: 0
+✓ Compiled successfully in 8.8s
+✓ Generating static pages using 3 workers (12/12) in 754ms
+⚡ Done in 172ms
