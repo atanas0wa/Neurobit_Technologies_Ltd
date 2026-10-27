@@ -25,7 +25,7 @@ const MAX_NEURONS = 84;
 
 // Per-theme strength: white needs slightly stronger lines than near-black to read the same.
 const STRENGTH = {
-  dark: { line: 0.24, node: 0.55, signal: 0.85, width: 1 },
+  dark: { line: 0.4, node: 0.8, signal: 0.95, width: 1.25 },
   light: { line: 0.5, node: 0.75, signal: 0.9, width: 1.25 },
 };
 

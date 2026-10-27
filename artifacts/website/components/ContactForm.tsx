@@ -10,8 +10,8 @@ const FORMSPREE_ID = process.env.NEXT_PUBLIC_FORMSPREE_ID;
 type Status = "idle" | "sending" | "sent" | "mailto" | "error";
 
 const field =
-  "mt-2 block w-full border-0 border-b border-slate bg-transparent px-0 py-2 text-body font-light text-snow transition-colors hover:border-mist focus:border-signal";
-const fieldLabel = "block text-[14px] font-light text-mist";
+  "mt-2 block w-full rounded-xl border border-line bg-void px-4 py-3 text-body font-light text-snow transition-[border-color,box-shadow] duration-150 hover:border-slate focus:border-signal focus:outline-none focus:ring-4 focus:ring-signal/20";
+const fieldLabel = "block text-[14px] font-medium text-snow";
 
 /* Copy comes in as props so the client bundle carries only one language. */
 export function ContactForm({
@@ -54,7 +54,7 @@ export function ContactForm({
   }
 
   return (
-    <form onSubmit={onSubmit} className="relative space-y-8">
+    <form onSubmit={onSubmit} className="relative space-y-6 rounded-3xl border border-line bg-panel p-6 md:p-8">
       <input type="hidden" name="_subject" value={copy.subject} />
       {/* Honeypot: hidden from people, filled in by naive bots. Formspree drops those submissions. */}
       <div className="absolute -left-[9999px] h-px w-px overflow-hidden" aria-hidden="true">
@@ -64,7 +64,7 @@ export function ContactForm({
         </label>
       </div>
 
-      <div className="grid gap-8 sm:grid-cols-2 sm:gap-6">
+      <div className="grid gap-6 sm:grid-cols-2">
         <div>
           <label htmlFor="contact-name" className={fieldLabel}>
             {copy.name}
@@ -81,7 +81,7 @@ export function ContactForm({
 
       <div>
         <label htmlFor="contact-company" className={fieldLabel}>
-          {copy.company} <span>({copy.optional})</span>
+          {copy.company} <span className="font-light text-mist">({copy.optional})</span>
         </label>
         <input id="contact-company" name="company" type="text" autoComplete="organization" className={field} />
       </div>
@@ -96,20 +96,28 @@ export function ContactForm({
           required
           rows={5}
           placeholder={copy.messagePlaceholder}
-          className={`${field} resize-y placeholder:text-mist`}
+          className={`${field} min-h-36 resize-y placeholder:text-mist`}
         />
       </div>
 
-      <div className="flex flex-wrap items-center gap-x-6 gap-y-4">
+      <div className="space-y-4">
         <button
           type="submit"
           data-primary-cta
           disabled={status === "sending"}
-          className={`${buttonClass} cursor-pointer disabled:cursor-wait disabled:opacity-70`}
+          className={`${buttonClass} cursor-pointer px-6 py-3 text-[15px] disabled:cursor-wait disabled:opacity-70 max-sm:w-full max-sm:justify-center max-sm:px-4 max-sm:text-center`}
         >
           {status === "sending" ? copy.sending : FORMSPREE_ID ? copy.submit : copy.submitMailto}
         </button>
-        <p role="status" aria-live="polite" className="text-[15px] font-light">
+        <p
+          role="status"
+          aria-live="polite"
+          className={`text-[15px] font-light ${
+            status === "sent" || status === "mailto" || status === "error"
+              ? `rounded-xl border px-4 py-3 ${status === "sent" ? "border-terminal/40 bg-terminal/10" : "border-line bg-void"}`
+              : ""
+          }`}
+        >
           {status === "sent" && <span className="text-terminal">{copy.success}</span>}
           {status === "mailto" && (
             <span className="text-snow">
