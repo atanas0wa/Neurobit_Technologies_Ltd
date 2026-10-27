@@ -20,6 +20,8 @@ artifacts/website/
 │   ├── HomePage.tsx          Homepage section order
 │   ├── Nav.tsx               Transparent → blurred on scroll; language and theme switches; mobile menu
 │   ├── Hero.tsx              Type-led headline, subline, CTA
+│   ├── HeroNetwork.tsx       Neuron network beside the hero headline (client component)
+│   ├── NeuronBackground.tsx  Site-wide drifting neuron field behind every page (client component)
 │   ├── Problem.tsx           Centered problem statement
 │   ├── Services.tsx          Three services as editorial rows
 │   ├── WhyUs.tsx             Three reasons; testimonials (hidden until content has entries)

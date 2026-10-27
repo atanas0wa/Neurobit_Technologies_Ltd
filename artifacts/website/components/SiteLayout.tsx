@@ -3,6 +3,7 @@ import { Inter, JetBrains_Mono } from "next/font/google";
 import { company, localePath, locales, site, type Locale } from "@/content/site";
 import { Footer } from "@/components/Footer";
 import { Nav } from "@/components/Nav";
+import { NeuronBackground } from "@/components/NeuronBackground";
 import "@/app/globals.css";
 
 /*
@@ -99,6 +100,7 @@ export function SiteLayout({ locale, children }: { locale: Locale; children: Rea
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body>
+        <NeuronBackground />
         <a
           href="#main"
           className="sr-only rounded-full bg-signal px-4 py-2 text-[14px] font-semibold text-white focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60]"

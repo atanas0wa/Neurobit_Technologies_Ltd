@@ -13,13 +13,13 @@ import { useEffect, useRef } from "react";
  * Colours come from the theme tokens and are re-read when the theme changes.
  */
 
-const TONES = ["signal", "cyan", "terminal"] as const;
-type Tone = (typeof TONES)[number];
-type Rgb = readonly [number, number, number];
+export const TONES = ["signal", "cyan", "terminal"] as const;
+export type Tone = (typeof TONES)[number];
+export type Rgb = readonly [number, number, number];
 
 const COLORS = { signal: "signal", cyan: "cyan", terminal: "terminal" } as const satisfies Record<Tone, Tone>;
 
-function readPalette(): Record<Tone, Rgb> {
+export function readPalette(): Record<Tone, Rgb> {
   const style = getComputedStyle(document.documentElement);
   const palette = {} as Record<Tone, Rgb>;
   for (const tone of TONES) {
