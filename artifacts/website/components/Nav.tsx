@@ -104,7 +104,7 @@ export function Nav({
             lang={otherLocale}
             aria-label={ui.language.aria}
             title={ui.language.label}
-            className="hidden size-[44px] items-center justify-center rounded-full border border-line font-mono xl:flex text-label font-medium text-mist transition-colors hover:border-mist hover:text-snow"
+            className="hidden size-[44px] items-center justify-center rounded-full border border-line text-[13px] font-semibold text-mist xl:flex transition-colors hover:border-mist hover:text-snow"
           >
             {ui.language.short}
           </a>
@@ -150,7 +150,7 @@ export function Nav({
               href={switchPath(pathname, otherLocale)}
               hrefLang={otherLocale}
               lang={otherLocale}
-              className="mt-4 self-start py-2 font-mono text-label font-medium uppercase text-mist hover:text-snow"
+              className="mt-4 self-start py-2 text-[15px] text-mist hover:text-snow"
             >
               {ui.language.label}
             </a>

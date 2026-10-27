@@ -7,14 +7,13 @@ export function Contact({ locale }: { locale: Locale }) {
   return (
     <Section
       id="contact"
-      label={contact.label}
       title={contact.title}
       intro={contact.intro}
       more={
         <dl className="mt-10 space-y-5">
           {contact.details.map((detail) => (
             <div key={detail.label}>
-              <dt className="font-mono text-label font-medium uppercase text-mist">{detail.label}</dt>
+              <dt className="text-[14px] font-light text-mist">{detail.label}</dt>
               <dd className="mt-1.5 text-[20px] font-light tracking-[-0.01em] text-snow">
                 {detail.href ? (
                   <a href={detail.href} className="transition-colors hover:text-mist">

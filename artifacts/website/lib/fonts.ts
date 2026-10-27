@@ -18,11 +18,8 @@ async function loadFont(family: string, weight: 400 | 500): Promise<ArrayBuffer>
 
 export async function ogFonts(): Promise<OgFont[]> {
   try {
-    const [inter, mono] = await Promise.all([loadFont("Inter", 400), loadFont("JetBrains Mono", 500)]);
-    return [
-      { name: "Inter", data: inter, weight: 400, style: "normal" },
-      { name: "JetBrains Mono", data: mono, weight: 500, style: "normal" },
-    ];
+    const inter = await loadFont("Inter", 400);
+    return [{ name: "Inter", data: inter, weight: 400, style: "normal" }];
   } catch (error) {
     console.warn("OG image: falling back to the default font.", error);
     return [];

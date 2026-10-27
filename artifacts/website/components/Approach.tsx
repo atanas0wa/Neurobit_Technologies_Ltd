@@ -4,7 +4,7 @@ import { WideSection } from "./Section";
 export function Approach({ locale }: { locale: Locale }) {
   const { approach } = site(locale);
   return (
-    <WideSection id="process" label={approach.label} title={approach.title}>
+    <WideSection id="process" title={approach.title}>
       <ol className="border-b border-line">
         {approach.steps.map((step, i) => (
           <li

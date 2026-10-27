@@ -1,6 +1,6 @@
 # Neurobit Technologies website
 
-Company site for Нюробит Технолоджис ООД (Neurobit Technologies), a software development company in Sofia. One long homepage plus Privacy and Cookie Policy pages, in Bulgarian (default, at `/`) and English (at `/en/`). Next.js 16 (App Router, static export), TypeScript, Tailwind CSS v4.
+Company site for Нюробит Технолоджис ООД (Neurobit Technologies), a software development company. One long homepage plus Privacy and Cookie Policy pages, in Bulgarian (default, at `/`) and English (at `/en/`). Next.js 16 (App Router, static export), TypeScript, Tailwind CSS v4.
 
 ## Structure
 
@@ -19,21 +19,20 @@ artifacts/website/
 │   ├── SiteLayout.tsx        Shared <html>: fonts, metadata, JSON-LD, nav + footer
 │   ├── HomePage.tsx          Homepage section order
 │   ├── Nav.tsx               Transparent → blurred on scroll; language and theme switches; mobile menu
-│   ├── Hero.tsx              Headline, subline, CTA
-│   ├── HeroNetwork.tsx       Canvas node network (client component)
+│   ├── Hero.tsx              Type-led headline, subline, CTA
 │   ├── Problem.tsx           Centered problem statement
-│   ├── Services.tsx          Three service cards with icons
+│   ├── Services.tsx          Three services as editorial rows
 │   ├── WhyUs.tsx             Three reasons; testimonials (hidden until content has entries)
+│   ├── About.tsx             Company story beside a short code panel
 │   ├── Approach.tsx          How we work: five numbered steps
 │   ├── Options.tsx           Ways to work with us: three option cards + CTA
 │   ├── Faq.tsx               <details> accordion, first item open
-│   ├── Icon.tsx              Line icons for the cards
 │   ├── Contact.tsx           Contact details + form
 │   ├── ContactForm.tsx       Formspree form (client component)
 │   ├── LegalPage.tsx         Privacy and Cookie Policy layout
 │   ├── ThemeToggle.tsx       Light/dark switch
 │   ├── Footer.tsx
-│   ├── Section.tsx           Shared section layouts (label → headline → body)
+│   ├── Section.tsx           Shared section layouts (headline → body)
 │   ├── RichText.tsx          Renders [text](url) and **bold** from content
 │   ├── Logo.tsx
 │   └── ui.tsx                Button, arrow link, label, container
@@ -100,12 +99,12 @@ Each language has its own root layout in a route group: `app/(bg)` and `app/(en)
 
 `app/globals.css` holds the `@theme` tokens: colours, fonts, the type scale, 6px spacing, radii and container width. Under the `@theme` block, a `@layer base` rule makes headings fluid below desktop, so the display size scales from 104px down to about 52–56px on phones.
 
-**Light and dark themes.** Dark is the default. The toggle at the right of the header (`components/ThemeToggle.tsx`) sets `<html data-theme="light">` and saves the choice in `localStorage`. An inline script in `app/layout.tsx` applies it before first paint. The light values live under `:root[data-theme="light"]` in `globals.css`, with the same token names, so components use `bg-void`, `text-snow` and so on in both themes. Use the `light:` variant only when something must differ beyond the tokens. Don't hard-code colours: SVGs use `fill-*`/`stroke-*` classes, and the hero canvas reads the tokens at runtime.
+**Light and dark themes.** Dark is the default. The toggle at the right of the header (`components/ThemeToggle.tsx`) sets `<html data-theme="light">` and saves the choice in `localStorage`. An inline script in `app/layout.tsx` applies it before first paint. The light values live under `:root[data-theme="light"]` in `globals.css`, with the same token names, so components use `bg-void`, `text-snow` and so on in both themes. Use the `light:` variant only when something must differ beyond the tokens. Don't hard-code colours: SVGs use `fill-*`/`stroke-*` classes.
 
 Rules the components follow:
 
 - One filled (`bg-signal`) button per view. Every filled in-page button carries `data-primary-cta`, and the nav pill stays outlined while one is on screen.
-- `slate` (#6B7280) is only for decorative labels such as the hero diagram tiers. It fails AA for readable text, so readable secondary text uses `mist`.
+- `slate` (#6B7280) is only for decorative marks such as the line numbers in the About code panel. It fails AA for readable text, so readable secondary text uses `mist`.
 - Headlines use weight 400, never bold. No gradients or shadows.
 
 ## Deploy (Vercel)

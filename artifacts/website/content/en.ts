@@ -5,13 +5,12 @@
  * full localized path, and bold uses **text**.
  */
 import { company } from "./company";
-import type { IconName } from "@/components/Icon";
 
 export const en = {
   meta: {
     htmlLang: "en",
     ogLocale: "en_US",
-    title: `${company.name} — Software development in Sofia`,
+    title: `${company.name} — Web, mobile and AI software development`,
     description: "We turn your idea or your slowest manual process into a working product, with a small senior team you talk to directly from day one to launch.",
     skip: "Skip to content",
   },
@@ -40,57 +39,52 @@ export const en = {
   hero: {
     headline: "Web, mobile and AI software for businesses that need it to actually work",
     subline:
-      "We turn your idea or your slowest manual process into a working product, with a small senior team you talk to directly from day one to launch.",
+      "Bring us an idea, or the manual process that eats up your week. A small team of experienced developers turns it into a working product, and you talk to them directly the whole way through.",
     primary: { label: "Tell us about your project", href: "/#contact" },
-    diagramTiers: ["Client", "Edge", "Services", "Data"],
   },
 
   problem: {
-    lead: "You know what you need built. The hard part is finding someone who understands the business behind it.",
+    lead: "You know what you need built. Finding someone who gets the business behind it is the hard part.",
     paragraphs: [
-      "Big agencies hand you to a junior team after the sales call. Freelancers disappear after launch. And you end up paying for features nobody uses.",
-      "We started Neurobit to work differently: fewer projects, direct communication, and software built around how your business really runs.",
+      "Big agencies win you over with their senior people, then hand you to a junior team. Freelancers tend to vanish once it's live. And somewhere along the way, you pay for features nobody ends up using.",
+      "We started Neurobit to do it differently. We take on fewer projects, you talk to us directly, and we build around how your business actually runs.",
     ],
   },
 
   services: {
-    label: "Services",
     title: "What we build",
     items: [
       {
-        icon: "web",
         label: "Web development",
-        body: "A website or platform that loads fast, takes payments securely and doesn't need rebuilding in a year.",
+        body: "Websites and platforms that load fast, take payments safely and won't need rebuilding next year.",
       },
       {
-        icon: "mobile",
         label: "Mobile apps",
-        body: "iOS and Android apps built around what your users actually do, not what looks good in a pitch deck.",
+        body: "iOS and Android apps shaped around what your users really do, day to day.",
       },
       {
-        icon: "ai",
         label: "AI solutions",
-        body: "AI agents and automation that take repetitive work off your team, so people spend their time on what needs a human.",
+        body: "AI agents and automation that take the repetitive work off your team's plate, so they get their time back for the work that needs a person.",
       },
-    ] as { icon: IconName; label: string; body: string }[],
+    ],
   },
 
   whyUs: {
-    label: "Why us",
     title: "Why work with us",
     points: [
-      { icon: "people", title: "You work with the people who build it.", body: "No account managers in between." },
       {
-        icon: "scope",
-        title: "Honest scope.",
-        body: "If something isn't worth building, we'll tell you before you pay for it.",
+        title: "You talk to the people writing the code.",
+        body: "There's no account manager passing messages back and forth.",
       },
       {
-        icon: "shield",
-        title: "Built to last.",
-        body: "Clean, secure, documented code that your team or any developer can take over.",
+        title: "We'll tell you if it's not worth building.",
+        body: "Before you've paid for it, not after.",
       },
-    ] as { icon: IconName; title: string; body: string }[],
+      {
+        title: "Code someone else can pick up.",
+        body: "Clean, secure and documented, so your team or any other developer can carry it on.",
+      },
+    ],
     // Hidden until the list has entries. Add real quotes only, e.g.
     // { quote: "…", name: "…", role: "…", company: "…" }
     testimonials: {
@@ -100,23 +94,20 @@ export const en = {
   },
 
   about: {
-    label: "About us",
     title: "About Neurobit",
     paragraphs: [
-      `${company.name} was founded in Sofia in ${company.founded}.`,
-      "We started it because we kept seeing the same thing: businesses paying for software that looked impressive but didn't fit how they actually work. The problem was rarely the technology. It was distance: between the client and the developers, and between the code and the business.",
-      "So we keep that distance short. We take on fewer projects, you talk directly to the people building your product, and we ask “why” before we write a line of code.",
+      `We started ${company.name} in ${company.founded}.`,
+      "We kept seeing the same thing happen. A company pays for software that looks great in the demo, then finds it doesn't fit how they actually work. The technology was rarely what went wrong. The distance was. Too many people sat between the client and the developers, and the code drifted away from the business it was meant to serve.",
+      "So we keep that distance short. We take on fewer projects, you talk directly to the people building your product, and we ask “why” before anyone writes code.",
     ],
-    location: {
-      coordinates: ["42.6977° N", "23.3219° E"],
-      place: "Sofia, Bulgaria",
-      timezone: "CET · UTC+1 / +2",
-      overlap: "Overlaps UK, EU, US East",
+    code: {
+      file: "how-we-work.ts",
+      comments: ["Every project starts with a conversation.", "We ask why before anyone writes code."],
+      label: "How we approach a project, written as code",
     },
   },
 
   approach: {
-    label: "Process",
     title: "How we work",
     steps: [
       { title: "Discovery", body: "A free call to understand the problem. You get a clear scope and estimate." },
@@ -128,7 +119,6 @@ export const en = {
   },
 
   options: {
-    label: "Engagements",
     title: "Ways to work with us",
     items: [
       { title: "Website", body: "Company site or landing page with fixed scope and fixed price." },
@@ -142,8 +132,7 @@ export const en = {
   },
 
   faq: {
-    label: "FAQ",
-    title: "Questions we hear often",
+    title: "Questions you might have",
     items: [
       {
         question: "How much does a project cost?",
@@ -169,13 +158,11 @@ export const en = {
   },
 
   contact: {
-    label: "Contact",
     title: "Have an idea or a process that's slowing you down?",
     intro: "Tell us in a few sentences, and we'll reply within one business day with next steps.",
     details: [
       { label: "Email", value: company.email, href: `mailto:${company.email}` },
       { label: "Technical enquiries", value: company.devEmail, href: `mailto:${company.devEmail}` },
-      { label: "Location", value: "Sofia, Bulgaria" },
     ] as { label: string; value: string; href?: string }[],
     form: {
       name: "Name",
@@ -199,16 +186,14 @@ export const en = {
   },
 
   footer: {
-    tagline: "Web platforms, mobile apps and AI solutions for businesses that want to grow.",
+    tagline: "Web, mobile and AI software, built by the people you talk to.",
     columns: { company: "Company", contact: "Contact", legal: "Legal" },
     registration: `UIC ${company.registration}`,
-    location: "Sofia, Bulgaria",
     legalLinks: [
       { label: "Privacy Policy", href: "/privacy/" },
       { label: "Cookie Policy", href: "/cookies/" },
     ],
     rights: "All rights reserved.",
-    signoff: "Made in Sofia",
   },
 
   legal: {

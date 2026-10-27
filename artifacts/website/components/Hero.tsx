@@ -1,30 +1,23 @@
 import { localePath, site, type Locale } from "@/content/site";
-import { HeroNetwork } from "./HeroNetwork";
 import { ButtonLink, Container } from "./ui";
 
+/* Type-led hero: the headline carries the page, the subline and CTA sit under a rule. */
 export function Hero({ locale }: { locale: Locale }) {
   const { hero } = site(locale);
   return (
-    <section aria-labelledby="hero-title" className="relative isolate overflow-hidden">
-      <div className="dot-grid pointer-events-none absolute inset-0 -z-10" aria-hidden="true" />
+    <section aria-labelledby="hero-title">
+      <Container className="pt-[168px] pb-12 md:pt-[220px] md:pb-20">
+        <h1 id="hero-title" className="max-w-[20ch] text-balance text-h1 font-regular text-snow">
+          {hero.headline}
+        </h1>
 
-      <Container className="grid min-h-svh items-center gap-10 pt-[120px] pb-0 lg:grid-cols-12 lg:gap-6">
-        <div className="lg:col-span-7">
-          <h1 id="hero-title" className="max-w-[16ch] text-balance text-h1 font-regular text-snow">
-            {hero.headline}
-          </h1>
-
-          <p className="mt-6 max-w-[560px] text-body font-light text-mist">{hero.subline}</p>
-
-          <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
+        <div className="mt-12 grid gap-8 border-t border-line pt-8 md:mt-16 md:grid-cols-12 md:items-end md:gap-6">
+          <p className="max-w-[600px] text-body font-light text-mist md:col-span-7">{hero.subline}</p>
+          <div className="md:col-span-5 md:justify-self-end">
             <ButtonLink data-primary-cta href={localePath(locale, hero.primary.href)}>
               {hero.primary.label}
             </ButtonLink>
           </div>
-        </div>
-
-        <div className="relative aspect-[5/4] w-full lg:col-span-5 lg:aspect-[4/5]">
-          <HeroNetwork tiers={hero.diagramTiers} />
         </div>
       </Container>
     </section>

@@ -74,7 +74,6 @@
     --text-h2: clamp(36px, 1.6rem + 2.8vw, 56px);
     --text-h3: clamp(30px, 1.4rem + 1.8vw, 42px);
     --text-h4: clamp(24px, 1.2rem + 0.9vw, 32px);
-    --dot-grid: rgb(255 255 255 / 0.04);
     color-scheme: dark;
   }
 
@@ -92,7 +91,6 @@
     --color-slate: #6B7280;
     --color-terminal: #047857;
     --color-cyan: #0891B2;
-    --dot-grid: rgb(11 15 23 / 0.07);
     color-scheme: light;
   }
 
@@ -128,12 +126,4 @@ body {
   color: var(--color-snow);
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
-}
-
-/* Faint 24px dot grid that fades out toward the edges. */
-@utility dot-grid {
-  background-image: radial-gradient(circle at center, var(--dot-grid) 1.2px, transparent 1.4px);
-  background-size: 24px 24px;
-  background-position: center;
-  mask-image: radial-gradient(ellipse 70% 60% at 50% 45%, #000 20%, transparent 100%);
 }

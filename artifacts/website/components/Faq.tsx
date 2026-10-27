@@ -15,7 +15,7 @@ export function Faq({ locale }: { locale: Locale }) {
     })),
   };
   return (
-    <WideSection id="faq" side="right" label={faq.label} title={faq.title}>
+    <WideSection id="faq" title={faq.title}>
       <div className="border-b border-line">
         {faq.items.map((item, i) => (
           <details key={item.question} open={i === 0} className="group border-t border-line">

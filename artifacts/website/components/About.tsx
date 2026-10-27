@@ -1,14 +1,37 @@
 import { site, type Locale } from "@/content/site";
 import { Section } from "./Section";
 
+type Token = [kind: "k" | "f" | "p", text: string];
+
+/*
+ * The code beside the About text. Identifiers stay in English like real code;
+ * the two comments come from content so they read in the page's language.
+ */
+function lines(comments: readonly string[]): (Token[] | string | null)[] {
+  return [
+    `// ${comments[0]}`,
+    [["k", "const "], ["p", "idea = "], ["k", "await "], ["f", "talk"], ["p", "(you);"]],
+    null,
+    `// ${comments[1]}`,
+    [["k", "const "], ["p", "scope = "], ["f", "understand"], ["p", "(idea.why);"]],
+    null,
+    [["k", "if "], ["p", "(!scope.worthBuilding) {"]],
+    [["p", "  "], ["k", "return "], ["f", "tellYouHonestly"], ["p", "();"]],
+    [["p", "}"]],
+    null,
+    [["f", "ship"], ["p", "(scope.firstVersion);"]],
+    [["f", "handOver"], ["p", "(everything);"]],
+  ];
+}
+
+const tone = { k: "text-terminal", f: "text-snow font-medium", p: "text-snow" } as const;
+
 export function About({ locale }: { locale: Locale }) {
   const { about } = site(locale);
-  const { location } = about;
   return (
     <Section
       id="about"
       side="right"
-      label={about.label}
       title={about.title}
       more={about.paragraphs.map((paragraph, i) => (
         <p
@@ -19,42 +42,30 @@ export function About({ locale }: { locale: Locale }) {
         </p>
       ))}
     >
-      <figure className="w-full max-w-[560px] font-mono text-label font-medium uppercase text-mist lg:mt-4">
-        <div className="flex justify-between gap-4">
-          <span>{location.coordinates[0]}</span>
-          <span>{location.coordinates[1]}</span>
-        </div>
-        <div className="relative my-4 aspect-square" aria-hidden="true">
-          <div className="dot-grid absolute inset-0" />
-          <svg viewBox="0 0 400 400" className="absolute inset-0 size-full">
-            <g fill="none" className="stroke-cyan">
-              {[56, 112, 168].map((r) => (
-                <circle key={r} cx="200" cy="200" r={r} strokeOpacity={0.28 - r / 1000} strokeDasharray={r === 168 ? "2 6" : undefined} />
-              ))}
-              <path d="M200 16 V184 M200 216 V384 M16 200 H184 M216 200 H384" strokeOpacity="0.35" />
-            </g>
-            <g strokeOpacity="0.5" fill="none" className="stroke-signal">
-              <path d="M200 200 L318 104 M200 200 L96 296 M200 200 L330 262" />
-            </g>
-            <g className="fill-signal">
-              <circle cx="318" cy="104" r="2.5" />
-              <circle cx="96" cy="296" r="2.5" />
-              <circle cx="330" cy="262" r="2.5" />
-            </g>
-          </svg>
-          <span className="absolute top-1/2 left-1/2 flex size-3 -translate-1/2">
-            <span className="absolute inset-0 animate-ping rounded-full bg-terminal opacity-50 motion-reduce:animate-none" />
-            <span className="relative size-3 rounded-full bg-terminal" />
-          </span>
-        </div>
-        <figcaption className="flex flex-wrap justify-between gap-x-6 gap-y-2">
-          <span className="text-terminal">{location.place}</span>
-          <span className="sm:text-right">
-            {location.timezone}
-            <br />
-            {location.overlap}
-          </span>
-        </figcaption>
+      <figure aria-label={about.code.label} className="overflow-hidden rounded-3xl border border-line bg-panel lg:mt-2">
+        <figcaption className="border-b border-line px-5 py-3 font-mono text-[13px] text-mist">{about.code.file}</figcaption>
+        <pre className="px-3 py-5 font-mono text-[13px] leading-[1.75] sm:px-5 sm:text-[14px] md:py-6">
+          <code className="grid">
+            {lines(about.code.comments).map((line, i) => (
+              <span key={i} className="grid grid-cols-[2.25rem_1fr]">
+                <span aria-hidden="true" className="select-none pr-3 text-right text-slate">
+                  {i + 1}
+                </span>
+                <span className="whitespace-pre-wrap break-words">
+                  {line === null
+                    ? " "
+                    : typeof line === "string"
+                      ? <span className="text-mist">{line}</span>
+                      : line.map(([kind, text], j) => (
+                          <span key={j} className={tone[kind]}>
+                            {text}
+                          </span>
+                        ))}
+                </span>
+              </span>
+            ))}
+          </code>
+        </pre>
       </figure>
     </Section>
   );

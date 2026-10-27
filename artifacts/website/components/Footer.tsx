@@ -3,7 +3,7 @@ import { company, localePath, site, type Locale } from "@/content/site";
 import { Logo } from "./Logo";
 import { Container } from "./ui";
 
-const heading = "font-mono text-label font-medium uppercase text-mist";
+const heading = "text-[14px] font-medium text-snow";
 const link = "transition-colors hover:text-snow";
 
 export function Footer({ locale }: { locale: Locale }) {
@@ -21,7 +21,6 @@ export function Footer({ locale }: { locale: Locale }) {
           <address className="mt-4 space-y-1 text-[15px] font-light not-italic text-mist">
             <p className="text-snow">{company.legalName}</p>
             <p>{footer.registration}</p>
-            <p>{footer.location}</p>
           </address>
         </div>
 
@@ -56,13 +55,9 @@ export function Footer({ locale }: { locale: Locale }) {
       </Container>
 
       <Container>
-        <div className="flex flex-wrap justify-between gap-4 border-t border-line py-6 font-mono text-label font-medium uppercase text-mist">
+        <div className="border-t border-line py-6 text-[14px] font-light text-mist">
           <p>
             © {new Date().getFullYear()} {company.name}. {footer.rights}
-          </p>
-          <p className="flex items-center gap-2">
-            <span className="size-1.5 rounded-full bg-terminal" aria-hidden="true" />
-            {footer.signoff}
           </p>
         </div>
       </Container>

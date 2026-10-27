@@ -6,7 +6,7 @@ import { ButtonLink } from "./ui";
 export function Options({ locale }: { locale: Locale }) {
   const { options } = site(locale);
   return (
-    <WideSection id="options" label={options.label} title={options.title}>
+    <WideSection id="options" title={options.title}>
       <ul className="grid gap-4 lg:grid-cols-3 md:gap-6">
         {options.items.map((item) => (
           <li key={item.title} className="rounded-3xl border border-line bg-panel p-6 md:p-8">

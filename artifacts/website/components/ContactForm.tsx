@@ -11,7 +11,7 @@ type Status = "idle" | "sending" | "sent" | "mailto" | "error";
 
 const field =
   "mt-2 block w-full border-0 border-b border-slate bg-transparent px-0 py-2 text-body font-light text-snow transition-colors hover:border-mist focus:border-signal";
-const fieldLabel = "block font-mono text-label font-medium uppercase text-mist";
+const fieldLabel = "block text-[14px] font-light text-mist";
 
 /* Copy comes in as props so the client bundle carries only one language. */
 export function ContactForm({
@@ -81,7 +81,7 @@ export function ContactForm({
 
       <div>
         <label htmlFor="contact-company" className={fieldLabel}>
-          {copy.company} <span className="normal-case tracking-normal">({copy.optional})</span>
+          {copy.company} <span>({copy.optional})</span>
         </label>
         <input id="contact-company" name="company" type="text" autoComplete="organization" className={field} />
       </div>

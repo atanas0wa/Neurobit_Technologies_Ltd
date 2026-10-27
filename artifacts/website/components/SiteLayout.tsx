@@ -83,7 +83,6 @@ export function SiteLayout({ locale, children }: { locale: Locale; children: Rea
     foundingDate: company.founded,
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Sofia",
       addressCountry: company.countryCode,
     },
     knowsAbout: services.items.map((item) => item.label),
