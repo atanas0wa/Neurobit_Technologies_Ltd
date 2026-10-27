@@ -40,7 +40,7 @@ export function siteMetadata(locale: Locale): Metadata {
   const { meta } = site(locale);
   return {
     metadataBase: new URL(company.url),
-    title: { default: meta.title, template: `%s — ${company.name}` },
+    title: { default: meta.title, template: `%s - ${company.name}` },
     description: meta.description,
     alternates: alternates(locale, "/"),
     openGraph: {
@@ -51,7 +51,7 @@ export function siteMetadata(locale: Locale): Metadata {
       title: meta.title,
       description: meta.description,
       // app/opengraph-image.tsx sits above both route groups, so link it explicitly.
-      images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: `${company.name} — ${site("en").hero.headline}` }],
+      images: [{ url: "/opengraph-image", width: 1200, height: 630, alt: `${company.name} - ${site("en").hero.headline}` }],
     },
     twitter: { card: "summary_large_image", images: ["/opengraph-image"] },
   };

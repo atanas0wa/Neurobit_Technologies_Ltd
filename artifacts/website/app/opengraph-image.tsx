@@ -6,7 +6,7 @@ export const dynamic = "force-static";
 
 // One image for both languages, in English: the OG fonts load the Latin subset only.
 const { hero, services } = site("en");
-export const alt = `${company.name} — ${hero.headline}`;
+export const alt = `${company.name} - ${hero.headline}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

@@ -6,7 +6,7 @@ import { company, localePath, site } from "@/content/site";
 const { privacy } = site("bg");
 const base = siteMetadata("bg");
 // Child metadata replaces nested objects wholesale, so keep the shared Open Graph and Twitter fields.
-const socialTitle = `${privacy.title} — ${company.name}`;
+const socialTitle = `${privacy.title} - ${company.name}`;
 
 export const metadata: Metadata = {
   title: privacy.title,
