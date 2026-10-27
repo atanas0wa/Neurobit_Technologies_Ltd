@@ -25,8 +25,8 @@ const MAX_NEURONS = 84;
 
 // Per-theme strength: white needs slightly stronger lines than near-black to read the same.
 const STRENGTH = {
-  dark: { line: 0.24, node: 0.55, signal: 0.85 },
-  light: { line: 0.2, node: 0.45, signal: 0.75 },
+  dark: { line: 0.24, node: 0.55, signal: 0.85, width: 1 },
+  light: { line: 0.5, node: 0.75, signal: 0.9, width: 1.25 },
 };
 
 const rgba = (c: Rgb, a: number) => `rgba(${c[0]},${c[1]},${c[2]},${a.toFixed(3)})`;
@@ -88,7 +88,7 @@ export function NeuronBackground() {
 
     const draw = () => {
       ctx.clearRect(0, 0, width, height);
-      ctx.lineWidth = 1;
+      ctx.lineWidth = strength.width;
 
       for (let i = 0; i < neurons.length; i++) {
         const a = neurons[i];
