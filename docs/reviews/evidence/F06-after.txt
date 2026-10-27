@@ -1,0 +1,17 @@
+== pnpm run typecheck
+exit: 0
+== env -u PORT -u BASE_PATH pnpm run build
+exit: 0
+artifacts/mockup-sandbox build: dist/index.html 4.44 kB │ gzip: 1.24 kB
+artifacts/mockup-sandbox build: ✓ built in 1.26s
+artifacts/website build: ✓ Generating static pages using 3 workers (12/12) in 541ms
+artifacts/api-server build: ⚡ Done in 179ms
+== asset base in built mockup index.html:
+src="/__mockup/assets/index-ClXTjnSW.js"
+href="/__mockup/assets/index-C4GxwS3y.css"
+== website-only build
+✓ Generating static pages using 3 workers (12/12) in 530ms
+== dev server with Replit values (PORT=8092 BASE_PATH=/__mockup)
+GET /__mockup/ -> 200
+== dev server without PORT must still fail clearly
+PORT environment variable is required but was not provided
