@@ -1,0 +1,16 @@
+== start script and dependency
+8:    "start": "serve out -l ${PORT:-3000}",
+21:    "serve": "14.2.6",
+
+== PORT=4401 npm_config_offline=true pnpm start (installed binary, no download possible)
+> @workspace/website@0.1.0 start /home/runner/workspace/artifacts/website
+> serve out -l ${PORT:-3000}
+ INFO  Accepting connections at http://0.0.0.0:4401
+ HTTP  10/27/2026 5:19:18 PM 127.0.0.1 GET /
+ HTTP  10/27/2026 5:19:18 PM 127.0.0.1 Returned 200 in 71 ms
+ HTTP  10/27/2026 5:19:18 PM 127.0.0.1 GET /en/
+ HTTP  10/27/2026 5:19:18 PM 127.0.0.1 Returned 200 in 3 ms
+ INFO  Gracefully shutting down. Please wait...
+ ELIFECYCLE  Command failed.
+
+Note: a run without PORT fell back to a random free port because 3000 is held by the Replit dev server (next-server); that run's HTTP 200 on :3000 came from next-server and is not counted. 'Command failed' is the test's timeout stopping the server.
