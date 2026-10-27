@@ -84,6 +84,8 @@ overrides:
   "body-parser@^2": "^2.4.0"
   # GHSA-mrhx-c7xc-m3w5: keep every zod 4 copy (including codegen tooling) on a patched release
   "zod@^4": "^4.6.6"
+  # GHSA-6pq8-jhm2-2vcw: qs <= 6.16.0 stringify DoS (express only calls qs.parse, so not reachable here)
+  "qs@^6": "^6.16.1"
   # drizzle-kit uses esbuild internally on an older version that's vulnerable, this overrides it
   "@esbuild-kit/esm-loader": "npm:tsx@^4.21.0"
   esbuild: "0.28.2"
