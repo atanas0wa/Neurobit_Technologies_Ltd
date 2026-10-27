@@ -186,6 +186,8 @@ export const en = {
         "Thank you! We've received your inquiry. We'll get back to you within one business day to discuss the next steps and arrange the free initial call.",
       mailto: "Your email app should open with the message filled in. If it doesn't, email us at",
       error: "Something went wrong. Please try again, or email us directly at",
+      timeout:
+        "We stopped waiting because the request took too long. Your enquiry may or may not have reached us, so please don't send it again straight away. Check your inbox for our reply, or email us directly at",
       subject: "New enquiry from the website",
       notice: {
         before: "By sending this form, you confirm you have read our",
