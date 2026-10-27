@@ -1,0 +1,5 @@
+8:    "start": "npx serve out -l ${PORT:-3000}",
+serve declared: 0
+serve in node_modules/.bin: 0
+== npx --no-install serve (no runtime download allowed):
+14.2.6

@@ -1,0 +1,5 @@
+BG -> EN switch: http://127.0.0.1:4520/en/ lang=en
+EN -> BG switch: http://127.0.0.1:4520/ lang=bg
+EN privacy -> BG privacy: http://127.0.0.1:4520/privacy/
+theme: dark -> toggled light -> after reload light
+EN nav anchors: /en/#services /en/#why-us /en/#about /en/#process /en/#faq /en/#contact /en/#contact | missing targets: none

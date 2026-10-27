@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { Content } from "@/content/en";
 import { switchPath, type Locale } from "@/content/site";
 import { Logo } from "./Logo";
@@ -14,6 +14,12 @@ import { ButtonLink, Container } from "./ui";
  * The CTA pill is outlined while another filled button (hero CTA, form
  * submit) is on screen and fills otherwise, so a view never shows two.
  * Copy and hrefs arrive localized from the layout.
+ *
+ * The open mobile menu covers the page, so while it is open everything
+ * outside the header is inert (no focus, no screen-reader access) and the
+ * page behind does not scroll. Escape closes it and returns focus to the
+ * toggle; following a link, changing route or growing to the desktop layout
+ * closes it too.
  */
 export function Nav({
   nav,
@@ -30,6 +36,14 @@ export function Nav({
   const [filledCta, setFilledCta] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const headerRef = useRef<HTMLElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLElement>(null);
+
+  const closeMenu = useCallback((returnFocus: boolean) => {
+    setOpen(false);
+    if (returnFocus) toggleRef.current?.focus();
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -57,15 +71,42 @@ export function Nav({
 
   useEffect(() => {
     if (!open) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
+    const header = headerRef.current;
+    const covered = [...document.body.children].filter(
+      (el) => el !== header && !el.contains(header) && !el.hasAttribute("inert"),
+    );
+    covered.forEach((el) => el.setAttribute("inert", ""));
+    const root = document.documentElement;
+    const previousOverflow = root.style.overflow;
+    root.style.overflow = "hidden";
+    menuRef.current?.querySelector<HTMLElement>("a, button")?.focus();
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeMenu(true);
+    };
+    // Tailwind's xl breakpoint, where the full navigation replaces the menu.
+    const desktop = window.matchMedia("(min-width: 80rem)");
+    const onDesktop = () => {
+      if (desktop.matches) closeMenu(false);
+    };
     window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [open]);
+    desktop.addEventListener("change", onDesktop);
+    return () => {
+      covered.forEach((el) => el.removeAttribute("inert"));
+      root.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKey);
+      desktop.removeEventListener("change", onDesktop);
+    };
+  }, [open, closeMenu]);
+
+  // A route change replaces the page, so the menu should not stay open over it.
+  useEffect(() => setOpen(false), [pathname]);
 
   const solid = scrolled || open;
 
   return (
     <header
+      ref={headerRef}
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
         open ? "bg-void" : solid ? "bg-void/80 backdrop-blur-md" : "bg-transparent"
       }`}
@@ -111,6 +152,7 @@ export function Nav({
           <ThemeToggle toLight={ui.themeToLight} toDark={ui.themeToDark} />
 
           <button
+            ref={toggleRef}
             type="button"
             className="-mr-2 flex size-[44px] items-center justify-center rounded-full xl:hidden"
             aria-expanded={open}
@@ -131,7 +173,7 @@ export function Nav({
       </Container>
 
       {open && (
-        <nav id="mobile-menu" aria-label="Primary" className="h-[calc(100svh-72px)] overflow-y-auto overscroll-contain border-t border-line xl:hidden">
+        <nav ref={menuRef} id="mobile-menu" aria-label="Primary" className="h-[calc(100svh-72px)] overflow-y-auto overscroll-contain border-t border-line xl:hidden">
           <Container className="flex flex-col gap-1 py-4">
             {nav.links.map((link) => (
               <Link

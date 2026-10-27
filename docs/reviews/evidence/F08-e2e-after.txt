@@ -1,0 +1,14 @@
+
+Running 8 tests using 2 workers
+
+  ✓  1 [formspree] › e2e/reduced-motion.spec.ts:35:5 › reduced motion before load: everything is still (2.2s)
+  ✓  2 [formspree] › e2e/reduced-motion.spec.ts:45:5 › reduced motion switched on while the page is open stops the motion (2.4s)
+  ✓  4 [formspree] › e2e/reduced-motion.spec.ts:75:7 › without JavaScript › with reduced motion, the static markup carries no animation (757ms)
+  ✓  3 [formspree] › e2e/reduced-motion.spec.ts:58:5 › normal motion still plays on screen and pauses off screen (3.0s)
+  ✓  5 [mailto] › e2e/reduced-motion.spec.ts:35:5 › reduced motion before load: everything is still (1.6s)
+  ✓  6 [mailto] › e2e/reduced-motion.spec.ts:45:5 › reduced motion switched on while the page is open stops the motion (2.2s)
+  ✓  7 [mailto] › e2e/reduced-motion.spec.ts:58:5 › normal motion still plays on screen and pauses off screen (2.9s)
+  ✓  8 [mailto] › e2e/reduced-motion.spec.ts:75:7 › without JavaScript › with reduced motion, the static markup carries no animation (577ms)
+
+  8 passed (10.4s)
+SMIL elements in static HTML (.e2e/mailto/index.html): 0

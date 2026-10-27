@@ -122,7 +122,8 @@ Any static host can serve `out/` as an alternative. If you use another host, mak
 ## Pre-launch checklist
 
 - [ ] Confirm the company details in `content/company.ts`. The domain `neurobit.bg` is inferred from the email addresses.
-- [ ] Set `NEXT_PUBLIC_FORMSPREE_ID` and send a test submission from the production domain.
+- [x] Set `NEXT_PUBLIC_FORMSPREE_ID` for production builds (`[services.production.build.env]` in `.replit-artifact/artifact.toml`).
+- [ ] Send a test submission from the production domain and confirm it arrives.
 - [ ] Both legal pages are marked "Draft, review with a lawyer" (`legal.draft` in `content/*.ts`). Remove that label once they are approved.
 - [ ] Have the privacy and cookie policies reviewed by counsel. In particular:
   - [ ] Name the hosting provider once it's settled. The policy currently says "our hosting provider".

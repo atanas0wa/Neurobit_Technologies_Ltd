@@ -1,0 +1,12 @@
+== env -u PORT -u BASE_PATH pnpm run build
+scripts typecheck: Done
+artifacts/api-server typecheck: Done
+artifacts/website typecheck: Done
+artifacts/mockup-sandbox typecheck: Done
+artifacts/mockup-sandbox build: error during build:
+artifacts/mockup-sandbox build: Error: PORT environment variable is required but was not provided.
+ ELIFECYCLE  Command failed with exit code 1.
+exit: 1
+
+== env -u PORT -u BASE_PATH pnpm --filter @workspace/mockup-sandbox run build
+Error: PORT environment variable is required but was not provided.

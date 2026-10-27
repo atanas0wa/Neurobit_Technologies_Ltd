@@ -10,7 +10,7 @@ export const en = {
   meta: {
     htmlLang: "en",
     ogLocale: "en_US",
-    title: `${company.name} — Web, mobile and AI software development`,
+    title: `${company.name} - Web, mobile and AI software development`,
     description:
       "Neurobit builds web platforms, mobile apps, and AI automations around real business needs. Work directly with the team from problem definition to launch.",
     skip: "Skip to content",
@@ -40,14 +40,14 @@ export const en = {
   hero: {
     headline: "Less manual work. More useful software for your business.",
     subline:
-      "We build web platforms, mobile apps and AI automations shaped around the real work your team does. You talk directly to the people building the product — from pinning down the problem to launch.",
+      "We build web platforms, mobile apps and AI automations shaped around the real work your team does. You talk directly to the people building the product - from pinning down the problem to launch.",
     primary: { label: "Discuss your project", href: "/#contact" },
   },
 
   problem: {
     lead: "You know what you need. The hard part is finding someone who understands the business behind it.",
     paragraphs: [
-      "Sometimes the task is simple — the process around it isn't. Data gets copied between spreadsheets, inquiries are handled manually, and a product idea stays on paper because it's unclear where to start.",
+      "Sometimes the task is simple - the process around it isn't. Data gets copied between spreadsheets, inquiries are handled manually, and a product idea stays on paper because it's unclear where to start.",
       "You don't need to automate everything at once. We start with the problem taking the most time and work out which solution makes sense for your business.",
     ],
   },
@@ -61,11 +61,11 @@ export const en = {
       },
       {
         label: "Mobile apps",
-        body: "We build mobile apps for tasks people need to handle on the go — such as booking appointments, accessing a customer account, or working in the field. We start by identifying the users and the actions the app should make easier.",
+        body: "We build mobile apps for tasks people need to handle on the go - such as booking appointments, accessing a customer account, or working in the field. We start by identifying the users and the actions the app should make easier.",
       },
       {
         label: "AI solutions",
-        body: "We examine repetitive processes to identify where AI or automation could help — for example, categorizing inquiries, extracting data from documents, or preparing draft responses. We define where human oversight is needed and how to evaluate whether the solution is useful.",
+        body: "We examine repetitive processes to identify where AI or automation could help - for example, categorizing inquiries, extracting data from documents, or preparing draft responses. We define where human oversight is needed and how to evaluate whether the solution is useful.",
       },
     ],
   },
@@ -186,6 +186,8 @@ export const en = {
         "Thank you! We've received your inquiry. We'll get back to you within one business day to discuss the next steps and arrange the free initial call.",
       mailto: "Your email app should open with the message filled in. If it doesn't, email us at",
       error: "Something went wrong. Please try again, or email us directly at",
+      timeout:
+        "We stopped waiting because the request took too long. Your enquiry may or may not have reached us, so please don't send it again straight away. Check your inbox for our reply, or email us directly at",
       subject: "New enquiry from the website",
       notice: {
         before: "By sending this form, you confirm you have read our",

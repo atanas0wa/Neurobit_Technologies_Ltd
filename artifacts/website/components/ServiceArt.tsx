@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties } from "react";
 
 export type ServiceArtKind = "web" | "mobile" | "ai";
 
@@ -9,22 +9,29 @@ export type ServiceArtKind = "web" | "mobile" | "ai";
  * Each one acts out what its description says: a site loading and taking an
  * inquiry, an app booking a slot, and AI sorting incoming messages.
  *
- * The drawing is complete without motion. Animation only starts once JS has
- * marked the figure with data-play, runs while it is on screen, and never
- * starts under prefers-reduced-motion. The AI packets use SMIL, which is
- * paused and resumed together with the CSS animations. Decorative: the
+ * The drawing is complete without motion, and that still version is what the
+ * server renders: no CSS animation runs until JS marks the figure with
+ * data-play, and the AI packets' SMIL elements are only added once motion is
+ * allowed. Both follow prefers-reduced-motion live (switching it on stops
+ * everything) and run only while the figure is on screen. Decorative: the
  * service text next to it already says what it shows.
  */
 export function ServiceArt({ kind }: { kind: ServiceArtKind }) {
   const ref = useRef<HTMLDivElement>(null);
+  const [motionAllowed, setMotionAllowed] = useState(false);
+
+  useEffect(() => {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setMotionAllowed(!reduce.matches);
+    update();
+    reduce.addEventListener("change", update);
+    return () => reduce.removeEventListener("change", update);
+  }, []);
 
   useEffect(() => {
     const root = ref.current;
     const svg = root?.querySelector("svg");
-    if (!root || !svg || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      svg?.pauseAnimations();
-      return;
-    }
+    if (!root || !svg || !motionAllowed) return;
     svg.pauseAnimations();
     const observer = new IntersectionObserver(([entry]) => {
       root.dataset.play = String(entry.isIntersecting);
@@ -32,14 +39,18 @@ export function ServiceArt({ kind }: { kind: ServiceArtKind }) {
       else svg.pauseAnimations();
     });
     observer.observe(root);
-    return () => observer.disconnect();
-  }, []);
+    return () => {
+      observer.disconnect();
+      svg.pauseAnimations();
+      delete root.dataset.play;
+    };
+  }, [motionAllowed]);
 
   return (
     <div ref={ref} className={`art art-${kind} w-full max-w-[320px]`} aria-hidden="true">
       {kind === "web" && <Web />}
       {kind === "mobile" && <Mobile />}
-      {kind === "ai" && <Ai />}
+      {kind === "ai" && <Ai animate={motionAllowed} />}
     </div>
   );
 }
@@ -116,7 +127,7 @@ function Mobile() {
   );
 }
 
-function Ai() {
+function Ai({ animate }: { animate: boolean }) {
   const inputs = [24, 62, 100];
   const bins = [
     { y: 24, tone: "terminal" },
@@ -168,8 +179,12 @@ function Ai() {
       {/* Messages travelling through the neuron to their category */}
       {inputs.map((y, i) => (
         <circle key={`pkt-${y}`} r="3.5" className="fill-cyan" opacity="0">
-          <animateMotion dur="3s" begin={`${i}s`} repeatCount="indefinite" path={route(y, bins[(i + 1) % 3].y)} />
-          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="3s" begin={`${i}s`} repeatCount="indefinite" />
+          {animate && (
+            <>
+              <animateMotion dur="3s" begin={`${i}s`} repeatCount="indefinite" path={route(y, bins[(i + 1) % 3].y)} />
+              <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="3s" begin={`${i}s`} repeatCount="indefinite" />
+            </>
+          )}
         </circle>
       ))}
     </svg>

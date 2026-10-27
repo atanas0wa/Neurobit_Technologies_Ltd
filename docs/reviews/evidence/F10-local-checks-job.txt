@@ -1,0 +1,12 @@
+== local simulation of the 'checks' job (after qs fix)
+Done in 1.3s using pnpm v10.26.1
+pnpm run build exit: 0
+lib/api-client-react test: ℹ tests 14
+lib/api-client-react test: ℹ pass 14
+lib/api-client-react test: ℹ fail 0
+artifacts/api-server test: ℹ tests 5
+artifacts/api-server test: ℹ pass 5
+artifacts/api-server test: ℹ fail 0
+pnpm run test exit: 0
+No known vulnerabilities found
+audit exit: 0

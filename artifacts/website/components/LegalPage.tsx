@@ -20,7 +20,9 @@ export function LegalPage({
         <Label>
           {legal.draft} · {legal.updatedLabel} {page.updated}
         </Label>
-        <h1 className="mt-4 text-h1 font-regular text-snow">{page.title}</h1>
+        {/* Long words like „поверителност“ must fit a 320 px screen: a smaller size on narrow
+            screens, and wrapping instead of overflow when text is enlarged further. */}
+        <h1 className="mt-4 text-h1 font-regular text-snow [overflow-wrap:break-word] max-[420px]:text-[clamp(2rem,10.5vw,2.75rem)]">{page.title}</h1>
         <p className={`mt-6 ${body}`}>{page.intro}</p>
 
         {page.sections.map((section) => (

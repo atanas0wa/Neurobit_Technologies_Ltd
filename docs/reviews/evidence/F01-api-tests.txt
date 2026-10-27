@@ -1,0 +1,17 @@
+
+> @workspace/api-server@0.0.0 test /home/runner/workspace/artifacts/api-server
+> node --test "test/**/*.test.mjs"
+
+✔ health endpoint reports ok (121.60779ms)
+✔ well-formed JSON and form bodies are parsed (unknown route answers 404, not 400) (12.670753ms)
+✔ malformed JSON is rejected with 400 (2.122711ms)
+✔ compressed request bodies are refused with 415 (inflate disabled) (8.456649ms)
+✔ GHSA-27r3-jxmh-p828: trailing bytes after a compressed frame do not take the process down (1415.255646ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1674.215269

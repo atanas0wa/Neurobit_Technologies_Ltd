@@ -6,7 +6,7 @@ import { company, localePath, site } from "@/content/site";
 const { cookies } = site("bg");
 const base = siteMetadata("bg");
 // Child metadata replaces nested objects wholesale, so keep the shared Open Graph and Twitter fields.
-const socialTitle = `${cookies.title} — ${company.name}`;
+const socialTitle = `${cookies.title} - ${company.name}`;
 
 export const metadata: Metadata = {
   title: cookies.title,

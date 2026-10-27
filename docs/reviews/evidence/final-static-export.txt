@@ -1,0 +1,18 @@
+== Replit-equivalent production build (env from artifact.toml)
+✓ Generating static pages using 3 workers (12/12) in 396ms
+routes in out/:
+  index.html               present
+  en/index.html            present
+  privacy/index.html       present
+  cookies/index.html       present
+  en/privacy/index.html    present
+  en/cookies/index.html    present
+  404.html                 present
+  opengraph-image          present
+  sitemap.xml              present
+  robots.txt               present
+Formspree endpoint ID in bundle: 1 file(s)
+  out/index.html: lang=bg canonical=https://neurobit.bg/ og:url=https://neurobit.bg/ hreflang=4 form-action=https://formspree.io/f/xdeegpdg
+  out/en/index.html: lang=en canonical=https://neurobit.bg/en/ og:url=https://neurobit.bg/en/ hreflang=4 form-action=https://formspree.io/f/xdeegpdg
+  out/privacy/index.html: lang=bg canonical=https://neurobit.bg/privacy/ og:url=https://neurobit.bg/privacy/ hreflang=4 form-action=-
+  out/en/cookies/index.html: lang=en canonical=https://neurobit.bg/en/cookies/ og:url=https://neurobit.bg/en/cookies/ hreflang=4 form-action=-

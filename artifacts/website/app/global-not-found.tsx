@@ -10,7 +10,7 @@ const inter = Inter({ subsets: ["latin", "cyrillic"], weight: ["300", "400", "60
 const bg = site("bg").notFound;
 const en = site("en").notFound;
 
-export const metadata: Metadata = { metadataBase: new URL(company.url), title: `404 — ${company.name}` };
+export const metadata: Metadata = { metadataBase: new URL(company.url), title: `404 - ${company.name}` };
 
 const themeScript = `try{if(localStorage.getItem("theme")==="light")document.documentElement.dataset.theme="light"}catch(e){}`;
 

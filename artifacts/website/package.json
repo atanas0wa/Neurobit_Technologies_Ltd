@@ -5,8 +5,10 @@
   "scripts": {
     "dev": "next dev -p ${PORT:-3000}",
     "build": "next build",
-    "start": "npx serve out -l ${PORT:-3000}",
-    "typecheck": "tsc -p tsconfig.json --noEmit"
+    "start": "serve out -l ${PORT:-3000}",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test:e2e:build": "sh scripts/build-e2e.sh",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "next": "16.4.2",
@@ -14,10 +16,12 @@
     "react-dom": "catalog:"
   },
   "devDependencies": {
+    "@playwright/test": "1.64.1",
     "@tailwindcss/postcss": "^4.1.14",
     "@types/node": "catalog:",
     "@types/react": "catalog:",
     "@types/react-dom": "catalog:",
+    "serve": "14.2.6",
     "tailwindcss": "catalog:",
     "typescript": "~5.9.3"
   }

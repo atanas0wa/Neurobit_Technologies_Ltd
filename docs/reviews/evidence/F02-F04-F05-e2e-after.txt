@@ -1,0 +1,24 @@
+
+Running 18 tests using 2 workers
+
+  -   1 [formspree] › e2e/contact-native.spec.ts:36:7 › contact form without JavaScript › without an endpoint, hands off to email instead of submitting to the page
+  ✓   2 [formspree] › e2e/contact-native.spec.ts:10:7 › contact form without JavaScript › submits by POST to the configured endpoint, never by GET to the page (1.3s)
+  ✓   3 [formspree] › e2e/contact-native.spec.ts:61:7 › contact form with JavaScript › personal details never reach the page URL (2.1s)
+  ✓   4 [formspree] › e2e/contact-submit.spec.ts:17:5 › F04: fields are locked while sending, the payload is the submitted snapshot, nothing typed is silently lost (3.1s)
+  ✓   5 [formspree] › e2e/contact-submit.spec.ts:53:7 › F05: HTTP error restores the form with the data kept and a localized error (3.4s)
+  ✓   6 [formspree] › e2e/contact-submit.spec.ts:53:7 › F05: network failure restores the form with the data kept and a localized error (3.1s)
+  ✓   8 [formspree] › e2e/contact-submit.spec.ts:86:5 › F05: double submission sends one request (981ms)
+  ✓   7 [formspree] › e2e/contact-submit.spec.ts:66:5 › F05: a stalled request times out, keeps the data, does not resend, and says delivery is uncertain (3.3s)
+  -  10 [mailto] › e2e/contact-native.spec.ts:10:7 › contact form without JavaScript › submits by POST to the configured endpoint, never by GET to the page
+  ✓   9 [formspree] › e2e/contact-submit.spec.ts:106:5 › F05: leaving the page while sending aborts cleanly without errors (3.3s)
+  ✓  11 [mailto] › e2e/contact-native.spec.ts:36:7 › contact form without JavaScript › without an endpoint, hands off to email instead of submitting to the page (3.5s)
+  -  13 [mailto] › e2e/contact-submit.spec.ts:17:5 › F04: fields are locked while sending, the payload is the submitted snapshot, nothing typed is silently lost
+  -  14 [mailto] › e2e/contact-submit.spec.ts:53:7 › F05: HTTP error restores the form with the data kept and a localized error
+  -  15 [mailto] › e2e/contact-submit.spec.ts:53:7 › F05: network failure restores the form with the data kept and a localized error
+  -  16 [mailto] › e2e/contact-submit.spec.ts:66:5 › F05: a stalled request times out, keeps the data, does not resend, and says delivery is uncertain
+  -  17 [mailto] › e2e/contact-submit.spec.ts:86:5 › F05: double submission sends one request
+  -  18 [mailto] › e2e/contact-submit.spec.ts:106:5 › F05: leaving the page while sending aborts cleanly without errors
+  ✓  12 [mailto] › e2e/contact-native.spec.ts:61:7 › contact form with JavaScript › personal details never reach the page URL (3.7s)
+
+  8 skipped
+  10 passed (18.4s)

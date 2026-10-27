@@ -1,0 +1,15 @@
+== after
+@esbuild/darwin-arm64                lockfile entries: 2
+@esbuild/win32-x64                   lockfile entries: 2
+@esbuild/linux-arm64                 lockfile entries: 2
+@esbuild/linux-x64                   lockfile entries: 2
+lightningcss-darwin-arm64            lockfile entries: 2
+lightningcss-linux-x64-gnu           lockfile entries: 2
+@tailwindcss/oxide-darwin-arm64      lockfile entries: 2
+@tailwindcss/oxide-linux-x64-gnu     lockfile entries: 2
+@rollup/rollup-darwin-arm64          lockfile entries: 2
+@rollup/rollup-linux-x64-gnu         lockfile entries: 2
+== esbuild versions in lockfile:
+  '@esbuild/linux-x64@0.28.2
+== installed on this host (linux-x64) only:
+0

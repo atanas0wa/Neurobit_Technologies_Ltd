@@ -31,8 +31,14 @@ export function setBaseUrl(url: string | null): void {
 
 /**
  * Register a getter that supplies a bearer auth token.  Before every fetch
- * the getter is invoked; when it returns a non-null string, an
- * `Authorization: Bearer <token>` header is attached to the request.
+ * to the trusted API origin the getter is invoked; when it returns a
+ * non-null string, an `Authorization: Bearer <token>` header is attached.
+ *
+ * The trusted origin is the one passed to `setBaseUrl`, or the page's own
+ * origin in a browser when no base URL is set. Requests to any other origin
+ * (absolute URLs, protocol-relative URLs) never get the token automatically.
+ * With neither available (e.g. React Native without `setBaseUrl`), only plain
+ * relative paths qualify.
  *
  * Useful for Expo bundles making token-gated API calls.
  * Pass `null` to clear the getter.
@@ -70,6 +76,32 @@ function applyBaseUrl(input: RequestInfo | URL): RequestInfo | URL {
   if (typeof input === "string") return absolute;
   if (isUrl(input)) return new URL(absolute);
   return new Request(absolute, input as Request);
+}
+
+/** Origin that may receive the automatic bearer token, if one can be determined. */
+function trustedApiOrigin(): string | null {
+  if (_baseUrl) {
+    try {
+      return new URL(_baseUrl).origin;
+    } catch {
+      return null;
+    }
+  }
+  const pageOrigin = (globalThis as { location?: { origin?: unknown } }).location?.origin;
+  return typeof pageOrigin === "string" && pageOrigin !== "null" ? pageOrigin : null;
+}
+
+function isTrustedForAutoToken(url: string): boolean {
+  const origin = trustedApiOrigin();
+  if (!origin) {
+    // Nothing to compare against: only same-origin relative paths qualify.
+    return url.startsWith("/") && !url.startsWith("//");
+  }
+  try {
+    return new URL(url, origin).origin === origin;
+  } catch {
+    return false;
+  }
 }
 
 function resolveUrl(input: RequestInfo | URL): string {
@@ -349,9 +381,10 @@ export async function customFetch<T = unknown>(
     headers.set("accept", DEFAULT_JSON_ACCEPT);
   }
 
-  // Attach bearer token when an auth getter is configured and no
-  // Authorization header has been explicitly provided.
-  if (_authTokenGetter && !headers.has("authorization")) {
+  // Attach bearer token when an auth getter is configured, no Authorization
+  // header has been explicitly provided, and the request targets the trusted
+  // API origin. Other origins never receive the token automatically.
+  if (_authTokenGetter && !headers.has("authorization") && isTrustedForAutoToken(resolveUrl(input))) {
     const token = await _authTokenGetter();
     if (token) {
       headers.set("authorization", `Bearer ${token}`);
