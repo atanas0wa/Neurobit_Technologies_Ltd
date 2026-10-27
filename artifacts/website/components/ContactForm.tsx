@@ -93,23 +93,6 @@ export function ContactForm({
         <textarea id="contact-message" name="message" required rows={5} className={`${field} resize-y`} />
       </div>
 
-      <div className="flex items-start gap-3">
-        <input
-          id="contact-consent"
-          name="consent"
-          type="checkbox"
-          required
-          className="mt-[3px] size-[18px] shrink-0 cursor-pointer accent-signal"
-        />
-        <label htmlFor="contact-consent" className="max-w-[560px] text-[15px] font-light leading-normal text-mist">
-          {copy.consent.before}{" "}
-          <Link href={privacyHref} className="text-snow underline underline-offset-4 hover:text-mist">
-            {copy.consent.link}
-          </Link>
-          {copy.consent.after}
-        </label>
-      </div>
-
       <div className="flex flex-wrap items-center gap-x-6 gap-y-4">
         <button
           type="submit"
@@ -142,7 +125,13 @@ export function ContactForm({
         </p>
       </div>
 
-      <p className="max-w-[560px] text-[14px] font-light leading-normal text-mist">{copy.processor}</p>
+      <p className="max-w-[560px] text-[14px] font-light leading-normal text-mist">
+        {copy.notice.before}{" "}
+        <Link href={privacyHref} className="text-snow underline underline-offset-4 hover:text-mist">
+          {copy.notice.link}
+        </Link>
+        {copy.notice.after} {copy.processor}
+      </p>
     </form>
   );
 }

@@ -105,7 +105,7 @@ export const en = {
     paragraphs: [
       `${company.name} was founded in Sofia in ${company.founded}.`,
       "We started it because we kept seeing the same thing: businesses paying for software that looked impressive but didn't fit how they actually work. The problem was rarely the technology. It was distance: between the client and the developers, and between the code and the business.",
-      "So we keep that distance short. We take on fewer projects, you talk directly to the people building your product, and we ask \"why\" before we write a line of code.",
+      "So we keep that distance short. We take on fewer projects, you talk directly to the people building your product, and we ask “why” before we write a line of code.",
     ],
     location: {
       coordinates: ["42.6977° N", "23.3219° E"],
@@ -189,8 +189,8 @@ export const en = {
       mailto: "Your email app should open with the message filled in. If it doesn't, email us at",
       error: "Something went wrong. Please try again, or email us directly at",
       subject: "New enquiry from the website",
-      consent: {
-        before: "I agree that Neurobit uses my details to reply to my enquiry, as described in the",
+      notice: {
+        before: "By sending this form, you confirm you have read our",
         link: "Privacy Policy",
         after: ".",
       },
