@@ -1,0 +1,191 @@
+
+> @workspace/api-client-react@0.0.0 test /home/runner/workspace/lib/api-client-react
+> node --test "test/**/*.test.ts"
+
+▶ with a configured API base URL
+  ✔ relative paths are sent to the API with the token (23.473308ms)
+  ✔ absolute URLs on the trusted origin get the token (string, URL and Request inputs) (3.072135ms)
+  ✖ no token for a different origin (string, URL and Request inputs) (1.80011ms)
+  ✖ no token for a lookalike hostname (string, URL and Request inputs) (0.700763ms)
+  ✖ no token for userinfo pointing elsewhere (string, URL and Request inputs) (0.532386ms)
+  ✖ no token for a different scheme (string, URL and Request inputs) (0.588665ms)
+  ✖ no token for a different port (string, URL and Request inputs) (0.627215ms)
+  ✔ protocol-relative paths stay on the API host and keep the token (0.603608ms)
+  ✔ an explicitly supplied Authorization header is passed through unchanged (0.554001ms)
+✖ with a configured API base URL (33.488063ms)
+▶ in a browser without a base URL (same-origin API)
+  ✔ same-origin relative and absolute URLs get the token (0.553968ms)
+  ✖ protocol-relative URLs to another host get no token (0.479318ms)
+  ✖ absolute URLs to another origin get no token (0.473769ms)
+✖ in a browser without a base URL (same-origin API) (1.849658ms)
+▶ without a base URL or page origin (e.g. React Native)
+  ✖ plain relative paths keep the token; absolute and protocol-relative URLs do not (1.881508ms)
+✖ without a base URL or page origin (e.g. React Native) (1.970553ms)
+▶ without a token getter
+  ✔ no Authorization header is added anywhere (0.264199ms)
+✔ without a token getter (0.31157ms)
+ℹ tests 14
+ℹ suites 4
+ℹ pass 6
+ℹ fail 8
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 157.203596
+
+✖ failing tests:
+
+test at test/custom-fetch.test.ts:63:5
+✖ no token for a different origin (string, URL and Request inputs) (1.80011ms)
+  AssertionError [ERR_ASSERTION]: string input leaked to https://other.example.test/collect
+  + actual - expected
+  
+  + 'Bearer synthetic-test-token'
+  - null
+  
+      at TestContext.<anonymous> (file:///home/runner/workspace/lib/api-client-react/test/custom-fetch.test.ts:65:14)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'Bearer synthetic-test-token',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test/custom-fetch.test.ts:63:5
+✖ no token for a lookalike hostname (string, URL and Request inputs) (0.700763ms)
+  AssertionError [ERR_ASSERTION]: string input leaked to https://api.example.test.evil.test/collect
+  + actual - expected
+  
+  + 'Bearer synthetic-test-token'
+  - null
+  
+      at TestContext.<anonymous> (file:///home/runner/workspace/lib/api-client-react/test/custom-fetch.test.ts:65:14)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'Bearer synthetic-test-token',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test/custom-fetch.test.ts:63:5
+✖ no token for userinfo pointing elsewhere (string, URL and Request inputs) (0.532386ms)
+  AssertionError [ERR_ASSERTION]: string input leaked to https://api.example.test@evil.test/collect
+  + actual - expected
+  
+  + 'Bearer synthetic-test-token'
+  - null
+  
+      at TestContext.<anonymous> (file:///home/runner/workspace/lib/api-client-react/test/custom-fetch.test.ts:65:14)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'Bearer synthetic-test-token',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test/custom-fetch.test.ts:63:5
+✖ no token for a different scheme (string, URL and Request inputs) (0.588665ms)
+  AssertionError [ERR_ASSERTION]: string input leaked to http://api.example.test/api/healthz
+  + actual - expected
+  
+  + 'Bearer synthetic-test-token'
+  - null
+  
+      at TestContext.<anonymous> (file:///home/runner/workspace/lib/api-client-react/test/custom-fetch.test.ts:65:14)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'Bearer synthetic-test-token',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test/custom-fetch.test.ts:63:5
+✖ no token for a different port (string, URL and Request inputs) (0.627215ms)
+  AssertionError [ERR_ASSERTION]: string input leaked to https://api.example.test:8443/api/healthz
+  + actual - expected
+  
+  + 'Bearer synthetic-test-token'
+  - null
+  
+      at TestContext.<anonymous> (file:///home/runner/workspace/lib/api-client-react/test/custom-fetch.test.ts:65:14)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: 'Bearer synthetic-test-token',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test/custom-fetch.test.ts:102:3
+✖ protocol-relative URLs to another host get no token (0.479318ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'Bearer synthetic-test-token'
+  - null
+  
+      at TestContext.<anonymous> (file:///home/runner/workspace/lib/api-client-react/test/custom-fetch.test.ts:104:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Bearer synthetic-test-token',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test/custom-fetch.test.ts:107:3
+✖ absolute URLs to another origin get no token (0.473769ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'Bearer synthetic-test-token'
+  - null
+  
+      at TestContext.<anonymous> (file:///home/runner/workspace/lib/api-client-react/test/custom-fetch.test.ts:109:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Suite.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Bearer synthetic-test-token',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test/custom-fetch.test.ts:114:3
+✖ plain relative paths keep the token; absolute and protocol-relative URLs do not (1.881508ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'Bearer synthetic-test-token'
+  - null
+  
+      at TestContext.<anonymous> (file:///home/runner/workspace/lib/api-client-react/test/custom-fetch.test.ts:118:12)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Promise.all (index 0)
+      at async Suite.run (node:internal/test_runner/test:1905:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'Bearer synthetic-test-token',
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+ ELIFECYCLE  Test failed. See above for more details.
