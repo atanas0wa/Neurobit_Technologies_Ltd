@@ -1,0 +1,30 @@
+
+Running 22 tests using 2 workers
+
+  -   1 [formspree] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 390px (dark)
+  -   2 [formspree] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 768px (dark)
+  -   3 [formspree] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 1280px (dark)
+  -   5 [formspree] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 1440px (dark)
+  -   6 [formspree] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 320px (light)
+  -   4 [formspree] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 320px (dark)
+  -   7 [formspree] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 390px (light)
+  -   8 [formspree] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 768px (light)
+  -   9 [formspree] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 1280px (light)
+  -  10 [formspree] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 1440px (light)
+  -  11 [formspree] › e2e/layout.spec.ts:28:5 › enlarged text (200%) at 320px: the privacy heading wraps instead of overflowing
+  ✓  12 [mailto] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 320px (dark) (3.5s)
+  ✓  13 [mailto] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 390px (dark) (3.6s)
+  ✓  14 [mailto] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 768px (dark) (2.9s)
+  ✓  15 [mailto] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 1280px (dark) (3.1s)
+  ✓  16 [mailto] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 1440px (dark) (2.6s)
+  ✓  17 [mailto] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 320px (light) (2.4s)
+  ✓  18 [mailto] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 390px (light) (2.1s)
+  ✓  19 [mailto] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 768px (light) (2.1s)
+  ✓  20 [mailto] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 1280px (light) (2.6s)
+  ✓  21 [mailto] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 1440px (light) (2.8s)
+  ✓  22 [mailto] › e2e/layout.spec.ts:28:5 › enlarged text (200%) at 320px: the privacy heading wraps instead of overflowing (1.2s)
+
+  11 skipped
+  11 passed (17.3s)
+
+Manual check (Chromium, /privacy/ at 320px): dark and light: h1 33.6px, 2 lines, document width 320. With html font-size 200%: h1 64px, 4 lines, words break mid-word, document width 320.
