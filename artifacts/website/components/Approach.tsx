@@ -4,7 +4,7 @@ import { WideSection } from "./Section";
 export function Approach({ locale }: { locale: Locale }) {
   const { approach } = site(locale);
   return (
-    <WideSection id="approach" side="right" label={approach.label} title={approach.title} intro={approach.intro}>
+    <WideSection id="process" label={approach.label} title={approach.title}>
       <ol className="border-b border-line">
         {approach.steps.map((step, i) => (
           <li
@@ -15,12 +15,7 @@ export function Approach({ locale }: { locale: Locale }) {
               {String(i + 1).padStart(2, "0")}
             </span>
             <h3 className="text-h3 font-regular text-snow md:col-span-4">{step.title}</h3>
-            <p className="max-w-[560px] text-body font-light text-mist md:col-span-5">{step.body}</p>
-            {step.duration && (
-              <p className="font-mono text-label font-medium uppercase text-mist md:col-span-2 md:text-right">
-                {step.duration}
-              </p>
-            )}
+            <p className="max-w-[560px] text-body font-light text-mist md:col-span-7">{step.body}</p>
           </li>
         ))}
       </ol>

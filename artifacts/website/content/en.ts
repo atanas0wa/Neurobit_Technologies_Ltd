@@ -5,13 +5,14 @@
  * full localized path, and bold uses **text**.
  */
 import { company } from "./company";
+import type { IconName } from "@/components/Icon";
 
 export const en = {
   meta: {
     htmlLang: "en",
     ogLocale: "en_US",
     title: `${company.name} — Software development in Sofia`,
-    description: `${company.name} is a Sofia-based development company building web platforms, mobile apps and AI solutions for businesses that want to grow.`,
+    description: "We turn your idea or your slowest manual process into a working product, with a small senior team you talk to directly from day one to launch.",
     skip: "Skip to content",
   },
 
@@ -27,95 +28,84 @@ export const en = {
   nav: {
     links: [
       { label: "Services", href: "/#services" },
-      { label: "Process", href: "/#approach" },
-      { label: "Stack", href: "/#stack" },
+      { label: "Why us", href: "/#why-us" },
       { label: "About", href: "/#about" },
+      { label: "How we work", href: "/#process" },
+      { label: "FAQ", href: "/#faq" },
       { label: "Contact", href: "/#contact" },
     ],
-    cta: { label: "Start a project", href: "/#contact" },
+    cta: { label: "Tell us about your project", href: "/#contact" },
   },
 
   hero: {
-    status: "Software development · Sofia",
-    headline: "Software that works for your business.",
-    subline: `${company.name} is a Sofia-based development company building web platforms, mobile apps and AI solutions for businesses that want to grow.`,
-    primary: { label: "Start a project", href: "/#contact" },
-    secondary: { label: "See our services", href: "/#services" },
-    facts: ["Web development", "Mobile apps", "AI solutions"],
+    headline: "Web, mobile and AI software for businesses that need it to actually work",
+    subline:
+      "We turn your idea or your slowest manual process into a working product, with a small senior team you talk to directly from day one to launch.",
+    primary: { label: "Tell us about your project", href: "/#contact" },
     diagramTiers: ["Client", "Edge", "Services", "Data"],
+  },
+
+  problem: {
+    lead: "You know what you need built. The hard part is finding someone who understands the business behind it.",
+    paragraphs: [
+      "Big agencies hand you to a junior team after the sales call. Freelancers disappear after launch. And you end up paying for features nobody uses.",
+      "We started Neurobit to work differently: fewer projects, direct communication, and software built around how your business really runs.",
+    ],
   },
 
   services: {
     label: "Services",
-    title: "Three things we do well.",
-    intro: "We focus on web, mobile and AI, and go deep on each, so the software we build keeps up as your business grows.",
+    title: "What we build",
     items: [
       {
+        icon: "web",
         label: "Web development",
-        title: "Websites and platforms that stay fast.",
-        body: "Fast, secure websites and web applications, from company sites to complex platforms with payments and user accounts.",
+        body: "A website or platform that loads fast, takes payments securely and doesn't need rebuilding in a year.",
       },
       {
+        icon: "mobile",
         label: "Mobile apps",
-        title: "Apps built around your users.",
-        body: "iOS and Android apps designed around how your users actually behave.",
+        body: "iOS and Android apps built around what your users actually do, not what looks good in a pitch deck.",
       },
       {
+        icon: "ai",
         label: "AI solutions",
-        title: "AI that takes work off your team.",
-        body: "AI agents, process automation and intelligent assistants that save your team time and reduce manual work.",
+        body: "AI agents and automation that take repetitive work off your team, so people spend their time on what needs a human.",
       },
-    ],
+    ] as { icon: IconName; label: string; body: string }[],
   },
 
-  approach: {
-    label: "Process",
-    title: "Five steps. No surprises.",
-    intro: "The same clear process for every project, so you always know what happens next.",
-    steps: [
+  whyUs: {
+    label: "Why us",
+    title: "Why work with us",
+    points: [
+      { icon: "people", title: "You work with the people who build it.", body: "No account managers in between." },
       {
-        title: "Discovery",
-        body: "We learn how your business works, who your users are and what success looks like. You get a clear scope and estimate before any code is written.",
+        icon: "scope",
+        title: "Honest scope.",
+        body: "If something isn't worth building, we'll tell you before you pay for it.",
       },
       {
-        title: "Design",
-        body: "We shape the user experience and the architecture, and agree them with you before development starts.",
+        icon: "shield",
+        title: "Built to last.",
+        body: "Clean, secure, documented code that your team or any developer can take over.",
       },
-      {
-        title: "Development",
-        body: "We build in short cycles with a working version at the end of each, so you see real progress, not slide decks.",
-      },
-      {
-        title: "Launch",
-        body: "Testing, security checks and monitoring are in place before the first real user arrives.",
-      },
-      {
-        title: "Support",
-        body: "We stay with you after launch, with updates, fixes and new features as your business grows.",
-      },
-    ] as { title: string; body: string; duration?: string }[],
-  },
-
-  stack: {
-    label: "Stack",
-    title: "Proven tools, chosen per project.",
-    intro: "We pick reliable, well-supported technology where it matters and newer tools where they earn their place.",
-    groups: [
-      { name: "Frontend", items: ["TypeScript", "React", "Next.js", "React Native", "Tailwind CSS"] },
-      { name: "Backend", items: ["Node.js", "Go", "Python", "GraphQL", "gRPC"] },
-      { name: "Cloud", items: ["AWS", "Google Cloud", "Vercel", "Docker", "Kubernetes", "Terraform"] },
-      { name: "Data & AI", items: ["PostgreSQL", "Redis", "pgvector", "LLM APIs", "AI agents"] },
-    ],
+    ] as { icon: IconName; title: string; body: string }[],
+    // Hidden until the list has entries. Add real quotes only, e.g.
+    // { quote: "…", name: "…", role: "…", company: "…" }
+    testimonials: {
+      label: "What clients say",
+      items: [] as { quote: string; name: string; role: string; company: string }[],
+    },
   },
 
   about: {
     label: "About us",
-    title: "Software that solves real problems.",
-    intro: `${company.name} was founded in ${company.founded} in Sofia with a simple goal: to build software that solves real business problems, not just software that looks good on paper. We work closely with our clients from the first idea to launch and beyond. We keep the process transparent, the communication direct, and the solutions built to scale.`,
-    reasons: [
-      { title: "Clarity first", body: "We understand your business before we write any code." },
-      { title: "Built to last", body: "Clean, secure, maintainable technology." },
-      { title: "Partnership", body: "We stay with you after launch." },
+    title: "About Neurobit",
+    paragraphs: [
+      `${company.name} was founded in Sofia in ${company.founded}.`,
+      "We started it because we kept seeing the same thing: businesses paying for software that looked impressive but didn't fit how they actually work. The problem was rarely the technology. It was distance: between the client and the developers, and between the code and the business.",
+      "So we keep that distance short. We take on fewer projects, you talk directly to the people building your product, and we ask \"why\" before we write a line of code.",
     ],
     location: {
       coordinates: ["42.6977° N", "23.3219° E"],
@@ -125,10 +115,63 @@ export const en = {
     },
   },
 
+  approach: {
+    label: "Process",
+    title: "How we work",
+    steps: [
+      { title: "Discovery", body: "A free call to understand the problem. You get a clear scope and estimate." },
+      { title: "Design", body: "You see and click through the product before development starts." },
+      { title: "Development", body: "Short cycles with regular demos, so there are no surprises at the end." },
+      { title: "Launch", body: "We deploy, test and hand over everything you own." },
+      { title: "Support", body: "We stay on for fixes, updates and growth." },
+    ],
+  },
+
+  options: {
+    label: "Engagements",
+    title: "Ways to work with us",
+    items: [
+      { title: "Website", body: "Company site or landing page with fixed scope and fixed price." },
+      {
+        title: "Product / MVP",
+        body: "Web or mobile app built in stages, starting with the version that proves the idea.",
+      },
+      { title: "AI automation", body: "We pick one process, automate it and measure the time saved." },
+    ],
+    cta: { label: "Get an estimate", href: "/#contact" },
+  },
+
+  faq: {
+    label: "FAQ",
+    title: "Questions we hear often",
+    items: [
+      {
+        question: "How much does a project cost?",
+        answer:
+          "It depends on scope. After the first call, you get a written estimate with a fixed price or clear ranges. No hidden costs.",
+      },
+      {
+        question: "How long does it take?",
+        answer:
+          "A company website takes a few weeks; an app or platform is built in stages, with the first working version as early as possible.",
+      },
+      { question: "Who owns the code?", answer: "You do, fully, after final payment." },
+      { question: "Can we sign an NDA?", answer: "Yes, before you share any details." },
+      {
+        question: "Is my project too small?",
+        answer: "No. Many good products start small. We'll tell you honestly what's worth building first.",
+      },
+      {
+        question: "What happens after launch?",
+        answer: "We offer ongoing support, or a full handover to your team if you prefer.",
+      },
+    ],
+  },
+
   contact: {
     label: "Contact",
-    title: "Have a project in mind?",
-    intro: "Tell us about it and we'll get back to you within one business day.",
+    title: "Have an idea or a process that's slowing you down?",
+    intro: "Tell us in a few sentences, and we'll reply within one business day with next steps.",
     details: [
       { label: "Email", value: company.email, href: `mailto:${company.email}` },
       { label: "Technical enquiries", value: company.devEmail, href: `mailto:${company.devEmail}` },
@@ -137,8 +180,9 @@ export const en = {
     form: {
       name: "Name",
       email: "Email",
-      message: "Message",
-      messageHint: "What are you building, and by when?",
+      company: "Company",
+      optional: "optional",
+      message: "What do you need?",
       submit: "Send message",
       sending: "Sending…",
       success: "Thank you! We'll get back to you within one business day.",
@@ -146,10 +190,11 @@ export const en = {
       error: "Something went wrong. Please try again, or email us directly at",
       subject: "New enquiry from the website",
       consent: {
-        before: "By sending this form you agree that we use your details to reply to your enquiry, as described in our",
+        before: "I agree that Neurobit uses my details to reply to my enquiry, as described in the",
         link: "Privacy Policy",
-        after: ". Submissions are processed by Formspree.",
+        after: ".",
       },
+      processor: "Submissions are processed by Formspree.",
     },
   },
 
@@ -174,7 +219,7 @@ export const en = {
   privacy: {
     title: "Privacy Policy",
     description: `How ${company.name} collects, uses and protects personal data under the GDPR.`,
-    updated: "24 October 2026",
+    updated: "27 October 2026",
     intro: `This policy explains what personal data ${company.legalName} (${company.name}) collects through this website, why, and what rights you have under the EU General Data Protection Regulation (GDPR).`,
     sections: [
       {
@@ -190,7 +235,7 @@ export const en = {
           "We collect as little as we can. This website uses no analytics, advertising or tracking cookies. See our [Cookie Policy](/en/cookies/).",
         ],
         list: [
-          "**Contact form.** Your name, email address and the message you write. Formspree also records technical data with each submission, such as your IP address, browser type and the time of submission, to prevent spam.",
+          "**Contact form.** Your name, email address, company (if you give it) and the message you write. Formspree also records technical data with each submission, such as your IP address, browser type and the time of submission, to prevent spam.",
           "**Server logs.** When you visit the site, our hosting provider processes your IP address, the page requested, your browser's user agent and a timestamp. This is needed to deliver the site and protect it from abuse.",
           "**Email.** If you email us directly, we receive your email address and whatever you choose to include.",
         ],

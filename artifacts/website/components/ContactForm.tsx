@@ -31,7 +31,8 @@ export function ContactForm({
     // Without a Formspree ID (local dev, Replit preview) hand the message to the visitor's email app.
     if (!FORMSPREE_ID) {
       const data = new FormData(form);
-      const body = `${data.get("message")}\n\n${data.get("name")} <${data.get("email")}>`;
+      const company = data.get("company");
+      const body = `${data.get("message")}\n\n${data.get("name")} <${data.get("email")}>${company ? `\n${company}` : ""}`;
       window.location.href = `mailto:${email}?subject=${encodeURIComponent(copy.subject)}&body=${encodeURIComponent(body)}`;
       setStatus("mailto");
       return;
@@ -79,20 +80,34 @@ export function ContactForm({
       </div>
 
       <div>
+        <label htmlFor="contact-company" className={fieldLabel}>
+          {copy.company} <span className="normal-case tracking-normal">({copy.optional})</span>
+        </label>
+        <input id="contact-company" name="company" type="text" autoComplete="organization" className={field} />
+      </div>
+
+      <div>
         <label htmlFor="contact-message" className={fieldLabel}>
           {copy.message}
         </label>
-        <p id="contact-message-hint" className="mt-1.5 text-[15px] font-light text-mist">
-          {copy.messageHint}
-        </p>
-        <textarea
-          id="contact-message"
-          name="message"
+        <textarea id="contact-message" name="message" required rows={5} className={`${field} resize-y`} />
+      </div>
+
+      <div className="flex items-start gap-3">
+        <input
+          id="contact-consent"
+          name="consent"
+          type="checkbox"
           required
-          rows={5}
-          aria-describedby="contact-message-hint"
-          className={`${field} resize-y`}
+          className="mt-[3px] size-[18px] shrink-0 cursor-pointer accent-signal"
         />
+        <label htmlFor="contact-consent" className="max-w-[560px] text-[15px] font-light leading-normal text-mist">
+          {copy.consent.before}{" "}
+          <Link href={privacyHref} className="text-snow underline underline-offset-4 hover:text-mist">
+            {copy.consent.link}
+          </Link>
+          {copy.consent.after}
+        </label>
       </div>
 
       <div className="flex flex-wrap items-center gap-x-6 gap-y-4">
@@ -127,13 +142,7 @@ export function ContactForm({
         </p>
       </div>
 
-      <p className="max-w-[560px] text-[14px] font-light leading-normal text-mist">
-        {copy.consent.before}{" "}
-        <Link href={privacyHref} className="text-snow underline underline-offset-4 hover:text-mist">
-          {copy.consent.link}
-        </Link>
-        {copy.consent.after}
-      </p>
+      <p className="max-w-[560px] text-[14px] font-light leading-normal text-mist">{copy.processor}</p>
     </form>
   );
 }

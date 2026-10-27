@@ -10,20 +10,14 @@ export function About({ locale }: { locale: Locale }) {
       side="right"
       label={about.label}
       title={about.title}
-      intro={about.intro}
-      more={
-        <ul className="mt-10 space-y-6">
-          {about.reasons.map((reason) => (
-            <li key={reason.title} className="grid grid-cols-[auto_1fr] gap-x-4">
-              <span className="mt-[9px] size-1.5 rounded-full bg-terminal" aria-hidden="true" />
-              <div>
-                <h3 className="text-[20px] font-regular tracking-[-0.02em] text-snow">{reason.title}</h3>
-                <p className="mt-1.5 max-w-[520px] text-body font-light text-mist">{reason.body}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
-      }
+      more={about.paragraphs.map((paragraph, i) => (
+        <p
+          key={paragraph}
+          className={`mt-5 max-w-[560px] text-body font-light ${i === 0 ? "text-snow" : "text-mist"}`}
+        >
+          {paragraph}
+        </p>
+      ))}
     >
       <figure className="w-full max-w-[560px] font-mono text-label font-medium uppercase text-mist lg:mt-4">
         <div className="flex justify-between gap-4">

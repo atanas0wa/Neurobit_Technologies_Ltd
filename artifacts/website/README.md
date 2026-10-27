@@ -19,12 +19,15 @@ artifacts/website/
 │   ├── SiteLayout.tsx        Shared <html>: fonts, metadata, JSON-LD, nav + footer
 │   ├── HomePage.tsx          Homepage section order
 │   ├── Nav.tsx               Transparent → blurred on scroll; language and theme switches; mobile menu
-│   ├── Hero.tsx              Headline, CTAs, services row
+│   ├── Hero.tsx              Headline, subline, CTA
 │   ├── HeroNetwork.tsx       Canvas node network (client component)
-│   ├── Services.tsx          Three services, two columns
-│   ├── Approach.tsx          Process: five numbered steps
-│   ├── Stack.tsx             Technologies panel
-│   ├── About.tsx             Company, how we work, location readout
+│   ├── Problem.tsx           Centered problem statement
+│   ├── Services.tsx          Three service cards with icons
+│   ├── WhyUs.tsx             Three reasons; testimonials (hidden until content has entries)
+│   ├── Approach.tsx          How we work: five numbered steps
+│   ├── Options.tsx           Ways to work with us: three option cards + CTA
+│   ├── Faq.tsx               <details> accordion, first item open
+│   ├── Icon.tsx              Line icons for the cards
 │   ├── Contact.tsx           Contact details + form
 │   ├── ContactForm.tsx       Formspree form (client component)
 │   ├── LegalPage.tsx         Privacy and Cookie Policy layout
@@ -85,7 +88,7 @@ Spam protection uses Formspree's `_gotcha` honeypot field, which is hidden off-s
 
 ## Editing content
 
-Company details shared by both languages (name, legal name, ЕИК, emails, domain) are in `content/company.ts`. All copy is in `content/bg.ts` and `content/en.ts`, including the services, process steps, stack, About copy, contact details, footer text, and the privacy and cookie policies. Components only render it. `bg.ts` is typed as `Content`, the shape of `en.ts`, so a key missing from either file fails the typecheck.
+Company details shared by both languages (name, legal name, ЕИК, emails, domain) are in `content/company.ts`. All copy is in `content/bg.ts` and `content/en.ts`, including the problem block, services, why us, process steps, ways to work, FAQ, contact details, footer text, and the privacy and cookie policies. Components only render it. `bg.ts` is typed as `Content`, the shape of `en.ts`, so a key missing from either file fails the typecheck.
 
 Write site paths without the language prefix (`"/#contact"`, `"/privacy/"`); components add `/en` for English. Inline links inside legal text use `[text](url)` with the full path for that language, and bold uses `**text**`.
 

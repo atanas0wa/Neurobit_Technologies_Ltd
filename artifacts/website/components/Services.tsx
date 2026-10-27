@@ -1,18 +1,17 @@
 import { site, type Locale } from "@/content/site";
+import { Icon } from "./Icon";
 import { WideSection } from "./Section";
 
 export function Services({ locale }: { locale: Locale }) {
   const { services } = site(locale);
   return (
-    <WideSection id="services" label={services.label} title={services.title} intro={services.intro}>
-      <ul className="grid gap-x-12 gap-y-10 md:grid-cols-2 md:gap-y-16">
-        {services.items.map((item, i) => (
-          <li key={item.label}>
-            <p className="font-mono text-label font-medium uppercase text-terminal">
-              {String(i + 1).padStart(2, "0")} / {item.label}
-            </p>
-            <h3 className="mt-3 text-h4 font-regular text-snow">{item.title}</h3>
-            <p className="mt-3 max-w-[560px] text-body font-light text-mist">{item.body}</p>
+    <WideSection id="services" label={services.label} title={services.title}>
+      <ul className="grid gap-4 md:grid-cols-3 md:gap-6">
+        {services.items.map((item) => (
+          <li key={item.label} className="rounded-3xl border border-line bg-panel p-6 md:p-8">
+            <Icon name={item.icon} className="text-terminal" />
+            <h3 className="mt-6 text-[24px] font-regular tracking-[-0.02em] text-snow">{item.label}</h3>
+            <p className="mt-3 text-body font-light text-mist">{item.body}</p>
           </li>
         ))}
       </ul>
