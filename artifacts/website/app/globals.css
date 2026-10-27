@@ -202,6 +202,189 @@ body {
   }
 }
 
+/*
+ * Services: illustrations play only after ServiceArt sets data-play, and
+ * pause while off screen. Without it (no JS, reduced motion) they stay still
+ * and fully drawn.
+ */
+.art .a-load,
+.art .a-type {
+  transform-box: fill-box;
+  transform-origin: left center;
+}
+.art .a-press,
+.art .a-pop,
+.art .a-pulse,
+.art .a-flash {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.art[data-play] .a-load {
+  animation: art-load 7s var(--d, 0s) infinite both;
+}
+.art[data-play] .a-type {
+  animation: art-type 7s infinite both;
+}
+.art[data-play] .a-press {
+  animation: art-press 7s infinite both;
+}
+.art[data-play] .a-pop {
+  animation: art-pop 7s infinite both;
+}
+.art[data-play] .a-select {
+  animation:
+    art-load 7s var(--d, 0s) infinite both,
+    art-select 7s infinite both;
+}
+.art[data-play] .a-confirm {
+  animation: art-confirm 7s infinite both;
+}
+.art[data-play] .a-notify {
+  animation: art-notify 7s infinite both;
+}
+.art[data-play] .a-pulse {
+  animation: art-pulse 1.5s ease-out infinite;
+}
+.art[data-play] .a-flash {
+  animation: art-flash 3s var(--d, 0s) infinite both;
+}
+.art[data-play="false"] * {
+  animation-play-state: paused;
+}
+@keyframes art-load {
+  0% {
+    opacity: 0;
+    transform: scaleX(0.6);
+  }
+  6%,
+  88% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+  96%,
+  100% {
+    opacity: 0;
+    transform: scaleX(1);
+  }
+}
+@keyframes art-type {
+  0%,
+  24% {
+    transform: scaleX(0);
+  }
+  40%,
+  100% {
+    transform: scaleX(1);
+  }
+}
+@keyframes art-press {
+  0%,
+  47% {
+    transform: scale(1);
+  }
+  51% {
+    transform: scale(0.92);
+  }
+  55%,
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes art-pop {
+  0%,
+  54% {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+  64%,
+  88% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  96%,
+  100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+}
+@keyframes art-select {
+  0%,
+  30% {
+    fill: var(--color-line);
+  }
+  36%,
+  90% {
+    fill: var(--color-signal);
+  }
+  97%,
+  100% {
+    fill: var(--color-line);
+  }
+}
+@keyframes art-confirm {
+  0%,
+  40% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  46%,
+  90% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  97%,
+  100% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+}
+@keyframes art-notify {
+  0%,
+  52% {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+  58%,
+  90% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  97%,
+  100% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+}
+@keyframes art-pulse {
+  from {
+    opacity: 0.9;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.35);
+  }
+}
+@keyframes art-flash {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  6% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  22% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+}
+
 /* FAQ: answers open smoothly where the browser can animate to auto height. */
 :root {
   interpolate-size: allow-keywords;
@@ -225,5 +408,8 @@ body {
   }
   .faq-item::details-content {
     transition: none;
+  }
+  .art * {
+    animation: none !important;
   }
 }

@@ -24,6 +24,7 @@ artifacts/website/
 │   ├── NeuronBackground.tsx  Site-wide drifting neuron field behind every page (client component)
 │   ├── Problem.tsx           Centered problem statement
 │   ├── Services.tsx          Three services as editorial rows
+│   ├── ServiceArt.tsx        Animated line illustration for each service (client component)
 │   ├── WhyUs.tsx             Three reasons; testimonials (hidden until content has entries)
 │   ├── About.tsx             Company story beside a short code panel
 │   ├── Approach.tsx          How we work: five steps whose dots light up as you scroll
