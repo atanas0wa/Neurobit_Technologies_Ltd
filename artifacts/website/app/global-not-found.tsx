@@ -16,7 +16,7 @@ const themeScript = `try{if(localStorage.getItem("theme")==="light")document.doc
 
 export default function GlobalNotFound() {
   return (
-    <html lang="bg" data-theme="dark" className={inter.variable} suppressHydrationWarning>
+    <html lang="en" data-theme="dark" className={inter.variable} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
@@ -24,15 +24,15 @@ export default function GlobalNotFound() {
         <main>
           <Container className="flex min-h-svh flex-col justify-center py-20">
             <Label>404</Label>
-            <h1 className="mt-4 text-h1 font-regular text-snow">{bg.title}</h1>
-            <p className="mt-5 max-w-[560px] text-body font-light text-mist">{bg.body}</p>
-            <p lang="en" className="mt-3 max-w-[560px] text-body font-light text-mist">
-              {en.title}. {en.body}
+            <h1 className="mt-4 text-h1 font-regular text-snow">{en.title}</h1>
+            <p className="mt-5 max-w-[560px] text-body font-light text-mist">{en.body}</p>
+            <p lang="bg" className="mt-3 max-w-[560px] text-body font-light text-mist">
+              {bg.title}. {bg.body}
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
-              <ButtonLink href="/">{bg.back}</ButtonLink>
-              <a href="/en/" lang="en" className="text-[15px] text-mist transition-colors hover:text-snow">
-                {en.back} →
+              <ButtonLink href="/">{en.back}</ButtonLink>
+              <a href="/bg/" lang="bg" className="text-[15px] text-mist transition-colors hover:text-snow">
+                {bg.back} →
               </a>
             </div>
           </Container>

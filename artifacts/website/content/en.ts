@@ -230,7 +230,7 @@ export const en = {
       {
         heading: "What we collect",
         paragraphs: [
-          "We collect as little as we can. This website uses no analytics, advertising or tracking cookies. See our [Cookie Policy](/en/cookies/).",
+          "We collect as little as we can. This website uses no analytics, advertising or tracking cookies. See our [Cookie Policy](/cookies/).",
         ],
         list: [
           "**Contact form.** Your name, email address, company (if you give it) and the message you write. Formspree also records technical data with each submission, such as your IP address, browser type and the time of submission, to prevent spam.",
@@ -304,7 +304,7 @@ export const en = {
       {
         heading: "Contact form",
         paragraphs: [
-          "When you send the contact form, it goes to Formspree, which may process technical data to prevent spam. Formspree sets no cookies on this website. See our [Privacy Policy](/en/privacy/) for details.",
+          "When you send the contact form, it goes to Formspree, which may process technical data to prevent spam. Formspree sets no cookies on this website. See our [Privacy Policy](/privacy/) for details.",
         ],
       },
       {
