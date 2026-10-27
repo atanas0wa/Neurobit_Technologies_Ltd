@@ -18,7 +18,7 @@ export function Faq({ locale }: { locale: Locale }) {
     <WideSection id="faq" title={faq.title}>
       <div className="border-b border-line">
         {faq.items.map((item, i) => (
-          <details key={item.question} open={i === 0} className="group border-t border-line">
+          <details key={item.question} open={i === 0} className="faq-item group border-t border-line">
             <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 md:py-8 [&::-webkit-details-marker]:hidden">
               <h3 className="text-[22px] font-regular tracking-[-0.02em] text-snow md:text-[24px]">{item.question}</h3>
               <span
@@ -29,7 +29,7 @@ export function Faq({ locale }: { locale: Locale }) {
                 <span className="absolute h-3.5 w-px bg-current transition-transform group-open:rotate-90 motion-reduce:transition-none" />
               </span>
             </summary>
-            <p className="-mt-2 max-w-[720px] pb-8 text-body font-light text-mist">{item.answer}</p>
+            <p className="max-w-[720px] pb-8 text-body font-light text-mist">{item.answer}</p>
           </details>
         ))}
       </div>
