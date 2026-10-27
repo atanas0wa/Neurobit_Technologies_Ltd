@@ -1,0 +1,5 @@
+YAML OK; permissions: {"contents":"read"}
+ job checks -> Typecheck, build and unit tests | steps: 7
+ job e2e -> Website end-to-end tests | steps: 8
+ job install-build -> Install and build (${{ matrix.os }}) | steps: 7
+ all actions pinned to SHA: true

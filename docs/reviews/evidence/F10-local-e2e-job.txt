@@ -1,0 +1,70 @@
+
+Running 64 tests using 2 workers
+
+  -   1 [formspree] › e2e/contact-native.spec.ts:36:7 › contact form without JavaScript › without an endpoint, hands off to email instead of submitting to the page
+  ✓   3 [formspree] › e2e/contact-native.spec.ts:61:7 › contact form with JavaScript › personal details never reach the page URL (1.8s)
+  ✓   2 [formspree] › e2e/contact-native.spec.ts:10:7 › contact form without JavaScript › submits by POST to the configured endpoint, never by GET to the page (3.9s)
+  ✓   4 [formspree] › e2e/contact-submit.spec.ts:17:5 › F04: fields are locked while sending, the payload is the submitted snapshot, nothing typed is silently lost (3.4s)
+  ✓   5 [formspree] › e2e/contact-submit.spec.ts:53:7 › F05: HTTP error restores the form with the data kept and a localized error (2.9s)
+  ✓   6 [formspree] › e2e/contact-submit.spec.ts:53:7 › F05: network failure restores the form with the data kept and a localized error (2.7s)
+  ✓   8 [formspree] › e2e/contact-submit.spec.ts:86:5 › F05: double submission sends one request (940ms)
+  ✓   7 [formspree] › e2e/contact-submit.spec.ts:66:5 › F05: a stalled request times out, keeps the data, does not resend, and says delivery is uncertain (3.3s)
+  -  10 [formspree] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 320px (dark)
+  -  11 [formspree] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 390px (dark)
+  -  12 [formspree] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 768px (dark)
+  -  13 [formspree] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 1280px (dark)
+  -  14 [formspree] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 1440px (dark)
+  -  15 [formspree] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 320px (light)
+  -  16 [formspree] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 390px (light)
+  -  17 [formspree] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 768px (light)
+  -  18 [formspree] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 1280px (light)
+  -  19 [formspree] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 1440px (light)
+  -  20 [formspree] › e2e/layout.spec.ts:28:5 › enlarged text (200%) at 320px: the privacy heading wraps instead of overflowing
+  ✓  21 [formspree] › e2e/mobile-menu.spec.ts:30:5 › opening moves focus into the menu (1.1s)
+  ✓   9 [formspree] › e2e/contact-submit.spec.ts:106:5 › F05: leaving the page while sending aborts cleanly without errors (2.0s)
+  ✓  22 [formspree] › e2e/mobile-menu.spec.ts:37:7 › Tab never reaches the covered page (1.8s)
+  ✓  23 [formspree] › e2e/mobile-menu.spec.ts:37:7 › Shift+Tab never reaches the covered page (1.8s)
+  ✓  24 [formspree] › e2e/mobile-menu.spec.ts:47:5 › Escape closes the menu and returns focus to the toggle (894ms)
+  ✓  25 [formspree] › e2e/mobile-menu.spec.ts:57:5 › choosing a link closes the menu and leaves the page usable (1.1s)
+  -  27 [formspree] › e2e/privacy-claims.spec.ts:11:5 › pages make no requests to other hosts while loading and browsing
+  -  28 [formspree] › e2e/privacy-claims.spec.ts:26:5 › no cookies are set and local storage only ever holds the theme choice
+  ✓  26 [formspree] › e2e/mobile-menu.spec.ts:64:5 › growing to the desktop layout closes the menu and leaves the page usable (1.2s)
+  ✓  29 [formspree] › e2e/reduced-motion.spec.ts:35:5 › reduced motion before load: everything is still (1.6s)
+  ✓  30 [formspree] › e2e/reduced-motion.spec.ts:45:5 › reduced motion switched on while the page is open stops the motion (1.9s)
+  ✓  32 [formspree] › e2e/reduced-motion.spec.ts:75:7 › without JavaScript › with reduced motion, the static markup carries no animation (649ms)
+  ✓  31 [formspree] › e2e/reduced-motion.spec.ts:58:5 › normal motion still plays on screen and pauses off screen (2.8s)
+  -  33 [mailto] › e2e/contact-native.spec.ts:10:7 › contact form without JavaScript › submits by POST to the configured endpoint, never by GET to the page
+  ✓  34 [mailto] › e2e/contact-native.spec.ts:61:7 › contact form with JavaScript › personal details never reach the page URL (3.0s)
+  -  36 [mailto] › e2e/contact-submit.spec.ts:17:5 › F04: fields are locked while sending, the payload is the submitted snapshot, nothing typed is silently lost
+  -  37 [mailto] › e2e/contact-submit.spec.ts:53:7 › F05: HTTP error restores the form with the data kept and a localized error
+  -  38 [mailto] › e2e/contact-submit.spec.ts:53:7 › F05: network failure restores the form with the data kept and a localized error
+  -  39 [mailto] › e2e/contact-submit.spec.ts:66:5 › F05: a stalled request times out, keeps the data, does not resend, and says delivery is uncertain
+  -  40 [mailto] › e2e/contact-submit.spec.ts:86:5 › F05: double submission sends one request
+  -  41 [mailto] › e2e/contact-submit.spec.ts:106:5 › F05: leaving the page while sending aborts cleanly without errors
+  ✓  35 [mailto] › e2e/contact-native.spec.ts:36:7 › contact form without JavaScript › without an endpoint, hands off to email instead of submitting to the page (3.7s)
+  ✓  42 [mailto] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 320px (dark) (1.8s)
+  ✓  43 [mailto] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 390px (dark) (2.8s)
+  ✓  44 [mailto] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 768px (dark) (2.8s)
+  ✓  45 [mailto] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 1280px (dark) (3.0s)
+  ✓  46 [mailto] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 1440px (dark) (2.6s)
+  ✓  47 [mailto] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 320px (light) (2.1s)
+  ✓  48 [mailto] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 390px (light) (2.2s)
+  ✓  49 [mailto] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 768px (light) (2.3s)
+  ✓  50 [mailto] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 1280px (light) (2.6s)
+  ✓  52 [mailto] › e2e/layout.spec.ts:28:5 › enlarged text (200%) at 320px: the privacy heading wraps instead of overflowing (2.1s)
+  ✓  51 [mailto] › e2e/layout.spec.ts:13:9 › no horizontal overflow at 1440px (light) (2.5s)
+  ✓  53 [mailto] › e2e/mobile-menu.spec.ts:30:5 › opening moves focus into the menu (883ms)
+  ✓  54 [mailto] › e2e/mobile-menu.spec.ts:37:7 › Tab never reaches the covered page (1.6s)
+  ✓  56 [mailto] › e2e/mobile-menu.spec.ts:47:5 › Escape closes the menu and returns focus to the toggle (997ms)
+  ✓  55 [mailto] › e2e/mobile-menu.spec.ts:37:7 › Shift+Tab never reaches the covered page (1.8s)
+  ✓  57 [mailto] › e2e/mobile-menu.spec.ts:57:5 › choosing a link closes the menu and leaves the page usable (1.1s)
+  ✓  58 [mailto] › e2e/mobile-menu.spec.ts:64:5 › growing to the desktop layout closes the menu and leaves the page usable (1.2s)
+  ✓  60 [mailto] › e2e/privacy-claims.spec.ts:26:5 › no cookies are set and local storage only ever holds the theme choice (3.3s)
+  ✓  59 [mailto] › e2e/privacy-claims.spec.ts:11:5 › pages make no requests to other hosts while loading and browsing (4.4s)
+  ✓  61 [mailto] › e2e/reduced-motion.spec.ts:35:5 › reduced motion before load: everything is still (1.5s)
+  ✓  62 [mailto] › e2e/reduced-motion.spec.ts:45:5 › reduced motion switched on while the page is open stops the motion (1.9s)
+  ✓  64 [mailto] › e2e/reduced-motion.spec.ts:75:7 › without JavaScript › with reduced motion, the static markup carries no animation (594ms)
+  ✓  63 [mailto] › e2e/reduced-motion.spec.ts:58:5 › normal motion still plays on screen and pauses off screen (3.0s)
+
+  21 skipped
+  43 passed (52.1s)
