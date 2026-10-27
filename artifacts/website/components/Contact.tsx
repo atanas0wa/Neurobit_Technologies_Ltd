@@ -10,36 +10,25 @@ export function Contact({ locale }: { locale: Locale }) {
       title={contact.title}
       intro={contact.intro}
       more={
-        <ul className="mt-10 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
-          {contact.details.map((detail) => {
-            const body = (
-              <span className="min-w-0">
-                <span className="block text-[14px] font-light text-mist">{detail.label}</span>
-                <span className="mt-1 block truncate text-[18px] font-light tracking-[-0.01em] text-snow">{detail.value}</span>
-              </span>
-            );
-            return (
-              <li key={detail.label}>
+        <dl className="mt-10 space-y-6">
+          {contact.details.map((detail) => (
+            <div key={detail.label}>
+              <dt className="text-[14px] font-light text-mist">{detail.label}</dt>
+              <dd className="mt-1.5 text-[20px] font-light tracking-[-0.01em] text-snow">
                 {detail.href ? (
                   <a
                     href={detail.href}
-                    className="group flex items-center justify-between gap-4 rounded-2xl border border-line bg-panel px-5 py-4 transition-colors hover:border-slate"
+                    className="underline decoration-slate/60 decoration-1 underline-offset-[6px] transition-colors hover:decoration-signal"
                   >
-                    {body}
-                    <span
-                      aria-hidden="true"
-                      className="text-mist transition-transform group-hover:translate-x-0.5 group-hover:text-snow motion-reduce:transition-none"
-                    >
-                      →
-                    </span>
+                    {detail.value}
                   </a>
                 ) : (
-                  <address className="block rounded-2xl border border-line bg-panel px-5 py-4 not-italic">{body}</address>
+                  <address className="not-italic">{detail.value}</address>
                 )}
-              </li>
-            );
-          })}
-        </ul>
+              </dd>
+            </div>
+          ))}
+        </dl>
       }
     >
       <div className="lg:pt-4">

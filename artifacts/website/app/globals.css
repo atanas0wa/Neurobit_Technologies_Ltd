@@ -133,61 +133,23 @@ body {
  * reduced-motion path; components only opt in via data attributes.
  */
 
-/* How we work: a delivery pipeline. Stages turn done as the scroll line passes (ScrollSignal). */
-.signal-rail {
-  position: absolute;
-  left: 6px;
-  top: var(--rail-top, 0);
-  width: 2px;
-  height: var(--rail-height, 100%);
-  background: var(--color-line);
-}
-.signal-rail-fill {
-  display: block;
-  width: 100%;
-  height: 100%;
-  background: var(--color-terminal);
-  transform-origin: top;
-  transform: scaleY(var(--progress, 1));
-  transition: transform 500ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-.signal-node {
-  position: relative;
-  display: inline-flex;
-  width: 14px;
-  height: 14px;
-  align-items: center;
-  justify-content: center;
-  vertical-align: middle;
-  border: 2px solid var(--color-terminal);
-  border-radius: 9999px;
-  background: var(--color-terminal);
-  color: var(--color-void);
-  transition:
-    background-color 300ms ease,
-    border-color 300ms ease;
-}
-.signal-check {
+/* How we work: each step's dot fires as the scroll line passes it; the latest one keeps pulsing (ScrollSignal). */
+.signal-dot {
+  display: inline-block;
   width: 10px;
   height: 10px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  transition: opacity 200ms ease;
+  vertical-align: middle;
+  border-radius: 9999px;
+  background: var(--color-terminal);
+  transition: background-color 300ms ease;
 }
-.signal[data-signal="on"] [data-step][data-reached="false"] .signal-node {
-  border-color: var(--color-slate);
-  background: var(--color-void);
+.signal[data-signal="on"] [data-step][data-reached="false"] .signal-dot {
+  background: var(--color-slate);
 }
-.signal[data-signal="on"] [data-step][data-reached="false"] .signal-check {
-  opacity: 0;
-}
-.signal[data-signal="on"] [data-step][data-reached="true"] .signal-node {
+.signal[data-signal="on"] [data-step][data-reached="true"] .signal-dot {
   animation: signal-fire 900ms cubic-bezier(0.16, 1, 0.3, 1);
 }
-.signal[data-signal="on"] [data-step][data-current="true"] .signal-node {
+.signal[data-signal="on"] [data-step][data-current="true"] .signal-dot {
   animation: signal-run 1.8s ease-out infinite;
 }
 @keyframes signal-fire {
@@ -256,13 +218,12 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .signal[data-signal="on"] [data-step][data-reached="true"] .signal-node,
-  .signal[data-signal="on"] [data-step][data-current="true"] .signal-node,
+  .signal[data-signal="on"] [data-step][data-reached="true"] .signal-dot,
+  .signal[data-signal="on"] [data-step][data-current="true"] .signal-dot,
   [data-typing="run"] .code-caret {
     animation: none;
   }
-  .faq-item::details-content,
-  .signal-rail-fill {
+  .faq-item::details-content {
     transition: none;
   }
 }

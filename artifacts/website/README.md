@@ -26,7 +26,7 @@ artifacts/website/
 │   ├── Services.tsx          Three services as editorial rows
 │   ├── WhyUs.tsx             Three reasons; testimonials (hidden until content has entries)
 │   ├── About.tsx             Company story beside a short code panel
-│   ├── Approach.tsx          How we work: five stages on a pipeline rail that fills as you scroll
+│   ├── Approach.tsx          How we work: five steps whose dots light up as you scroll
 │   ├── Options.tsx           Ways to work with us: three option cards + CTA
 │   ├── Faq.tsx               <details> accordion, first item open
 │   ├── Contact.tsx           Contact details + form
