@@ -1,0 +1,7 @@
+✔ health endpoint reports ok (125.000427ms)
+✔ well-formed JSON and form bodies are parsed (unknown route answers 404, not 400) (20.831549ms)
+✔ malformed JSON is rejected with 400 (3.271843ms)
+✔ compressed request bodies are refused with 415 (inflate disabled) (10.973083ms)
+✔ GHSA-27r3-jxmh-p828: trailing bytes after a compressed frame do not take the process down (1413.145634ms)
+ℹ pass 5
+ℹ fail 0
