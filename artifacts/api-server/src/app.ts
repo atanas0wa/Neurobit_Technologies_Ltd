@@ -26,8 +26,10 @@ app.use(
   }),
 );
 app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+// No client sends compressed request bodies, so refuse them before any
+// decompression stream is created (defense in depth for GHSA-27r3-jxmh-p828).
+app.use(express.json({ inflate: false }));
+app.use(express.urlencoded({ extended: true, inflate: false }));
 
 app.use("/api", router);
 
