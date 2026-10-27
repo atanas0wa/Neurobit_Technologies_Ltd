@@ -7,11 +7,11 @@ export function Options({ locale }: { locale: Locale }) {
   const { options } = site(locale);
   return (
     <WideSection id="options" title={options.title}>
-      <ul className="grid gap-4 lg:grid-cols-3 md:gap-6">
+      <ul className="grid gap-4 md:gap-6 xl:grid-cols-3">
         {options.items.map((item) => (
           <li key={item.title} className="rounded-3xl border border-line bg-panel p-6 md:p-8">
             <h3 className="text-[24px] font-regular tracking-[-0.02em] text-snow">{item.title}</h3>
-            <p className="mt-3 text-body font-light text-mist">{item.body}</p>
+            <p className="mt-3 max-w-[560px] text-pretty text-body font-light text-mist">{item.body}</p>
           </li>
         ))}
       </ul>

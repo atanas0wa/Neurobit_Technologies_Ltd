@@ -11,7 +11,7 @@ export function Problem({ locale }: { locale: Locale }) {
           {problem.lead}
         </h2>
         {problem.paragraphs.map((paragraph) => (
-          <p key={paragraph} className="mx-auto mt-6 max-w-[640px] text-body font-light text-mist">
+          <p key={paragraph} className="mx-auto mt-6 max-w-[640px] text-pretty text-body font-light text-mist">
             {paragraph}
           </p>
         ))}

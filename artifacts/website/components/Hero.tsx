@@ -10,15 +10,17 @@ export function Hero({ locale }: { locale: Locale }) {
   const { hero } = site(locale);
   return (
     <section aria-labelledby="hero-title" className="overflow-hidden">
-      <Container className="grid gap-10 pt-[152px] pb-12 md:pt-[184px] md:pb-20 lg:grid-cols-12 lg:gap-x-6 lg:gap-y-0">
-        <h1
-          id="hero-title"
-          className="max-w-[18ch] text-balance text-h1 font-regular text-snow lg:col-span-7 lg:row-start-1 lg:self-end"
-        >
-          {hero.headline}
+      <Container className="grid gap-10 pt-[152px] pb-12 md:pt-[184px] md:pb-20 lg:pt-[136px] lg:grid-cols-12 lg:gap-x-6 lg:gap-y-0">
+        {/* Each sentence of the headline starts its own line. */}
+        <h1 id="hero-title" className="text-h1 font-regular text-snow lg:col-span-7 lg:row-start-1 lg:self-end">
+          {hero.headline.split(/(?<=\.)\s+/).map((sentence) => (
+            <span key={sentence} className="block max-w-[16ch] text-balance">
+              {sentence}
+            </span>
+          ))}
         </h1>
 
-        <div className="border-t border-line pt-8 lg:col-span-7 lg:row-start-2 lg:mt-12">
+        <div className="border-t border-line pt-8 lg:col-span-7 lg:row-start-2 lg:mt-10">
           <p className="max-w-[560px] text-body font-light text-mist">{hero.subline}</p>
           <ButtonLink data-primary-cta href={localePath(locale, hero.primary.href)} className="mt-8">
             {hero.primary.label}

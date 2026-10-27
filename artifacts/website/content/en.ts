@@ -11,7 +11,8 @@ export const en = {
     htmlLang: "en",
     ogLocale: "en_US",
     title: `${company.name} — Web, mobile and AI software development`,
-    description: "We turn your idea or your slowest manual process into a working product, with a small senior team you talk to directly from day one to launch.",
+    description:
+      "Neurobit builds web platforms, mobile apps, and AI automations around real business needs. Work directly with the team from problem definition to launch.",
     skip: "Skip to content",
   },
 
@@ -33,21 +34,21 @@ export const en = {
       { label: "FAQ", href: "/#faq" },
       { label: "Contact", href: "/#contact" },
     ],
-    cta: { label: "Tell us about your project", href: "/#contact" },
+    cta: { label: "Discuss your project", href: "/#contact" },
   },
 
   hero: {
-    headline: "Web, mobile and AI software for businesses that need it to actually work",
+    headline: "Less manual work. More useful software for your business.",
     subline:
-      "Bring us an idea, or the manual process that eats up your week. A small team of experienced developers turns it into a working product, and you talk to them directly the whole way through.",
-    primary: { label: "Tell us about your project", href: "/#contact" },
+      "We build web platforms, mobile apps and AI automations shaped around the real work your team does. You talk directly to the people building the product — from pinning down the problem to launch.",
+    primary: { label: "Discuss your project", href: "/#contact" },
   },
 
   problem: {
-    lead: "You know what you need built. Finding someone who gets the business behind it is the hard part.",
+    lead: "You know what you need. The hard part is finding someone who understands the business behind it.",
     paragraphs: [
-      "Big agencies win you over with their senior people, then hand you to a junior team. Freelancers tend to vanish once it's live. And somewhere along the way, you pay for features nobody ends up using.",
-      "We started Neurobit to do it differently. We take on fewer projects, you talk to us directly, and we build around how your business actually runs.",
+      "Sometimes the task is simple — the process around it isn't. Data gets copied between spreadsheets, inquiries are handled manually, and a product idea stays on paper because it's unclear where to start.",
+      "You don't need to automate everything at once. We start with the problem taking the most time and work out which solution makes sense for your business.",
     ],
   },
 
@@ -56,15 +57,15 @@ export const en = {
     items: [
       {
         label: "Web development",
-        body: "Websites and platforms that load fast, take payments safely and won't need rebuilding next year.",
+        body: "We build business websites and web platforms that help visitors find information, send inquiries, or place orders. Before development, we clarify the goals, required features, and integrations.",
       },
       {
         label: "Mobile apps",
-        body: "iOS and Android apps shaped around what your users really do, day to day.",
+        body: "We build mobile apps for tasks people need to handle on the go — such as booking appointments, accessing a customer account, or working in the field. We start by identifying the users and the actions the app should make easier.",
       },
       {
         label: "AI solutions",
-        body: "AI agents and automation that take the repetitive work off your team's plate, so they get their time back for the work that needs a person.",
+        body: "We examine repetitive processes to identify where AI or automation could help — for example, categorizing inquiries, extracting data from documents, or preparing draft responses. We define where human oversight is needed and how to evaluate whether the solution is useful.",
       },
     ],
   },
@@ -74,15 +75,15 @@ export const en = {
     points: [
       {
         title: "You talk to the people writing the code.",
-        body: "There's no account manager passing messages back and forth.",
+        body: "You discuss the project with the people building it, and you can talk to them directly about decisions, priorities and changes.",
       },
       {
         title: "We'll tell you if it's not worth building.",
-        body: "Before you've paid for it, not after.",
+        body: "We start from the problem you want to solve and decide which features are needed now and which can wait, before you've paid for them.",
       },
       {
         title: "Code someone else can pick up.",
-        body: "Clean, secure and documented, so your team or any other developer can carry it on.",
+        body: "We aim for clean, secure, documented code that another team can understand, maintain and build on.",
       },
     ],
     // Hidden until the list has entries. Add real quotes only, e.g.
@@ -94,11 +95,11 @@ export const en = {
   },
 
   about: {
-    title: "About Neurobit",
+    title: "We solve problems instead of creating new ones.",
     paragraphs: [
-      `We started ${company.name} in ${company.founded}.`,
-      "We kept seeing the same thing happen. A company pays for software that looks great in the demo, then finds it doesn't fit how they actually work. The technology was rarely what went wrong. The distance was. Too many people sat between the client and the developers, and the code drifted away from the business it was meant to serve.",
-      "So we keep that distance short. We take on fewer projects, you talk directly to the people building your product, and we ask “why” before anyone writes code.",
+      `Neurobit was founded in ${company.founded}.`,
+      "We started Neurobit with a simple idea: good development begins with understanding the business, not with a list of features. That is why we first clarify what you want to achieve, then determine which solution makes sense.",
+      "We take on fewer projects. We believe you should work directly with the people building your product and have code that can be understood and developed further over time.",
     ],
     code: {
       file: "how-we-work.ts",
@@ -110,25 +111,31 @@ export const en = {
   approach: {
     title: "How we work",
     steps: [
-      { title: "Discovery", body: "A free call to understand the problem. You get a clear scope and estimate." },
-      { title: "Design", body: "You see and click through the product before development starts." },
-      { title: "Development", body: "Short cycles with regular demos, so there are no surprises at the end." },
-      { title: "Launch", body: "We deploy, test and hand over everything you own." },
-      { title: "Support", body: "We stay on for fixes, updates and growth." },
+      { title: "Discovery", body: "In a free first call, we clarify the problem, goals, users, and project constraints. This helps us define priorities and an appropriate scope for the solution, and you get an estimate." },
+      { title: "Design", body: "We establish the visual direction and key screens so it's clear how the product will look and work before development moves forward." },
+      { title: "Development", body: "We build the solution in stages and discuss progress and necessary changes, keeping the work aligned with the original goals." },
+      { title: "Launch", body: "We prepare the product for use and check the agreed functionality before handover or publication, depending on the project." },
+      { title: "Support", body: "We discuss fixes, updates, and future improvements based on the project's needs and agreed scope." },
     ],
   },
 
   options: {
     title: "Ways to work with us",
     items: [
-      { title: "Website", body: "Company site or landing page with fixed scope and fixed price." },
+      {
+        title: "Website",
+        body: "For businesses that need a clear online presence and an easy way for customers to find information, send inquiries, or place orders. We define the required pages, features, and integrations around the project's goals, with a fixed scope and fixed price.",
+      },
       {
         title: "Product / MVP",
-        body: "Web or mobile app built in stages, starting with the version that proves the idea.",
+        body: "For teams with a new product idea that want to test their key assumptions with a first working version. We identify which features are essential for launch and which can wait for a later stage.",
       },
-      { title: "AI automation", body: "We pick one process, automate it and measure the time saved." },
+      {
+        title: "AI automation",
+        body: "For businesses looking to reduce repetitive manual work. We identify a specific process, assess whether automation is appropriate, and define where human oversight is needed. Then we measure the time saved.",
+      },
     ],
-    cta: { label: "Get an estimate", href: "/#contact" },
+    cta: { label: "Discuss your project", href: "/#contact" },
   },
 
   faq: {
@@ -137,22 +144,22 @@ export const en = {
       {
         question: "How much does a project cost?",
         answer:
-          "It depends on scope. After the first call, you get a written estimate with a fixed price or clear ranges. No hidden costs.",
+          "It depends on the scope. After a free first call, you get a written estimate: a fixed price when the scope is agreed, or clear price ranges when parts of it still need to be defined. No hidden costs.",
       },
       {
         question: "How long does it take?",
         answer:
-          "A company website takes a few weeks; an app or platform is built in stages, with the first working version as early as possible.",
+          "It depends on the scope and the features you need, so we agree on the timeline together with the estimate. A company website usually takes a few weeks. An app or platform is built in stages, aiming for a first working version as early as possible.",
       },
-      { question: "Who owns the code?", answer: "You do, fully, after final payment." },
-      { question: "Can we sign an NDA?", answer: "Yes, before you share any details." },
+      { question: "Who owns the code?", answer: "You do. Once the final payment is made, the code is entirely yours." },
+      { question: "Can we sign an NDA?", answer: "Yes. We can sign an NDA before you share any details about the project." },
       {
         question: "Is my project too small?",
-        answer: "No. Many good products start small. We'll tell you honestly what's worth building first.",
+        answer: "No. We can start with one clearly defined problem or a first version, and we'll tell you honestly what's worth building first.",
       },
       {
         question: "What happens after launch?",
-        answer: "We offer ongoing support, or a full handover to your team if you prefer.",
+        answer: "It's up to you. We can stay on for fixes, updates and further development within an agreed scope, or hand the project over entirely to your team.",
       },
     ],
   },
@@ -170,9 +177,13 @@ export const en = {
       company: "Company",
       optional: "optional",
       message: "What do you need?",
-      submit: "Send message",
+      messagePlaceholder:
+        "Describe the problem, how you handle it today, and what you'd like to achieve. You don't need to know the technical details.",
+      submit: "Send inquiry",
+      submitMailto: "Open email app",
       sending: "Sending…",
-      success: "Thank you! We'll get back to you within one business day.",
+      success:
+        "Thank you! We've received your inquiry. We'll get back to you within one business day to discuss the next steps and arrange the free initial call.",
       mailto: "Your email app should open with the message filled in. If it doesn't, email us at",
       error: "Something went wrong. Please try again, or email us directly at",
       subject: "New enquiry from the website",

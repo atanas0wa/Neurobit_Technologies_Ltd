@@ -12,7 +12,7 @@ export function WhyUs({ locale }: { locale: Locale }) {
             <h3 className="text-[24px] font-regular leading-[1.25] tracking-[-0.02em] text-balance text-snow">
               {point.title}
             </h3>
-            <p className="mt-3 max-w-[400px] text-body font-light text-mist">{point.body}</p>
+            <p className="mt-3 max-w-[400px] text-pretty text-body font-light text-mist">{point.body}</p>
           </li>
         ))}
       </ul>

@@ -29,7 +29,7 @@ export function Faq({ locale }: { locale: Locale }) {
                 <span className="absolute h-3.5 w-px bg-current transition-transform group-open:rotate-90 motion-reduce:transition-none" />
               </span>
             </summary>
-            <p className="max-w-[720px] pb-8 text-body font-light text-mist">{item.answer}</p>
+            <p className="max-w-[720px] pb-8 text-pretty text-body font-light text-mist">{item.answer}</p>
           </details>
         ))}
       </div>

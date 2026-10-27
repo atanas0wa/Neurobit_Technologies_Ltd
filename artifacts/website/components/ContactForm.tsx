@@ -90,7 +90,14 @@ export function ContactForm({
         <label htmlFor="contact-message" className={fieldLabel}>
           {copy.message}
         </label>
-        <textarea id="contact-message" name="message" required rows={5} className={`${field} resize-y`} />
+        <textarea
+          id="contact-message"
+          name="message"
+          required
+          rows={5}
+          placeholder={copy.messagePlaceholder}
+          className={`${field} resize-y placeholder:text-mist`}
+        />
       </div>
 
       <div className="flex flex-wrap items-center gap-x-6 gap-y-4">
@@ -100,7 +107,7 @@ export function ContactForm({
           disabled={status === "sending"}
           className={`${buttonClass} cursor-pointer disabled:cursor-wait disabled:opacity-70`}
         >
-          {status === "sending" ? copy.sending : copy.submit}
+          {status === "sending" ? copy.sending : FORMSPREE_ID ? copy.submit : copy.submitMailto}
         </button>
         <p role="status" aria-live="polite" className="text-[15px] font-light">
           {status === "sent" && <span className="text-terminal">{copy.success}</span>}
@@ -130,7 +137,8 @@ export function ContactForm({
         <Link href={privacyHref} className="text-snow underline underline-offset-4 hover:text-mist">
           {copy.notice.link}
         </Link>
-        {copy.notice.after} {copy.processor}
+        {copy.notice.after}
+        {FORMSPREE_ID && ` ${copy.processor}`}
       </p>
     </form>
   );

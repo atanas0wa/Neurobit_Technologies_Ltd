@@ -19,7 +19,7 @@ export function Approach({ locale }: { locale: Locale }) {
                 {String(i + 1).padStart(2, "0")}
               </span>
               <h3 className="text-h3 font-regular text-snow md:col-span-4">{step.title}</h3>
-              <p className="max-w-[560px] text-body font-light text-mist md:col-span-7">{step.body}</p>
+              <p className="max-w-[560px] text-pretty text-body font-light text-mist md:col-span-7">{step.body}</p>
             </li>
           ))}
         </ol>
