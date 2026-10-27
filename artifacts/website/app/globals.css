@@ -112,6 +112,11 @@
     outline-offset: 2px;
   }
 
+  input,
+  textarea {
+    caret-color: var(--color-signal);
+  }
+
   ::selection {
     background: var(--color-signal);
     color: #fff;

@@ -7,7 +7,7 @@ export function Problem({ locale }: { locale: Locale }) {
   return (
     <section aria-labelledby="problem-title" className="py-10 md:py-20">
       <Container className="mx-auto max-w-[760px] text-center">
-        <h2 id="problem-title" className="text-h4 font-regular text-snow">
+        <h2 id="problem-title" className="text-balance text-h4 font-regular text-snow">
           {problem.lead}
         </h2>
         {problem.paragraphs.map((paragraph) => (

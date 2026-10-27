@@ -67,15 +67,15 @@ export function Nav({
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-        solid ? "bg-void/80 backdrop-blur-md" : "bg-transparent"
+        open ? "bg-void" : solid ? "bg-void/80 backdrop-blur-md" : "bg-transparent"
       }`}
     >
       <Container className="flex h-[72px] items-center justify-between">
         <Logo href={homeHref} label={ui.home} />
 
         <div className="flex items-center gap-3">
-          <nav aria-label="Primary" className="hidden items-center gap-6 md:flex">
-            <ul className="flex items-center gap-6">
+          <nav aria-label="Primary" className="hidden items-center gap-6 xl:flex">
+            <ul className="flex items-center gap-5">
               {nav.links.map((link) => (
                 <li key={link.href}>
                   <Link href={link.href} className="rounded-sm text-[14px] text-mist transition-colors hover:text-snow">
@@ -104,7 +104,7 @@ export function Nav({
             lang={otherLocale}
             aria-label={ui.language.aria}
             title={ui.language.label}
-            className="hidden size-[44px] items-center justify-center rounded-full border border-line font-mono md:flex text-label font-medium text-mist transition-colors hover:border-mist hover:text-snow"
+            className="hidden size-[44px] items-center justify-center rounded-full border border-line font-mono xl:flex text-label font-medium text-mist transition-colors hover:border-mist hover:text-snow"
           >
             {ui.language.short}
           </a>
@@ -112,7 +112,7 @@ export function Nav({
 
           <button
             type="button"
-            className="-mr-2 flex size-[44px] items-center justify-center rounded-full md:hidden"
+            className="-mr-2 flex size-[44px] items-center justify-center rounded-full xl:hidden"
             aria-expanded={open}
             aria-controls="mobile-menu"
             aria-label={open ? ui.menuClose : ui.menuOpen}
@@ -131,7 +131,7 @@ export function Nav({
       </Container>
 
       {open && (
-        <nav id="mobile-menu" aria-label="Primary" className="border-t border-line md:hidden">
+        <nav id="mobile-menu" aria-label="Primary" className="h-[calc(100svh-72px)] overflow-y-auto overscroll-contain border-t border-line xl:hidden">
           <Container className="flex flex-col gap-1 py-4">
             {nav.links.map((link) => (
               <Link

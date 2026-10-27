@@ -29,7 +29,7 @@ export function Section({
       <Container className="grid gap-10 lg:grid-cols-12 lg:gap-6">
         <div className={`lg:col-span-5 ${right ? "lg:order-2 lg:col-start-8" : ""}`}>
           <Label>{label}</Label>
-          <h2 id={`${id}-title`} className="mt-4 text-h2 font-regular text-snow">
+          <h2 id={`${id}-title`} className="mt-4 text-balance text-h2 font-regular text-snow">
             {title}
           </h2>
           {intro && <p className="mt-5 max-w-[560px] text-body font-light text-mist">{intro}</p>}
@@ -62,7 +62,7 @@ export function WideSection({
       <Container>
         <header className={`max-w-[640px] ${side === "right" ? "lg:ml-auto" : ""}`}>
           <Label>{label}</Label>
-          <h2 id={`${id}-title`} className="mt-4 text-h2 font-regular text-snow">
+          <h2 id={`${id}-title`} className="mt-4 text-balance text-h2 font-regular text-snow">
             {title}
           </h2>
           {intro && <p className="mt-5 max-w-[560px] text-body font-light text-mist">{intro}</p>}

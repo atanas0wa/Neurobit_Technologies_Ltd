@@ -10,7 +10,7 @@ export function Hero({ locale }: { locale: Locale }) {
 
       <Container className="grid min-h-svh items-center gap-10 pt-[120px] pb-0 lg:grid-cols-12 lg:gap-6">
         <div className="lg:col-span-7">
-          <h1 id="hero-title" className="max-w-[16ch] text-h1 font-regular text-snow">
+          <h1 id="hero-title" className="max-w-[16ch] text-balance text-h1 font-regular text-snow">
             {hero.headline}
           </h1>
 
