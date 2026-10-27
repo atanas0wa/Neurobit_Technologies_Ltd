@@ -1,0 +1,10 @@
+
+Running 4 tests using 2 workers
+
+  -  1 [formspree] › e2e/privacy-claims.spec.ts:26:5 › no cookies are set and local storage only ever holds the theme choice
+  -  2 [formspree] › e2e/privacy-claims.spec.ts:11:5 › pages make no requests to other hosts while loading and browsing
+  ✓  3 [mailto] › e2e/privacy-claims.spec.ts:26:5 › no cookies are set and local storage only ever holds the theme choice (4.0s)
+  ✓  4 [mailto] › e2e/privacy-claims.spec.ts:11:5 › pages make no requests to other hosts while loading and browsing (5.0s)
+
+  2 skipped
+  2 passed (7.3s)
