@@ -11,7 +11,7 @@ export { company };
 
 export const locales = ["bg", "en"] as const;
 export type Locale = (typeof locales)[number];
-export const defaultLocale: Locale = "bg";
+export const defaultLocale: Locale = "en";
 
 const content: Record<Locale, Content> = { bg, en };
 
@@ -19,13 +19,14 @@ export function site(locale: Locale): Content {
   return content[locale];
 }
 
-/** Prefixes a site path with the locale: "/privacy/" → "/en/privacy/". Bulgarian has no prefix. */
+/** Prefixes a site path with the locale: "/privacy/" → "/bg/privacy/". English (the default) has no prefix. */
 export function localePath(locale: Locale, path: string): string {
   return locale === defaultLocale ? path : `/${locale}${path}`;
 }
 
 /** The same page in the other language, for the language switch and hreflang. */
 export function switchPath(pathname: string, to: Locale): string {
-  const bare = pathname.replace(/^\/en(?=\/|$)/, "") || "/";
+  const prefixed = locales.filter((l) => l !== defaultLocale).join("|");
+  const bare = pathname.replace(new RegExp(`^/(${prefixed})(?=/|$)`), "") || "/";
   return localePath(to, bare);
 }

@@ -4,7 +4,7 @@ import { isolateNetwork } from "./helpers";
 // F07 (technical part): the privacy and cookie policies say the site loads no
 // analytics, ads or third-party fonts, sets no cookies, and keeps only the
 // theme choice in local storage. These checks keep those statements true.
-const ROUTES = ["/", "/en/", "/privacy/", "/cookies/", "/en/privacy/", "/en/cookies/"];
+const ROUTES = ["/", "/bg/", "/privacy/", "/cookies/", "/bg/privacy/", "/bg/cookies/"];
 
 test.beforeEach(({}, info) => test.skip(info.project.name !== "mailto", "same in both builds"));
 

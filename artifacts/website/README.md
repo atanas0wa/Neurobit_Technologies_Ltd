@@ -1,6 +1,6 @@
 # Neurobit Technologies website
 
-Company site for Нюробит Технолоджис ООД (Neurobit Technologies), a software development company. One long homepage plus Privacy and Cookie Policy pages, in Bulgarian (default, at `/`) and English (at `/en/`). Next.js 16 (App Router, static export), TypeScript, Tailwind CSS v4.
+Company site for Нюробит Технолоджис ООД (Neurobit Technologies), a software development company. One long homepage plus Privacy and Cookie Policy pages, in English (default, at `/`) and Bulgarian (at `/bg/`). Next.js 16 (App Router, static export), TypeScript, Tailwind CSS v4.
 
 ## Structure
 
@@ -8,8 +8,8 @@ Company site for Нюробит Технолоджис ООД (Neurobit Technolo
 artifacts/website/
 ├── app/
 │   ├── globals.css           Design tokens (@theme), light theme, base styles
-│   ├── (bg)/                 Bulgarian root layout: /, /privacy/, /cookies/
-│   ├── (en)/en/              English root layout: /en/, /en/privacy/, /en/cookies/
+│   ├── (en)/                 English root layout: /, /privacy/, /cookies/
+│   ├── (bg)/bg/              Bulgarian root layout: /bg/, /bg/privacy/, /bg/cookies/
 │   ├── global-not-found.tsx  404 page (needed because there are two root layouts)
 │   ├── opengraph-image.tsx   1200×630 OG image (English), rendered at build time
 │   ├── icon.svg              Favicon
@@ -92,7 +92,7 @@ Spam protection uses Formspree's `_gotcha` honeypot field, which is hidden off-s
 
 Company details shared by both languages (name, legal name, ЕИК, emails, domain) are in `content/company.ts`. All copy is in `content/bg.ts` and `content/en.ts`, including the problem block, services, why us, process steps, ways to work, FAQ, contact details, footer text, and the privacy and cookie policies. Components only render it. `bg.ts` is typed as `Content`, the shape of `en.ts`, so a key missing from either file fails the typecheck.
 
-Write site paths without the language prefix (`"/#contact"`, `"/privacy/"`); components add `/en` for English. Inline links inside legal text use `[text](url)` with the full path for that language, and bold uses `**text**`.
+Write site paths without the language prefix (`"/#contact"`, `"/privacy/"`); components add `/bg` for Bulgarian. Inline links inside legal text use `[text](url)` with the full path for that language, and bold uses `**text**`.
 
 ### Languages
 

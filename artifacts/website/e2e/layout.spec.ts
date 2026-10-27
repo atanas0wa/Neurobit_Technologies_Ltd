@@ -3,7 +3,7 @@ import { isolateNetwork } from "./helpers";
 
 // F09: no route may be wider than the viewport, at any tested width, in
 // either theme, including with enlarged text.
-const ROUTES = ["/", "/en/", "/privacy/", "/cookies/", "/en/privacy/", "/en/cookies/"];
+const ROUTES = ["/", "/bg/", "/privacy/", "/cookies/", "/bg/privacy/", "/bg/cookies/"];
 const WIDTHS = [320, 390, 768, 1280, 1440];
 
 test.beforeEach(({}, info) => test.skip(info.project.name !== "mailto", "layout is the same in both builds"));
@@ -28,7 +28,7 @@ for (const theme of ["dark", "light"] as const) {
 test("enlarged text (200%) at 320px: the privacy heading wraps instead of overflowing", async ({ page }) => {
   await isolateNetwork(page);
   await page.setViewportSize({ width: 320, height: 900 });
-  for (const route of ["/privacy/", "/en/privacy/", "/cookies/", "/en/cookies/"]) {
+  for (const route of ["/privacy/", "/bg/privacy/", "/cookies/", "/bg/cookies/"]) {
     await page.goto(route);
     await page.addStyleTag({ content: "html { font-size: 200% !important; }" });
     const docWidth = await page.evaluate(() => document.documentElement.scrollWidth);
