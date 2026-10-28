@@ -177,7 +177,9 @@ body {
  * ScrollSignal sets data-reveal. A hovered row (or, on touch screens, the
  * row the signal has reached) rolls its word letter by letter: every letter
  * slides up and out while its copy (::after) rolls in from below, inside a
- * clipped line box. A Snow line draws along the row's bottom edge.
+ * clipped line box. The description comes in and a Snow line draws along
+ * the row's bottom edge. Rows take focus, so :focus-visible does the same.
+ * The hiding only applies once JS has run (data-signal="on").
  */
 .signal[data-reveal="in"] .roll-row {
   transition:
@@ -221,26 +223,56 @@ body {
   transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
   pointer-events: none;
 }
+.roll-body {
+  transition:
+    opacity 450ms cubic-bezier(0.22, 1, 0.36, 1),
+    translate 450ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.roll-row:focus-visible .roll-char {
+  translate: 0 -100%;
+}
+.roll-row:focus-visible::after {
+  transform: scaleX(1);
+}
+.roll-row:focus-visible .roll-tag {
+  color: var(--color-snow);
+}
 @media (hover: hover) {
+  .signal[data-signal="on"] .roll-body {
+    opacity: 0;
+    translate: 0 12px;
+    transition-delay: 0ms;
+  }
   .roll-row:hover .roll-char {
     translate: 0 -100%;
   }
   .roll-row:hover::after {
     transform: scaleX(1);
   }
-  .roll-row:hover > p:first-child {
+  .roll-row:hover .roll-tag {
     color: var(--color-snow);
+  }
+  .signal[data-signal="on"] .roll-row:is(:hover, :focus-visible) .roll-body {
+    opacity: 1;
+    translate: 0 0;
+    transition-delay: 150ms;
   }
 }
 @media (hover: none) {
+  .signal[data-signal="on"] .roll-body {
+    opacity: 0.35;
+  }
   .signal[data-signal="on"] [data-current="true"] .roll-char {
     translate: 0 -100%;
   }
   .signal[data-signal="on"] [data-current="true"].roll-row::after {
     transform: scaleX(1);
   }
-  .signal[data-signal="on"] [data-current="true"] > p:first-child {
+  .signal[data-signal="on"] [data-current="true"] .roll-tag {
     color: var(--color-snow);
+  }
+  .signal[data-signal="on"] :is([data-current="true"], .roll-row:focus-visible) .roll-body {
+    opacity: 1;
   }
 }
 
@@ -604,8 +636,13 @@ body {
   }
   .roll-char,
   .roll-row,
-  .roll-row::after {
+  .roll-row::after,
+  .roll-body {
     transition: none !important;
+  }
+  .signal .roll-body {
+    opacity: 1 !important;
+    translate: none !important;
   }
   .roll-row .roll-char {
     translate: none !important;

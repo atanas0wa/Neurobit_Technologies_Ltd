@@ -278,9 +278,9 @@ Soft and confident, with one filled shape per view.
 - **Reduced motion:** the field stays still.
 
 ### Signal Steps (signature)
-- **What it is:** the "How we work" list is a rolling list of hairline rows. Each row has the step word at Headline 1 size (Inter 400, Snow), a mono tag at the top right ("01 · Research" in Mist, led by the 10px Terminal dot), and the description in Body Mist under the word. On phones the tag sits above the word.
+- **What it is:** the "How we work" list is a rolling list of hairline rows. Each row has the step word at Headline 1 size (Inter 400, Snow), and on the right a mono tag ("Research" in Mist, led by the 10px Terminal dot) with the description in Body Mist below it. On phones they stack: tag, word, description.
 - **Behaviour:** dots fire with an expanding ring as the scroll position passes them, and the latest one keeps pulsing. Steps not yet reached show Slate.
-- **Motion:** rows rise 40px and fade in, 120ms apart, the first time the list scrolls into view. Hovering a row rolls its word letter by letter (450ms, 20ms per letter) to an identical copy from below, turns the tag Snow and draws a Snow line along the row's bottom edge. On touch screens the row the signal has reached does the same. Reduced motion keeps the list still.
+- **Motion:** rows rise 40px and fade in, 120ms apart, the first time the list scrolls into view. Hovering (or keyboard-focusing) a row rolls its word letter by letter (450ms, 20ms per letter) to an identical copy from below, brings in the description (hidden until then on mouse screens), turns the tag Snow and draws a Snow line along the row's bottom edge. On touch screens the row the signal has reached does the same, and the other descriptions stay dimmed at 35%. Without JS or with reduced motion every description is shown and the list is still.
 
 ### Code Panel (signature)
 - **What it is:** a Panel card with a file-name header row (mono 13px, Mist) and numbered lines in Slate.
