@@ -19,7 +19,7 @@ export function Footer({ locale }: { locale: Locale }) {
         <div className="md:col-span-3">
           <h2 className={heading}>{footer.columns.company}</h2>
           <address className="mt-4 space-y-1 text-[15px] font-light not-italic text-mist">
-            <p className="text-snow">{company.legalName}</p>
+            <p className="text-snow">{footer.legalName}</p>
             <p>{footer.registration}</p>
           </address>
         </div>
@@ -57,7 +57,7 @@ export function Footer({ locale }: { locale: Locale }) {
       <Container>
         <div className="border-t border-line py-6 text-[14px] font-light text-mist">
           <p>
-            © {new Date().getFullYear()} {company.name}. {footer.rights}
+            © {new Date().getFullYear()} {company.legalNameEn}. {footer.rights}
           </p>
         </div>
       </Container>

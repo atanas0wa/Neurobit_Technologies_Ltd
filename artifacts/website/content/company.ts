@@ -2,6 +2,7 @@
 export const company = {
   name: "Neurobit Technologies",
   legalName: "Нюробит Технолоджис ООД",
+  legalNameEn: "Neurobit Technologies Ltd",
   url: "https://neurobit.bg",
   email: "office@neurobit.bg",
   devEmail: "developers@neurobit.bg",

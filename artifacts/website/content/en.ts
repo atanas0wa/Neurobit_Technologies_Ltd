@@ -201,6 +201,7 @@ export const en = {
   footer: {
     tagline: "Web, mobile and AI software, built by the people you talk to.",
     columns: { company: "Company", contact: "Contact", legal: "Legal" },
+    legalName: company.legalNameEn,
     registration: `UIC ${company.registration}`,
     legalLinks: [
       { label: "Privacy Policy", href: "/privacy/" },
