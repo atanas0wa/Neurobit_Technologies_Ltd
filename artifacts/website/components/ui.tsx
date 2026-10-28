@@ -6,9 +6,12 @@ type LinkProps = Omit<ComponentProps<typeof Link>, "className"> & { className?: 
 export const buttonClass =
   "inline-flex items-center rounded-full bg-signal px-4 py-2 text-[14px] font-semibold text-white transition-colors hover:bg-signal-hover";
 
-/** The one filled action per view. */
-export function ButtonLink({ className = "", ...props }: LinkProps) {
-  return <Link {...props} className={`${buttonClass} ${className}`} />;
+/**
+ * The one filled action per view. `shine` adds the slow signal sweep along the
+ * rim (`.btn-shine` in globals.css); keep it to the hero CTA and the form's submit.
+ */
+export function ButtonLink({ className = "", shine = false, ...props }: LinkProps & { shine?: boolean }) {
+  return <Link {...props} className={`${buttonClass} ${shine ? "btn-shine" : ""} ${className}`} />;
 }
 
 /** Secondary action: text with a trailing arrow. */

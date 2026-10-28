@@ -244,6 +244,7 @@ All borders are 1px Hairline. Thicker borders and coloured side borders are not 
 Soft and confident, with one filled shape per view.
 - **Shape:** a full pill (9999px).
 - **Primary:** Signal Blue fill with white 14px semibold text and 12px × 24px padding. Hover deepens it to Pressed Blue with a colour transition. It is used for "Discuss your project" in the hero and the options section, and for "Send inquiry".
+- **Shine (hero CTA and "Send inquiry" only):** the primary button with a 2px rim along which an arc of Synapse Cyan fading to white travels (3s loop). On hover or focus the arc widens and the loop speeds up. The fill stays flat, and reduced motion removes the arc's motion. This is the one sanctioned gradient; don't spread it to other controls.
 - **Outline (nav CTA at rest):** transparent with a Hairline border and Snow text. The hover border shifts to Mist. When the hero CTA scrolls out of view, it becomes the filled primary.
 - **Arrow link:** Mist text with a trailing →. Hover turns it Snow and nudges the arrow 2px.
 - **Icon buttons** (theme toggle, language switch, FAQ toggle): 44px circles with a Hairline border and Mist icon. Hover sets the border to Mist and the icon to Snow.

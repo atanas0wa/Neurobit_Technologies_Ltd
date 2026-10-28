@@ -22,7 +22,7 @@ export function Hero({ locale }: { locale: Locale }) {
 
         <div className="border-t border-line pt-8 lg:col-span-7 lg:row-start-2 lg:mt-10">
           <p className="max-w-[560px] text-body font-light text-mist">{hero.subline}</p>
-          <ButtonLink data-primary-cta href={localePath(locale, hero.primary.href)} className="mt-8">
+          <ButtonLink data-primary-cta shine href={localePath(locale, hero.primary.href)} className="mt-8">
             {hero.primary.label}
           </ButtonLink>
         </div>

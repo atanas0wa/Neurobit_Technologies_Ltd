@@ -387,6 +387,55 @@ body {
   }
 }
 
+/*
+ * Hero CTA and form submit: an arc of signal travels around the pill's 2px
+ * rim. The fill stays flat Signal Blue (no glow, no sheen); on hover the arc
+ * widens and speeds up. Reduced motion leaves a plain filled button.
+ */
+@property --shine-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@property --shine-arc {
+  syntax: "<percentage>";
+  initial-value: 11%;
+  inherits: false;
+}
+.btn-shine {
+  --shine-fill: var(--color-signal);
+  border: 2px solid transparent;
+  background:
+    linear-gradient(var(--shine-fill), var(--shine-fill)) padding-box,
+    conic-gradient(
+        from var(--shine-angle),
+        transparent,
+        var(--color-cyan) var(--shine-arc),
+        #fff calc(var(--shine-arc) * 2),
+        var(--color-cyan) calc(var(--shine-arc) * 3),
+        transparent calc(var(--shine-arc) * 4)
+      )
+      border-box,
+    linear-gradient(var(--shine-fill), var(--shine-fill)) border-box;
+  transition:
+    --shine-arc 600ms cubic-bezier(0.16, 1, 0.3, 1),
+    color 150ms ease;
+  animation: shine-sweep 3s linear infinite;
+}
+.btn-shine:is(:hover, :focus-visible) {
+  --shine-fill: var(--color-signal-hover);
+  --shine-arc: 20%;
+  animation-duration: 1.8s;
+}
+.btn-shine:disabled {
+  animation-play-state: paused;
+}
+@keyframes shine-sweep {
+  to {
+    --shine-angle: 360deg;
+  }
+}
+
 /* FAQ: answers open smoothly where the browser can animate to auto height. */
 :root {
   interpolate-size: allow-keywords;
@@ -409,6 +458,10 @@ body {
     animation: none;
   }
   .faq-item::details-content {
+    transition: none;
+  }
+  .btn-shine {
+    animation: none;
     transition: none;
   }
   .art * {
