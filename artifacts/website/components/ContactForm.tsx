@@ -100,13 +100,13 @@ export function ContactForm({
             <label htmlFor="contact-name" className={fieldLabel}>
               {copy.name}
             </label>
-            <input id="contact-name" name="name" type="text" required autoComplete="name" className={field} />
+            <input id="contact-name" name="name" type="text" required maxLength={100} autoComplete="name" className={field} />
           </div>
           <div>
             <label htmlFor="contact-email" className={fieldLabel}>
               {copy.email}
             </label>
-            <input id="contact-email" name="email" type="email" required autoComplete="email" className={field} />
+            <input id="contact-email" name="email" type="email" required maxLength={254} autoComplete="email" className={field} />
           </div>
         </div>
 
@@ -114,7 +114,7 @@ export function ContactForm({
           <label htmlFor="contact-company" className={fieldLabel}>
             {copy.company} <span className="font-light text-mist">({copy.optional})</span>
           </label>
-          <input id="contact-company" name="company" type="text" autoComplete="organization" className={field} />
+          <input id="contact-company" name="company" type="text" maxLength={150} autoComplete="organization" className={field} />
         </div>
 
         <div>
@@ -125,6 +125,7 @@ export function ContactForm({
             id="contact-message"
             name="message"
             required
+            maxLength={5000}
             rows={5}
             placeholder={copy.messagePlaceholder}
             className={`${field} min-h-36 resize-y placeholder:text-mist`}
