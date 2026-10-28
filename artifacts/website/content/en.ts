@@ -219,12 +219,12 @@ export const en = {
     title: "Privacy Policy",
     description: `How ${company.name} collects, uses and protects personal data under the GDPR.`,
     updated: "27 October 2026",
-    intro: `This policy explains what personal data ${company.legalName} (${company.name}) collects through this website, why, and what rights you have under the EU General Data Protection Regulation (GDPR).`,
+    intro: `This policy explains what personal data ${company.legalNameEn} collects through this website, why, and what rights you have under the EU General Data Protection Regulation (GDPR).`,
     sections: [
       {
         heading: "Who is responsible",
         paragraphs: [
-          `The data controller is ${company.legalName}, UIC ${company.registration}, Sofia, Bulgaria.`,
+          `The data controller is ${company.legalNameEn}, UIC ${company.registration}, Sofia, Bulgaria.`,
           `For anything related to your personal data, email [${company.email}](mailto:${company.email}).`,
         ],
       },
@@ -285,7 +285,7 @@ export const en = {
     title: "Cookie Policy",
     description: `Which cookies and similar technologies the ${company.name} website uses.`,
     updated: "24 October 2026",
-    intro: `This policy explains how the website of ${company.legalName} (${company.name}) uses cookies and similar technologies such as browser storage.`,
+    intro: `This policy explains how the website of ${company.legalNameEn} uses cookies and similar technologies such as browser storage.`,
     sections: [
       {
         heading: "In short",
