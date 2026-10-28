@@ -295,11 +295,13 @@ export function HeroNetwork() {
     };
   }, []);
 
+  // Absolutely positioned so the drawing buffer size (set in resize()) never feeds back
+  // into the hero grid's row height; the parent alone decides the canvas size.
   return (
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="size-full [mask-image:radial-gradient(ellipse_75%_70%_at_50%_50%,#000_55%,transparent_100%)]"
+      className="absolute inset-0 size-full [mask-image:radial-gradient(ellipse_75%_70%_at_50%_50%,#000_55%,transparent_100%)]"
     />
   );
 }
