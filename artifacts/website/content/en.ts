@@ -139,6 +139,7 @@ export const en = {
   },
 
   faq: {
+    answerLabel: "Answer",
     title: "Questions you might have",
     items: [
       {

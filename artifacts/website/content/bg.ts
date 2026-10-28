@@ -133,6 +133,7 @@ export const bg: Content = {
   },
 
   faq: {
+    answerLabel: "Отговор",
     title: "Въпроси, които може да имате",
     items: [
       {

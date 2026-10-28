@@ -451,10 +451,28 @@ body {
   block-size: auto;
 }
 
+/* FAQ: the block caret that rides the end of an answer while it types (FaqItem). Zero-width so wrapping matches the finished text. */
+.faq-caret {
+  display: inline-block;
+  width: 0;
+  overflow: visible;
+  vertical-align: text-bottom;
+}
+.faq-caret::after {
+  content: "";
+  display: block;
+  width: 0.5em;
+  height: 1.1em;
+  margin-left: 2px;
+  background: var(--color-terminal);
+  animation: caret-blink 1s steps(1) infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .signal[data-signal="on"] [data-step][data-reached="true"] .signal-dot,
   .signal[data-signal="on"] [data-step][data-current="true"] .signal-dot,
-  [data-typing="run"] .code-caret {
+  [data-typing="run"] .code-caret,
+  .faq-caret::after {
     animation: none;
   }
   .faq-item::details-content {

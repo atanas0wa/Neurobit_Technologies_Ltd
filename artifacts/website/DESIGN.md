@@ -212,7 +212,7 @@ A near-black, cool-neutral palette with one blue voice for action and a green "s
   - Multi-column grids collapse to a single column below `md`/`lg`.
 - **Rhythm:**
   - Lists and steps use full-width hairline rows (top and bottom 1px borders) instead of boxes.
-  - Cards appear only where items are parallel options: "Ways to work with us", testimonials, the contact form and the code panel.
+  - Cards appear only where items are parallel options: "Ways to work with us", testimonials, the FAQ, the contact form and the code panel.
 - **Fixed nav:**
   - 72px tall.
   - The page reserves 96px of scroll padding so anchors land below it.
@@ -285,9 +285,11 @@ Soft and confident, with one filled shape per view.
 - **Highlighting:** keywords are Terminal, function names are Snow medium, and comments are Mist.
 - **Behaviour:** it types itself out once with a blinking green block caret.
 
-### FAQ Accordion
-- **Structure:** native `<details>` rows between hairlines. Questions use Title weight, and the toggle is the 44px circle icon button with a 1px plus that rotates to a minus.
-- **Motion:** answers open with a smooth height transition (320ms, exponential ease-out) where the browser supports it.
+### FAQ Accordion ("AI answer")
+- **Structure:** one card per question in a centred 640px column (header included), 12px apart. Each card is Panel with a 1px Hairline border and 24px corners; hover lifts the border to Slate, and keyboard focus rings the whole card in Signal. Native `<details name="faq">`, so only one is open and it works without JavaScript; the first starts open.
+- **Row:** a Terminal-green spark icon, the question in Inter 500 (18px, 20px from `md`) in Snow, and a thin chevron that turns 180° when open.
+- **Answer:** a mono uppercase "Answer" label in Slate (the one mono label on the homepage), then Body light in Mist at 1.65 line height.
+- **Motion:** the card opens to its final height (320ms), then the answer types in at 18ms per character (`TYPE_MS` in FaqItem) with a green block caret. The untyped text stays in the layout invisibly, so nothing below moves. It plays once per item; the default-open item types when it scrolls into view. Screen readers get the full text from the start; reduced motion shows it at once.
 
 ## Do's and Don'ts
 
@@ -304,5 +306,5 @@ Soft and confident, with one filled shape per view.
 - **Don't** use Synapse Cyan or Signal Blue for body text, or Terminal Green for anything except life, success, progress and code.
 - **Don't** put a mono label or kicker above section headings on the homepage. The heading carries itself, and mono labels stay on the legal and 404 pages.
 - **Don't** use stock photography or illustrations that imply clients, results or metrics the company doesn't have.
-- **Don't** nest cards or turn parallel content rows into boxed cards.
+- **Don't** nest cards or turn parallel content rows into boxed cards (the FAQ cards are the one sanctioned exception).
 - **Don't** return the light theme to pure white (#FFFFFF) as the ground.
