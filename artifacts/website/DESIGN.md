@@ -286,10 +286,10 @@ Soft and confident, with one filled shape per view.
 - **Behaviour:** it types itself out once with a blinking green block caret.
 
 ### FAQ Accordion ("AI answer")
-- **Structure:** the title sits in a 4-column left column (sticky from `lg`), and the cards take the 8 columns beside it, 12px apart; on phones they stack. Each card is Panel with a 1px Hairline border and 24px corners; hover lifts the border to Slate, and keyboard focus rings the whole card in Signal. Native `<details name="faq">`, so only one is open and it works without JavaScript; the first starts open.
+- **Structure:** the title sits in a 4-column left column (sticky from `lg`), and the cards take the 8 columns beside it, 12px apart; on phones they stack. Each card is Panel with a 1px Hairline border and 24px corners; hover lifts the border to Slate, and keyboard focus rings the whole card in Signal. Native `<details name="faq">`, so only one is open and it works without JavaScript. Every card starts closed and opens only on a click or key press.
 - **Row:** a Terminal-green spark icon that twinkles slowly (staggered per card, faster with a soft fill while its answer types), the question in Inter 500 (18px, 20px from `md`) in Snow, and a thin chevron that turns 180° when open.
 - **Answer:** a mono uppercase "Answer" label in Slate (the one mono label on the homepage), then Body light in Mist at 1.65 line height.
-- **Motion:** the card opens to its final height (320ms), then the answer types in at 18ms per character (`TYPE_MS` in FaqItem) with a green block caret. The untyped text stays in the layout invisibly, so nothing below moves. It plays on every open; the default-open item types when it scrolls into view. Screen readers get the full text from the start; reduced motion shows it at once and stills the sparks.
+- **Motion:** the card opens to its final height (320ms), then the answer types in at 18ms per character (`TYPE_MS` in FaqItem) with a green block caret. The untyped text stays in the layout invisibly, so nothing below moves. It plays on every open. Screen readers get the full text from the start; reduced motion shows it at once and stills the sparks.
 
 ## Do's and Don'ts
 

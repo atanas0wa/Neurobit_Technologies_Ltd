@@ -4,7 +4,7 @@ import { Container } from "./ui";
 
 /*
  * FAQ: the title holds a narrow left column (sticky from lg) and the cards take the wider right one.
- * One open at a time, the first open by default; answers type in each time they open (FaqItem).
+ * All closed until clicked, one open at a time; answers type in each time they open (FaqItem).
  */
 export function Faq({ locale }: { locale: Locale }) {
   const { faq } = site(locale);
@@ -25,8 +25,8 @@ export function Faq({ locale }: { locale: Locale }) {
           {faq.title}
         </h2>
         <div className="min-w-0 space-y-2 lg:col-span-8">
-          {faq.items.map((item, i) => (
-            <FaqItem key={item.question} question={item.question} answer={item.answer} label={faq.answerLabel} defaultOpen={i === 0} />
+          {faq.items.map((item) => (
+            <FaqItem key={item.question} question={item.question} answer={item.answer} label={faq.answerLabel} />
           ))}
         </div>
       </Container>

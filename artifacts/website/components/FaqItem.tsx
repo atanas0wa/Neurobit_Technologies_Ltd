@@ -10,6 +10,7 @@ const OPEN_DELAY_MS = 240;
 /*
  * One FAQ card: a native <details> (works without JavaScript, the browser
  * keeps one item of the "faq" group open and exposes the expanded state).
+ * Every card starts closed and opens only when the visitor asks.
  * Every time an item opens, its answer types in like an AI writing it, and
  * its spark twinkles faster while it does. The untyped rest stays in the
  * layout, invisible, so the card opens straight to its final height and
@@ -20,21 +21,17 @@ export function FaqItem({
   question,
   answer,
   label,
-  defaultOpen = false,
 }: {
   question: string;
   answer: string;
   label: string;
-  defaultOpen?: boolean;
 }) {
   const ref = useRef<HTMLDetailsElement>(null);
   const chars = useMemo(() => Array.from(answer), [answer]);
   // null: the whole answer is shown; a number: how many characters are typed so far.
   const [shown, setShown] = useState<number | null>(null);
-  // Last open state we acted on: the browser also fires "toggle" for an item that starts open.
-  const wasOpen = useRef(defaultOpen);
-  // The default-open item, below the fold at load, waits to type until it scrolls into view.
-  const waiting = useRef(false);
+  // Last open state we acted on, so a repeated "toggle" event never restarts the typing.
+  const wasOpen = useRef(false);
   const frame = useRef(0);
 
   const finish = useCallback(() => {
@@ -57,34 +54,12 @@ export function FaqItem({
     frame.current = requestAnimationFrame(step);
   }, [chars.length, finish]);
 
-  // The item that starts open types once it scrolls into view, unless it is already on screen at load.
-  useEffect(() => {
-    const el = ref.current;
-    if (!el || !defaultOpen || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    if (el.getBoundingClientRect().top < window.innerHeight) return;
-    waiting.current = true;
-    setShown(0);
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) return;
-        observer.disconnect();
-        if (!waiting.current) return; // the visitor already toggled it
-        waiting.current = false;
-        play();
-      },
-      { rootMargin: "0px 0px -20% 0px" },
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [defaultOpen, play, finish]);
-
   useEffect(() => () => cancelAnimationFrame(frame.current), []);
 
   const onToggle = () => {
     const el = ref.current;
     if (!el || el.open === wasOpen.current) return;
     wasOpen.current = el.open;
-    waiting.current = false;
     if (!el.open) {
       if (shown !== null) finish();
       return;
@@ -100,7 +75,6 @@ export function FaqItem({
     <details
       ref={ref}
       name="faq"
-      open={defaultOpen}
       onToggle={onToggle}
       data-typing={shown !== null ? "" : undefined}
       className="faq-item group rounded-3xl border border-line bg-panel transition-colors hover:border-slate has-[summary:focus-visible]:outline-2 has-[summary:focus-visible]:outline-offset-2 has-[summary:focus-visible]:outline-signal"
