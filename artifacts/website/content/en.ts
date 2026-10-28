@@ -201,6 +201,7 @@ export const en = {
   footer: {
     tagline: "Web, mobile and AI software, built by the people you talk to.",
     columns: { company: "Company", contact: "Contact", legal: "Legal" },
+    linkedin: "Neurobit on LinkedIn (opens in a new tab)",
     legalName: company.legalNameEn,
     registration: `UIC ${company.registration}`,
     legalLinks: [

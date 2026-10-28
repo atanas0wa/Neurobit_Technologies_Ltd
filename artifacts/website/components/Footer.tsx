@@ -38,6 +38,30 @@ export function Footer({ locale }: { locale: Locale }) {
               </a>
             </li>
           </ul>
+          {/* Icon button like the theme toggle; the mark is drawn in 1.25px strokes to match the site's line icons. */}
+          <a
+            href={company.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={footer.linkedin}
+            title="LinkedIn"
+            className="group mt-5 flex size-[44px] items-center justify-center rounded-full border border-line text-mist transition-colors hover:border-mist hover:text-snow"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              className="size-5 transition-transform duration-200 group-hover:-translate-y-0.5 motion-reduce:transition-none"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.25"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <rect x="3" y="3" width="18" height="18" rx="4" />
+              <path d="M8 10.5V16.5M12 16.5V10.5M12 13.25C12 11.733 13.007 10.5 14.5 10.5S17 11.733 17 13.25V16.5" />
+              <circle cx="8" cy="7.75" r="0.6" fill="currentColor" />
+            </svg>
+          </a>
         </div>
 
         <div className="md:col-span-2">

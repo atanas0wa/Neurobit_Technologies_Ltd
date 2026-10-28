@@ -198,6 +198,7 @@ export const bg: Content = {
   footer: {
     tagline: "Уеб, мобилен и AI софтуер, създаден от хората, с които говорите.",
     columns: { company: "Компания", contact: "Контакт", legal: "Правна информация" },
+    linkedin: "Neurobit в LinkedIn (отваря се в нов раздел)",
     legalName: company.legalName,
     registration: `ЕИК ${company.registration}`,
     legalLinks: [
