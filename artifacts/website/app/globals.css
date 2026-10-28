@@ -297,6 +297,60 @@ body {
   transition-delay: 250ms;
 }
 
+/*
+ * Ways to work with us (GlowCards). Each card carries the pointer position in
+ * its own box (--x, --y): ::before is a 1px ring masked to the border, lit by
+ * a Cyan-to-Signal light at that point, and ::after a soft Signal light
+ * inside. The card under the mouse gets both, its neighbours a fainter edge
+ * where the pointer comes close. The card itself keeps its border, panel and
+ * padding.
+ */
+.glow-card {
+  --x: 50%;
+  --y: -200px;
+  position: relative;
+  isolation: isolate;
+  transition: box-shadow 400ms ease-out;
+}
+.glow-card::before,
+.glow-card::after {
+  content: "";
+  position: absolute;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 400ms ease-out;
+  pointer-events: none;
+}
+.glow-card::before {
+  inset: -1px;
+  padding: 1px;
+  background: radial-gradient(280px circle at var(--x) var(--y), var(--color-cyan), var(--color-signal) 40%, transparent 75%);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box exclude,
+    linear-gradient(#000 0 0);
+}
+.glow-card::after {
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(420px circle at var(--x) var(--y), color-mix(in srgb, var(--color-signal) 16%, transparent), transparent 65%);
+}
+@media (hover: hover) {
+  .glow-cards:hover .glow-card::before {
+    opacity: 0.5;
+  }
+  .glow-cards .glow-card:hover::before,
+  .glow-card:hover::after {
+    opacity: 1;
+  }
+  .glow-card:hover {
+    box-shadow: 0 16px 40px -24px color-mix(in srgb, var(--color-signal) 70%, transparent);
+  }
+}
+
 /* About: the code panel types itself out once (CodeTyping). */
 [data-typing="ready"] .code-line {
   clip-path: inset(0 100% 0 0);

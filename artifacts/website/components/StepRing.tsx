@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState, type CSSProperties, type KeyboardEvent } from "react";
 import { StepArt, type StepArtKind } from "./StepArt";
+import { ArrowButton, roundButtonClass } from "./ui";
 
 type Step = { title: string; tag: string; body: string; art: StepArtKind };
 
@@ -263,9 +264,6 @@ export function StepRing({
     [steps, n, total],
   );
 
-  const arrowClass =
-    "flex size-[44px] cursor-pointer items-center justify-center rounded-full border border-line text-mist transition-colors hover:border-mist hover:text-snow";
-
   return (
     <div ref={rootRef} role="region" aria-roledescription="carousel" aria-label={label} onKeyDown={onKeyDown} className="signal">
       <div className="ring-stage" aria-hidden="true">
@@ -294,12 +292,8 @@ export function StepRing({
       </ol>
 
       <div hidden={!ready} className="mt-8 flex justify-center gap-3">
-        <button type="button" aria-label={prev} title={prev} onClick={() => moveRef.current?.go(-1)} className={arrowClass}>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <path d="M15 6l-6 6 6 6" />
-          </svg>
-        </button>
-        <button type="button" aria-label={playing ? pause : play} title={playing ? pause : play} aria-pressed={!playing} onClick={togglePlay} className={arrowClass}>
+        <ArrowButton direction="prev" label={prev} onClick={() => moveRef.current?.go(-1)} />
+        <button type="button" aria-label={playing ? pause : play} title={playing ? pause : play} aria-pressed={!playing} onClick={togglePlay} className={roundButtonClass}>
           {playing ? (
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true">
               <path d="M9 6v12M15 6v12" />
@@ -310,11 +304,7 @@ export function StepRing({
             </svg>
           )}
         </button>
-        <button type="button" aria-label={next} title={next} onClick={() => moveRef.current?.go(1)} className={arrowClass}>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-            <path d="M9 6l6 6-6 6" />
-          </svg>
-        </button>
+        <ArrowButton direction="next" label={next} onClick={() => moveRef.current?.go(1)} />
       </div>
     </div>
   );
