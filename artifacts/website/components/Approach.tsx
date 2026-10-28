@@ -33,7 +33,7 @@ export function Approach({ locale }: { locale: Locale }) {
               tabIndex={0}
               className="roll-row relative grid content-start gap-x-6 gap-y-4 border-b border-line py-8 focus-visible:outline-offset-[-2px] md:grid-cols-12 md:py-10"
             >
-              <p className="roll-tag flex items-center gap-3 font-mono text-label font-medium uppercase text-mist transition-colors duration-300 md:col-span-5 md:col-start-8 md:row-start-1 md:pt-4">
+              <p className="roll-tag flex items-center gap-3 font-mono text-label font-medium uppercase text-mist transition-colors duration-500 md:col-span-5 md:col-start-8 md:row-start-1 md:pt-4">
                 <span className="signal-dot" aria-hidden="true" />
                 {step.tag}
               </p>
