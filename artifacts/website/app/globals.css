@@ -388,7 +388,7 @@ body {
 }
 
 /*
- * Hero CTA and form submit: an arc of signal travels around the pill's 2px
+ * Filled buttons (buttonClass, and the nav CTA once filled): an arc of signal travels around the pill's 2px
  * rim. The fill stays flat Signal Blue (no glow, no sheen); on hover the arc
  * widens and speeds up. Reduced motion leaves a plain filled button.
  */

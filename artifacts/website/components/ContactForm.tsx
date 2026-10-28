@@ -137,7 +137,7 @@ export function ContactForm({
             type="submit"
             data-primary-cta
             disabled={status === "sending"}
-            className={`${buttonClass} btn-shine cursor-pointer px-6 py-3 text-[15px] disabled:cursor-wait disabled:opacity-70 max-sm:w-full max-sm:justify-center max-sm:px-4 max-sm:text-center`}
+            className={`${buttonClass} cursor-pointer px-6 py-3 text-[15px] disabled:cursor-wait disabled:opacity-70 max-sm:w-full max-sm:justify-center max-sm:px-4 max-sm:text-center`}
           >
             {status === "sending" ? copy.sending : FORMSPREE_URL ? copy.submit : copy.submitMailto}
           </button>
