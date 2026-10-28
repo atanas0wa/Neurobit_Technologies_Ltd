@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 type Theme = "dark" | "light";
 
 // Matches --color-void in each theme, for the browser chrome on mobile.
-const themeColor: Record<Theme, string> = { dark: "#05070A", light: "#FFFFFF" };
+const themeColor: Record<Theme, string> = { dark: "#05070A", light: "#EDF0F4" };
 
 function applyTheme(theme: Theme) {
   document.documentElement.dataset.theme = theme;
