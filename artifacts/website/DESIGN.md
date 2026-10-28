@@ -205,7 +205,7 @@ A near-black, cool-neutral palette with one blue voice for action and a green "s
   - The base unit is **6px** (Tailwind's spacing unit is overridden), so the steps are 12, 18, 24, 36 and 48px.
   - Sections breathe with 60px vertical padding on phones and 120px from `md`.
   - Headline-to-intro spacing is 30px.
-  - Content starts 60–96px below a section header.
+  - Content starts 36px below a section header on phones and 48px from `md`.
 - **Breakpoints:**
   - Tailwind defaults: `sm` 640, `md` 768, `lg` 1024, `xl` 1280.
   - The desktop nav appears at `xl`. Below that, a full-height menu replaces it.

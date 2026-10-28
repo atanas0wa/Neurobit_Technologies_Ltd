@@ -20,7 +20,7 @@ export function Faq({ locale }: { locale: Locale }) {
   };
   return (
     <section id="faq" aria-labelledby="faq-title" className="py-10 md:py-20">
-      <Container className="grid gap-10 md:gap-16 lg:grid-cols-12 lg:gap-6">
+      <Container className="grid gap-6 md:gap-8 lg:grid-cols-12 lg:gap-6">
         <h2 id="faq-title" className="text-balance text-h2 font-regular text-snow lg:sticky lg:top-[120px] lg:col-span-4 lg:self-start">
           {faq.title}
         </h2>

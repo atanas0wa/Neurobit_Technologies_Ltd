@@ -24,7 +24,7 @@ export function Section({
   const right = side === "right";
   return (
     <section id={id} aria-labelledby={`${id}-title`} className="py-10 md:py-20">
-      <Container className="grid gap-10 lg:grid-cols-12 lg:gap-6">
+      <Container className="grid gap-6 md:gap-8 lg:grid-cols-12 lg:gap-6">
         <div className={`min-w-0 lg:col-span-5 ${right ? "lg:order-2 lg:col-start-8" : ""}`}>
           <h2 id={`${id}-title`} className="text-balance text-h2 font-regular text-snow">
             {title}
@@ -61,7 +61,7 @@ export function WideSection({
           </h2>
           {intro && <p className="mt-5 max-w-[560px] text-body font-light text-mist">{intro}</p>}
         </header>
-        <div className="mt-10 md:mt-16">{children}</div>
+        <div className="mt-6 md:mt-8">{children}</div>
       </Container>
     </section>
   );
