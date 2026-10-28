@@ -32,9 +32,11 @@ export function ServiceArt({ kind }: { kind: ServiceArtKind }) {
 /*
  * Shared by the .art illustrations (ServiceArt, StepArt): sets data-play on the
  * figure while it is on screen and motion is allowed, and pauses its SVG
- * animations otherwise. Returns whether motion is allowed.
+ * animations otherwise. With observe off it plays whenever motion is allowed,
+ * for figures whose container already pauses them off screen (StepRing).
+ * Returns whether motion is allowed.
  */
-export function useArtPlayback(ref: RefObject<HTMLDivElement | null>) {
+export function useArtPlayback(ref: RefObject<HTMLDivElement | null>, observe = true) {
   const [motionAllowed, setMotionAllowed] = useState(false);
 
   useEffect(() => {
@@ -49,6 +51,12 @@ export function useArtPlayback(ref: RefObject<HTMLDivElement | null>) {
     const root = ref.current;
     const svg = root?.querySelector("svg");
     if (!root || !svg || !motionAllowed) return;
+    if (!observe) {
+      root.dataset.play = "true";
+      return () => {
+        delete root.dataset.play;
+      };
+    }
     svg.pauseAnimations();
     const observer = new IntersectionObserver(([entry]) => {
       root.dataset.play = String(entry.isIntersecting);
@@ -61,12 +69,12 @@ export function useArtPlayback(ref: RefObject<HTMLDivElement | null>) {
       svg.pauseAnimations();
       delete root.dataset.play;
     };
-  }, [ref, motionAllowed]);
+  }, [ref, observe, motionAllowed]);
 
   return motionAllowed;
 }
 
-export const d =(s: number) => ({ "--d": `${s}s` }) as CSSProperties;
+export const d = (s: number) => ({ "--d": `${s}s` }) as CSSProperties;
 
 function Web() {
   return (

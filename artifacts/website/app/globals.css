@@ -136,10 +136,8 @@ body {
  */
 
 /*
- * How we work: a step's dot is lit exactly while its description is shown, so it follows the same rule as the
- * roll below: the hovered or focused row where there is a mouse, the row the scroll signal has reached
- * (ScrollSignal's data-current) on touch screens. Every other dot is Slate. A dot fires once as it lights, then
- * pulses. Without JS every dot renders lit, as every description is shown.
+ * How we work: the dot on the card in focus (StepRing's data-current) is lit; it fires once as it lights,
+ * then pulses. Every other dot is Slate. Without JS every dot renders lit, as every description is shown.
  */
 .signal-dot {
   display: inline-block;
@@ -153,27 +151,11 @@ body {
 .signal[data-signal="on"] .signal-dot {
   background: var(--color-slate);
 }
-.signal[data-signal="on"] .roll-row:focus-visible .signal-dot {
+.signal[data-signal="on"] [data-current="true"] .signal-dot {
   background: var(--color-terminal);
   animation:
     signal-fire 900ms cubic-bezier(0.16, 1, 0.3, 1),
     signal-run 2.4s ease-out 900ms infinite;
-}
-@media (hover: hover) {
-  .signal[data-signal="on"] .roll-row:hover .signal-dot {
-    background: var(--color-terminal);
-    animation:
-      signal-fire 900ms cubic-bezier(0.16, 1, 0.3, 1),
-      signal-run 2.4s ease-out 900ms infinite;
-  }
-}
-@media (hover: none) {
-  .signal[data-signal="on"] [data-current="true"] .signal-dot {
-    background: var(--color-terminal);
-    animation:
-      signal-fire 900ms cubic-bezier(0.16, 1, 0.3, 1),
-      signal-run 2.4s ease-out 900ms infinite;
-  }
 }
 @keyframes signal-fire {
   from {
@@ -194,23 +176,91 @@ body {
 }
 
 /*
- * How we work, rolling list (Approach). Rows rise in once, staggered, when
- * ScrollSignal sets data-reveal. A hovered row (or, on touch screens, the
- * row the signal has reached) rolls its word letter by letter: every letter
- * slides up and out while its copy (::after) rolls in from below, inside a
- * clipped line box. The description comes in and a Snow line draws along
- * the row's bottom edge. Rows take focus, so :focus-visible does the same.
- * The hiding only applies once JS has run (data-signal="on").
+ * How we work ring (StepRing). The cards sit on the inside of a cylinder:
+ * each is turned by --k steps of --step around an axis --r behind the centre
+ * card, so the centre card sits flat at full size and the ones towards the
+ * edges come forward, larger and angled in. --r follows from the card width
+ * and the angle, so the cards just keep a --gap apart. Narrower containers
+ * show fewer, wider cards on a shallower curve. StepRing sets --k and the
+ * edge fade --o; the server renders the first position.
+ *
+ * Under the ring, the step in focus (data-current) rolls its word in letter
+ * by letter from below, inside a clipped line box, and its description comes
+ * in. The entries stack in one cell once JS has run (data-signal="on");
+ * without it they are a plain list.
  */
-.signal[data-reveal="in"] .roll-row {
-  transition:
-    opacity 1000ms cubic-bezier(0.22, 1, 0.36, 1),
-    translate 1000ms cubic-bezier(0.22, 1, 0.36, 1);
-  transition-delay: calc(var(--row) * 180ms);
+.ring-stage {
+  container-type: inline-size;
+  perspective: 1000px;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
 }
-.signal[data-reveal="ready"] .roll-row {
+.ring-cards {
+  --w: 52cqw;
+  --step: 26deg;
+  --gap: 10px;
+  --r: calc((var(--w) + var(--gap)) / (2 * tan(var(--step) / 2)));
+  position: relative;
+  height: calc(var(--w) * 0.625 * 1.55);
+  transform-style: preserve-3d;
+  touch-action: pan-y;
+  cursor: grab;
+  user-select: none;
+}
+.ring-cards:active {
+  cursor: grabbing;
+}
+@container (min-width: 600px) {
+  .ring-cards {
+    --w: 34cqw;
+    --step: 32deg;
+  }
+}
+@container (min-width: 900px) {
+  .ring-cards {
+    --w: 23cqw;
+    --step: 36deg;
+    --gap: 12px;
+  }
+}
+.ring-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--w);
+  aspect-ratio: 16 / 10;
+  container-type: inline-size;
+  opacity: var(--o, 1);
+  transform: translate(-50%, -50%) translateZ(var(--r)) rotateY(calc(var(--k, 0) * var(--step) * -1)) translateZ(calc(var(--r) * -1));
+  backface-visibility: hidden;
+}
+.ring-card > div {
+  transition: border-color 400ms ease-out;
+}
+.signal[data-offscreen="true"] .art * {
+  animation-play-state: paused;
+}
+.signal[data-signal="on"] .ring-card[data-current="true"] > div {
+  border-color: color-mix(in srgb, var(--color-terminal) 45%, var(--color-line));
+}
+.signal:not([data-signal="on"]) .ring-entry + .ring-entry {
+  margin-top: 40px;
+}
+.signal[data-signal="on"] .ring-entries {
+  display: grid;
+}
+.signal[data-signal="on"] .ring-entry {
+  grid-area: 1 / 1;
+  visibility: hidden;
   opacity: 0;
-  translate: 0 40px;
+  transition:
+    opacity 300ms ease-out,
+    visibility 0s 300ms;
+}
+.signal[data-signal="on"] .ring-entry[data-current="true"] {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 300ms ease-out;
 }
 .roll-word {
   display: inline-flex;
@@ -220,81 +270,31 @@ body {
   vertical-align: top;
 }
 .roll-char {
-  position: relative;
   display: inline-block;
   white-space: pre;
+  transition: translate 300ms ease-in;
+}
+.signal[data-signal="on"] .roll-char {
+  translate: 0 105%;
+}
+.signal[data-signal="on"] [data-current="true"] .roll-char {
+  translate: 0 0;
   transition: translate 1600ms cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: calc(var(--i) * 90ms);
-}
-.roll-char::after {
-  content: attr(data-char);
-  position: absolute;
-  top: 100%;
-  left: 0;
-}
-.roll-row::after {
-  content: "";
-  position: absolute;
-  inset-inline: 0;
-  bottom: -1px;
-  height: 1px;
-  background: var(--color-snow);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 1000ms cubic-bezier(0.22, 1, 0.36, 1);
-  pointer-events: none;
 }
 .roll-body {
   transition:
     opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
     translate 700ms cubic-bezier(0.22, 1, 0.36, 1);
 }
-.roll-row:focus-visible .roll-char {
-  translate: 0 -100%;
+.signal[data-signal="on"] .roll-body {
+  opacity: 0;
+  translate: 0 12px;
 }
-.roll-row:focus-visible::after {
-  transform: scaleX(1);
-}
-.roll-row:focus-visible .roll-tag {
-  color: var(--color-snow);
-}
-@media (hover: hover) {
-  .signal[data-signal="on"] .roll-body {
-    opacity: 0;
-    translate: 0 12px;
-    transition-delay: 0ms;
-  }
-  .roll-row:hover .roll-char {
-    translate: 0 -100%;
-  }
-  .roll-row:hover::after {
-    transform: scaleX(1);
-  }
-  .roll-row:hover .roll-tag {
-    color: var(--color-snow);
-  }
-  .signal[data-signal="on"] .roll-row:is(:hover, :focus-visible) .roll-body {
-    opacity: 1;
-    translate: 0 0;
-    transition-delay: 250ms;
-  }
-}
-@media (hover: none) {
-  .signal[data-signal="on"] .roll-body {
-    opacity: 0.35;
-  }
-  .signal[data-signal="on"] [data-current="true"] .roll-char {
-    translate: 0 -100%;
-  }
-  .signal[data-signal="on"] [data-current="true"].roll-row::after {
-    transform: scaleX(1);
-  }
-  .signal[data-signal="on"] [data-current="true"] .roll-tag {
-    color: var(--color-snow);
-  }
-  .signal[data-signal="on"] :is([data-current="true"], .roll-row:focus-visible) .roll-body {
-    opacity: 1;
-  }
+.signal[data-signal="on"] [data-current="true"] .roll-body {
+  opacity: 1;
+  translate: 0 0;
+  transition-delay: 250ms;
 }
 
 /* About: the code panel types itself out once (CodeTyping). */
@@ -515,9 +515,10 @@ body {
 /*
  * How we work (StepArt): one timeline per figure. --t runs 0 → 1 over 7s on
  * the svg; each part derives its progress --p from its start --s and fades
- * with everything else at the end of the cycle. At rest (no data-play, reduced
- * motion) --t sits at 0.9, where every part is fully drawn. The figure is
- * dimmed unless its row is active, the same rule as the signal dot.
+ * with everything else at the end of the cycle (an s-out part leaves at --s
+ * instead). At rest (no data-play, reduced motion) --t sits at 0.9, where
+ * every part has played out. The figure is
+ * dimmed unless its card is in focus, the same rule as the signal dot.
  */
 @property --t {
   syntax: "<number>";
@@ -535,7 +536,7 @@ body {
     --t: 1;
   }
 }
-.art :is(.s-fade, .s-grow, .s-pop, .s-draw, .s-move) {
+.art :is(.s-fade, .s-grow, .s-pop, .s-draw, .s-move, .s-out) {
   --p: clamp(0, calc((var(--t) - var(--s, 0)) * 9), 1);
   opacity: min(var(--p), clamp(0, calc((0.97 - var(--t)) * 25), 1));
   transform-box: fill-box;
@@ -551,6 +552,9 @@ body {
 .art .s-draw {
   stroke-dasharray: 1;
   stroke-dashoffset: calc(1 - var(--p));
+}
+.art .s-out {
+  opacity: calc(1 - var(--p));
 }
 .art .s-move {
   opacity: min(1, clamp(0, calc((0.97 - var(--t)) * 25), 1));
@@ -568,37 +572,30 @@ body {
     rotate: 1turn;
   }
 }
-.art .a-beat {
-  stroke-dasharray: 0.22 0.78;
-  stroke-dashoffset: 0.22;
+.art .a-wave {
+  transform-box: fill-box;
+  transform-origin: center;
 }
-.art[data-play] .a-beat {
-  animation: art-beat 2.4s linear infinite;
+.art[data-play] .a-wave {
+  animation: art-wave 700ms ease-in-out var(--d, 0s) infinite alternate;
 }
-@keyframes art-beat {
+@keyframes art-wave {
   from {
-    stroke-dashoffset: 0.22;
+    transform: scaleY(0.3);
   }
   to {
-    stroke-dashoffset: -0.78;
+    transform: scaleY(1);
   }
 }
 .signal[data-signal="on"] .step-art {
   opacity: 0.4;
   transition: opacity 300ms ease-out;
 }
-.signal[data-signal="on"] .roll-row:focus-visible .step-art {
+.signal[data-signal="on"] .ring-card .step-art {
+  opacity: 0.6;
+}
+.signal[data-signal="on"] [data-current="true"] .step-art {
   opacity: 1;
-}
-@media (hover: hover) {
-  .signal[data-signal="on"] .roll-row:hover .step-art {
-    opacity: 1;
-  }
-}
-@media (hover: none) {
-  .signal[data-signal="on"] [data-current="true"] .step-art {
-    opacity: 1;
-  }
 }
 
 /*
@@ -746,8 +743,8 @@ body {
     animation: none;
   }
   .roll-char,
-  .roll-row,
-  .roll-row::after,
+  .ring-entry,
+  .ring-card > div,
   .roll-body {
     transition: none !important;
   }
@@ -755,11 +752,8 @@ body {
     opacity: 1 !important;
     translate: none !important;
   }
-  .roll-row .roll-char {
+  .signal .roll-char {
     translate: none !important;
-  }
-  .roll-row::after {
-    transform: scaleX(0) !important;
   }
   .faq-item::details-content {
     transition: none;

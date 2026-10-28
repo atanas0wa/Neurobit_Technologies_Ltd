@@ -110,6 +110,10 @@ export const en = {
 
   approach: {
     title: "How we work",
+    prev: "Previous step",
+    next: "Next step",
+    pause: "Pause",
+    play: "Play",
     steps: [
       { title: "Discovery", tag: "Research", body: "In a free first call, we clarify the problem, goals, users, and project constraints. This helps us define priorities and an appropriate scope for the solution, and you get an estimate." },
       { title: "Design", tag: "Experience", body: "We establish the visual direction and key screens so it's clear how the product will look and work before development moves forward." },
