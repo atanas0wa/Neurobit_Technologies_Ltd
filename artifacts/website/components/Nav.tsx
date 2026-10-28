@@ -111,10 +111,11 @@ export function Nav({
         open ? "bg-void" : solid ? "bg-void/80 backdrop-blur-md" : "bg-transparent"
       }`}
     >
-      <Container className="flex h-[72px] items-center justify-between">
+      {/* Below 360px (e.g. a 320px phone) the logo, theme toggle and menu button only fit with tighter spacing. */}
+      <Container className="flex h-[72px] items-center justify-between max-[359px]:px-[16px]">
         <Logo href={homeHref} label={ui.home} />
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 max-[359px]:gap-1.5">
           <nav aria-label="Primary" className="hidden items-center gap-6 xl:flex">
             <ul className="flex items-center gap-5">
               {nav.links.map((link) => (

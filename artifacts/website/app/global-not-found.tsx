@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import { ButtonLink, Container, Label } from "@/components/ui";
 import { company, site } from "@/content/site";
@@ -11,8 +11,10 @@ const bg = site("bg").notFound;
 const en = site("en").notFound;
 
 export const metadata: Metadata = { metadataBase: new URL(company.url), title: `404 - ${company.name}` };
+export const viewport: Viewport = { themeColor: "#05070A", colorScheme: "dark" };
 
-const themeScript = `try{if(localStorage.getItem("theme")==="light")document.documentElement.dataset.theme="light"}catch(e){}`;
+// No ThemeToggle here, so the script also sets the browser bar colour for a saved light theme.
+const themeScript = `try{if(localStorage.getItem("theme")==="light"){document.documentElement.dataset.theme="light";document.addEventListener("DOMContentLoaded",function(){var m=document.querySelector('meta[name="theme-color"]');if(m)m.content="#EDF0F4"})}}catch(e){}`;
 
 export default function GlobalNotFound() {
   return (

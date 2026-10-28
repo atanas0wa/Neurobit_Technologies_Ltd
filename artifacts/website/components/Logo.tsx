@@ -11,7 +11,7 @@ export function Logo({ href, label }: { href: string; label: string }) {
         <circle cx="11" cy="11" r="2.75" className="fill-snow" />
         <circle cx="18" cy="11" r="2.25" className="fill-terminal" />
       </svg>
-      <span className="whitespace-nowrap text-[19px] font-regular tracking-[-0.03em] text-snow">{company.name}</span>
+      <span className="whitespace-nowrap text-[19px] font-regular max-[359px]:text-[15px] tracking-[-0.03em] text-snow">{company.name}</span>
     </Link>
   );
 }
