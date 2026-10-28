@@ -1,12 +1,13 @@
 import type { CSSProperties } from "react";
 import { site, type Locale } from "@/content/site";
 import { ScrollSignal } from "./ScrollSignal";
+import { StepArt, type StepArtKind } from "./StepArt";
 import { WideSection } from "./Section";
 
 /*
  * A rolling list of the steps. Each row: a large step word on the left; on the
- * right a mono tag led by the signal dot (ScrollSignal fires it as the page
- * scrolls past) and the description, which comes in as the word rolls.
+ * right a mono tag led by the signal dot, lit while the row is active, and the
+ * description, which comes in as the word rolls.
  *
  * Motion lives in globals.css (.roll-*): rows rise in one after another when
  * the list first comes into view; hovering a row rolls its word letter by
@@ -16,9 +17,15 @@ import { WideSection } from "./Section";
  * the others keep their description dimmed. Without JS or with reduced
  * motion every description is shown and the list is still.
  *
+ * From lg a small illustration of each step (StepArt) fills the gap between
+ * word and description, dimmed unless its row is active.
+ *
  * The word is split into letters for the roll, so screen readers get the
  * whole word from a hidden copy. The <ol> carries the order for assistive tech.
  */
+// Illustrations follow the order of approach.steps.
+const ART: StepArtKind[] = ["analysis", "design", "build", "launch", "support"];
+
 export function Approach({ locale }: { locale: Locale }) {
   const { approach } = site(locale);
   return (
@@ -37,7 +44,7 @@ export function Approach({ locale }: { locale: Locale }) {
                 <span className="signal-dot" aria-hidden="true" />
                 {step.tag}
               </p>
-              <h3 className="min-w-0 text-h3 font-regular text-snow md:col-span-7 md:col-start-1 md:row-span-2 md:row-start-1">
+              <h3 className="min-w-0 text-h3 font-regular text-snow md:col-span-7 md:col-start-1 md:row-span-2 md:row-start-1 lg:col-span-4">
                 <span className="sr-only">{step.title}</span>
                 <span className="roll-word" aria-hidden="true">
                   {Array.from(step.title).map((char, j) => (
@@ -47,6 +54,11 @@ export function Approach({ locale }: { locale: Locale }) {
                   ))}
                 </span>
               </h3>
+              {ART[i] && (
+                <div className="hidden lg:col-span-3 lg:col-start-5 lg:row-span-2 lg:row-start-1 lg:flex lg:items-center lg:justify-center">
+                  <StepArt kind={ART[i]} />
+                </div>
+              )}
               <p className="roll-body max-w-[560px] text-pretty text-body font-light text-mist md:col-span-5 md:col-start-8 md:row-start-2">
                 {step.body}
               </p>

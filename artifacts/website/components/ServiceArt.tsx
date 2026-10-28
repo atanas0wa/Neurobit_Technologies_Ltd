@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type CSSProperties, type RefObject } from "react";
 
 export type ServiceArtKind = "web" | "mobile" | "ai";
 
@@ -18,6 +18,23 @@ export type ServiceArtKind = "web" | "mobile" | "ai";
  */
 export function ServiceArt({ kind }: { kind: ServiceArtKind }) {
   const ref = useRef<HTMLDivElement>(null);
+  const motionAllowed = useArtPlayback(ref);
+
+  return (
+    <div ref={ref} className={`art art-${kind} w-full max-w-[320px]`} aria-hidden="true">
+      {kind === "web" && <Web />}
+      {kind === "mobile" && <Mobile />}
+      {kind === "ai" && <Ai animate={motionAllowed} />}
+    </div>
+  );
+}
+
+/*
+ * Shared by the .art illustrations (ServiceArt, StepArt): sets data-play on the
+ * figure while it is on screen and motion is allowed, and pauses its SVG
+ * animations otherwise. Returns whether motion is allowed.
+ */
+export function useArtPlayback(ref: RefObject<HTMLDivElement | null>) {
   const [motionAllowed, setMotionAllowed] = useState(false);
 
   useEffect(() => {
@@ -44,18 +61,12 @@ export function ServiceArt({ kind }: { kind: ServiceArtKind }) {
       svg.pauseAnimations();
       delete root.dataset.play;
     };
-  }, [motionAllowed]);
+  }, [ref, motionAllowed]);
 
-  return (
-    <div ref={ref} className={`art art-${kind} w-full max-w-[320px]`} aria-hidden="true">
-      {kind === "web" && <Web />}
-      {kind === "mobile" && <Mobile />}
-      {kind === "ai" && <Ai animate={motionAllowed} />}
-    </div>
-  );
+  return motionAllowed;
 }
 
-const d = (s: number) => ({ "--d": `${s}s` }) as CSSProperties;
+export const d =(s: number) => ({ "--d": `${s}s` }) as CSSProperties;
 
 function Web() {
   return (

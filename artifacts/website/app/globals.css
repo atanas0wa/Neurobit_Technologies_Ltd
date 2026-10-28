@@ -135,7 +135,12 @@ body {
  * reduced-motion path; components only opt in via data attributes.
  */
 
-/* How we work: each step's dot fires as the scroll line passes it; the latest one keeps pulsing (ScrollSignal). */
+/*
+ * How we work: a step's dot is lit exactly while its description is shown, so it follows the same rule as the
+ * roll below: the hovered or focused row where there is a mouse, the row the scroll signal has reached
+ * (ScrollSignal's data-current) on touch screens. Every other dot is Slate. A dot fires once as it lights, then
+ * pulses. Without JS every dot renders lit, as every description is shown.
+ */
 .signal-dot {
   display: inline-block;
   width: 10px;
@@ -143,16 +148,32 @@ body {
   vertical-align: middle;
   border-radius: 9999px;
   background: var(--color-terminal);
-  transition: background-color 300ms ease;
+  transition: background-color 120ms ease-out;
 }
-.signal[data-signal="on"] [data-step][data-reached="false"] .signal-dot {
+.signal[data-signal="on"] .signal-dot {
   background: var(--color-slate);
 }
-.signal[data-signal="on"] [data-step][data-reached="true"] .signal-dot {
-  animation: signal-fire 1400ms cubic-bezier(0.16, 1, 0.3, 1);
+.signal[data-signal="on"] .roll-row:focus-visible .signal-dot {
+  background: var(--color-terminal);
+  animation:
+    signal-fire 900ms cubic-bezier(0.16, 1, 0.3, 1),
+    signal-run 2.4s ease-out 900ms infinite;
 }
-.signal[data-signal="on"] [data-step][data-current="true"] .signal-dot {
-  animation: signal-run 2.4s ease-out infinite;
+@media (hover: hover) {
+  .signal[data-signal="on"] .roll-row:hover .signal-dot {
+    background: var(--color-terminal);
+    animation:
+      signal-fire 900ms cubic-bezier(0.16, 1, 0.3, 1),
+      signal-run 2.4s ease-out 900ms infinite;
+  }
+}
+@media (hover: none) {
+  .signal[data-signal="on"] [data-current="true"] .signal-dot {
+    background: var(--color-terminal);
+    animation:
+      signal-fire 900ms cubic-bezier(0.16, 1, 0.3, 1),
+      signal-run 2.4s ease-out 900ms infinite;
+  }
 }
 @keyframes signal-fire {
   from {
@@ -202,8 +223,8 @@ body {
   position: relative;
   display: inline-block;
   white-space: pre;
-  transition: translate 1400ms cubic-bezier(0.22, 1, 0.36, 1);
-  transition-delay: calc(var(--i) * 80ms);
+  transition: translate 1600ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: calc(var(--i) * 90ms);
 }
 .roll-char::after {
   content: attr(data-char);
@@ -492,6 +513,95 @@ body {
 }
 
 /*
+ * How we work (StepArt): one timeline per figure. --t runs 0 → 1 over 7s on
+ * the svg; each part derives its progress --p from its start --s and fades
+ * with everything else at the end of the cycle. At rest (no data-play, reduced
+ * motion) --t sits at 0.9, where every part is fully drawn. The figure is
+ * dimmed unless its row is active, the same rule as the signal dot.
+ */
+@property --t {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0.9;
+}
+.art[data-play] .art-timeline {
+  animation: art-timeline 7s linear infinite;
+}
+@keyframes art-timeline {
+  from {
+    --t: 0;
+  }
+  to {
+    --t: 1;
+  }
+}
+.art :is(.s-fade, .s-grow, .s-pop, .s-draw, .s-move) {
+  --p: clamp(0, calc((var(--t) - var(--s, 0)) * 9), 1);
+  opacity: min(var(--p), clamp(0, calc((0.97 - var(--t)) * 25), 1));
+  transform-box: fill-box;
+}
+.art .s-grow {
+  transform: scaleX(calc(0.5 + 0.5 * var(--p)));
+  transform-origin: left center;
+}
+.art .s-pop {
+  transform: scale(calc(0.6 + 0.4 * var(--p)));
+  transform-origin: center;
+}
+.art .s-draw {
+  stroke-dasharray: 1;
+  stroke-dashoffset: calc(1 - var(--p));
+}
+.art .s-move {
+  opacity: min(1, clamp(0, calc((0.97 - var(--t)) * 25), 1));
+  translate: calc((1 - var(--p)) * 46px) calc((1 - var(--p)) * 34px);
+}
+.art .a-spin {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.art[data-play] .a-spin {
+  animation: art-spin 6s linear infinite;
+}
+@keyframes art-spin {
+  to {
+    rotate: 1turn;
+  }
+}
+.art .a-beat {
+  stroke-dasharray: 0.22 0.78;
+  stroke-dashoffset: 0.22;
+}
+.art[data-play] .a-beat {
+  animation: art-beat 2.4s linear infinite;
+}
+@keyframes art-beat {
+  from {
+    stroke-dashoffset: 0.22;
+  }
+  to {
+    stroke-dashoffset: -0.78;
+  }
+}
+.signal[data-signal="on"] .step-art {
+  opacity: 0.4;
+  transition: opacity 300ms ease-out;
+}
+.signal[data-signal="on"] .roll-row:focus-visible .step-art {
+  opacity: 1;
+}
+@media (hover: hover) {
+  .signal[data-signal="on"] .roll-row:hover .step-art {
+    opacity: 1;
+  }
+}
+@media (hover: none) {
+  .signal[data-signal="on"] [data-current="true"] .step-art {
+    opacity: 1;
+  }
+}
+
+/*
  * Filled buttons (buttonClass, and the nav CTA once filled): an arc of signal travels around the pill's 2px
  * rim. The fill stays flat Signal Blue (no glow, no sheen); on hover the arc
  * widens and speeds up. Reduced motion leaves a plain filled button.
@@ -627,8 +737,9 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .signal[data-signal="on"] [data-step][data-reached="true"] .signal-dot,
-  .signal[data-signal="on"] [data-step][data-current="true"] .signal-dot,
+  .signal .signal-dot {
+    animation: none !important;
+  }
   [data-typing="run"] .code-caret,
   .faq-caret::after,
   .faq-spark path {

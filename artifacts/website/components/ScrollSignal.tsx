@@ -3,11 +3,10 @@
 import { useEffect, useRef, type ReactNode } from "react";
 
 /*
- * Lights up each [data-step] child once it has scrolled past the middle of
- * the viewport, like a signal travelling down the process. Steps above the
- * line stay lit; scrolling back up dims them again. The latest step reached
- * is marked data-current. Without JS every step renders lit (the styles key
- * off data-signal="on").
+ * Marks data-current on the last [data-step] child that has scrolled past the
+ * middle of the viewport, like a signal travelling down the process. On touch
+ * screens that step is the one shown as active (globals.css). Without JS every
+ * step renders as active (the styles key off data-signal="on").
  *
  * It also stages the rows' entrance: if the list is still below the fold,
  * data-reveal="ready" hides them, and "in" lets them rise in (globals.css)
@@ -26,9 +25,7 @@ export function ScrollSignal({ children }: { children: ReactNode }) {
       const line = window.innerHeight * 0.55;
       let current = -1;
       steps.forEach((step, i) => {
-        const reached = step.getBoundingClientRect().top < line;
-        step.dataset.reached = String(reached);
-        if (reached) current = i;
+        if (step.getBoundingClientRect().top < line) current = i;
       });
       steps.forEach((step, i) => (step.dataset.current = String(i === current)));
     };
