@@ -196,8 +196,8 @@ body {
   mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
 }
 .ring-cards {
-  --w: 52cqw;
-  --step: 26deg;
+  --w: 60cqw;
+  --step: 24deg;
   --gap: 10px;
   --r: calc((var(--w) + var(--gap)) / (2 * tan(var(--step) / 2)));
   position: relative;
@@ -302,8 +302,9 @@ body {
  * its own box (--x, --y): ::before is a 1px ring masked to the border, lit by
  * a Cyan-to-Signal light at that point, and ::after a soft Signal light
  * inside. The card under the mouse gets both, its neighbours a fainter edge
- * where the pointer comes close. The card itself keeps its border, panel and
- * padding.
+ * where the pointer comes close. On touch screens the card nearest the middle
+ * of the screen (data-current) glows from its top edge. The card itself keeps
+ * its border, panel and padding.
  */
 .glow-card {
   --x: 50%;
@@ -348,6 +349,17 @@ body {
   }
   .glow-card:hover {
     box-shadow: 0 16px 40px -24px color-mix(in srgb, var(--color-signal) 70%, transparent);
+  }
+}
+@media (hover: none) {
+  .glow-card[data-current="true"] {
+    --x: 50%;
+    --y: 0%;
+    box-shadow: 0 16px 40px -24px color-mix(in srgb, var(--color-signal) 70%, transparent);
+  }
+  .glow-card[data-current="true"]::before,
+  .glow-card[data-current="true"]::after {
+    opacity: 1;
   }
 }
 
