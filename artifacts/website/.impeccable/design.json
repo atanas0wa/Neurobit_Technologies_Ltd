@@ -1,0 +1,503 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-28T09:46:02.330Z",
+  "title": "Design System: Neurobit Technologies",
+  "extensions": {
+    "colorMeta": {
+      "void": {
+        "role": "neutral",
+        "displayName": "Void",
+        "canonical": "oklch(12.7% 0.009 253.7)",
+        "tonalRamp": [
+          "#0A0B0D",
+          "#222428",
+          "#3D4044",
+          "#5A5E63",
+          "#7D8185",
+          "#A1A5A9",
+          "#C8CBCE",
+          "#EDEEF0"
+        ]
+      },
+      "panel": {
+        "role": "neutral",
+        "displayName": "Panel",
+        "canonical": "oklch(16.8% 0.018 263.9)",
+        "tonalRamp": [
+          "#090B10",
+          "#20242C",
+          "#3B404A",
+          "#585E68",
+          "#7B808B",
+          "#9FA5AF",
+          "#C7CBD2",
+          "#EDEEF1"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Hairline",
+        "canonical": "oklch(25.5% 0.027 262.6)",
+        "tonalRamp": [
+          "#080B12",
+          "#1E242F",
+          "#38404E",
+          "#565E6D",
+          "#788191",
+          "#9DA5B4",
+          "#C5CBD5",
+          "#ECEEF2"
+        ]
+      },
+      "snow": {
+        "role": "neutral",
+        "displayName": "Snow",
+        "canonical": "oklch(97.5% 0.005 258.3)",
+        "tonalRamp": [
+          "#0A0B0C",
+          "#232426",
+          "#3E4042",
+          "#5C5E60",
+          "#7E8083",
+          "#A3A5A7",
+          "#C9CACC",
+          "#EEEEEF"
+        ]
+      },
+      "mist": {
+        "role": "neutral",
+        "displayName": "Mist",
+        "canonical": "oklch(74.1% 0.021 257.5)",
+        "tonalRamp": [
+          "#080B10",
+          "#1F242D",
+          "#39404B",
+          "#565E6A",
+          "#78818D",
+          "#9DA5B1",
+          "#C5CBD3",
+          "#EDEFF1"
+        ]
+      },
+      "slate": {
+        "role": "neutral",
+        "displayName": "Slate",
+        "canonical": "oklch(55.1% 0.023 264.4)",
+        "tonalRamp": [
+          "#080B11",
+          "#1F242E",
+          "#3A404C",
+          "#575E6B",
+          "#79808F",
+          "#9EA5B2",
+          "#C6CBD4",
+          "#EDEEF2"
+        ]
+      },
+      "signal": {
+        "role": "primary",
+        "displayName": "Signal Blue",
+        "canonical": "oklch(57.8% 0.230 263.9)",
+        "tonalRamp": [
+          "#010040",
+          "#010080",
+          "#001CB6",
+          "#1248DC",
+          "#3471FF",
+          "#609CFF",
+          "#9DC9FF",
+          "#DEEFFF"
+        ]
+      },
+      "signal-hover": {
+        "role": "primary",
+        "displayName": "Pressed Blue",
+        "canonical": "oklch(53.4% 0.232 263.6)",
+        "tonalRamp": [
+          "#010041",
+          "#000080",
+          "#001CB7",
+          "#0F48DD",
+          "#3271FF",
+          "#5F9DFF",
+          "#9CC9FF",
+          "#DEEFFF"
+        ]
+      },
+      "terminal": {
+        "role": "secondary",
+        "displayName": "Terminal Green",
+        "canonical": "oklch(79.7% 0.164 159.7)",
+        "tonalRamp": [
+          "#001400",
+          "#003506",
+          "#00561C",
+          "#00773A",
+          "#009C5C",
+          "#39C084",
+          "#91DEB5",
+          "#DCF6E7"
+        ]
+      },
+      "cyan": {
+        "role": "tertiary",
+        "displayName": "Synapse Cyan",
+        "canonical": "oklch(79.7% 0.134 211.5)",
+        "tonalRamp": [
+          "#00111D",
+          "#002F43",
+          "#004F68",
+          "#006F88",
+          "#0094AE",
+          "#24B8CF",
+          "#8BD9E8",
+          "#DAF4F9"
+        ]
+      },
+      "light-void": {
+        "role": "neutral",
+        "displayName": "Void (light)",
+        "canonical": "oklch(95.4% 0.006 255.5)",
+        "tonalRamp": [
+          "#0A0B0D",
+          "#222427",
+          "#3E4043",
+          "#5B5E61",
+          "#7E8084",
+          "#A2A5A8",
+          "#C9CBCD",
+          "#EEEEEF"
+        ]
+      },
+      "light-panel": {
+        "role": "neutral",
+        "displayName": "Panel (light)",
+        "canonical": "oklch(98.4% 0.003 247.9)",
+        "tonalRamp": [
+          "#0A0B0C",
+          "#232425",
+          "#3E4041",
+          "#5C5E5F",
+          "#7F8082",
+          "#A3A5A6",
+          "#C9CACC",
+          "#EEEEEF"
+        ]
+      },
+      "light-line": {
+        "role": "neutral",
+        "displayName": "Hairline (light)",
+        "canonical": "oklch(88.9% 0.013 255.5)",
+        "tonalRamp": [
+          "#090B0E",
+          "#212429",
+          "#3B4047",
+          "#595E65",
+          "#7B8188",
+          "#A0A5AC",
+          "#C7CBCF",
+          "#EDEEF0"
+        ]
+      },
+      "light-snow": {
+        "role": "neutral",
+        "displayName": "Snow (light)",
+        "canonical": "oklch(16.8% 0.018 263.9)",
+        "tonalRamp": [
+          "#090B10",
+          "#20242C",
+          "#3B404A",
+          "#585E68",
+          "#7B808B",
+          "#9FA5AF",
+          "#C7CBD2",
+          "#EDEEF1"
+        ]
+      },
+      "light-mist": {
+        "role": "neutral",
+        "displayName": "Mist (light)",
+        "canonical": "oklch(44.6% 0.026 256.8)",
+        "tonalRamp": [
+          "#070B11",
+          "#1D252F",
+          "#37404E",
+          "#545E6D",
+          "#768190",
+          "#9BA5B4",
+          "#C4CBD5",
+          "#ECEFF2"
+        ]
+      },
+      "light-slate": {
+        "role": "neutral",
+        "displayName": "Slate (light)",
+        "canonical": "oklch(51.2% 0.024 261.7)",
+        "tonalRamp": [
+          "#080B11",
+          "#1F242E",
+          "#39404D",
+          "#565E6C",
+          "#78818F",
+          "#9DA5B3",
+          "#C5CBD4",
+          "#ECEEF2"
+        ]
+      },
+      "light-terminal": {
+        "role": "secondary",
+        "displayName": "Terminal Green (light)",
+        "canonical": "oklch(50.8% 0.105 165.6)",
+        "tonalRamp": [
+          "#001206",
+          "#003019",
+          "#005032",
+          "#00704F",
+          "#339471",
+          "#68B797",
+          "#A5D8C1",
+          "#E2F3EB"
+        ]
+      },
+      "light-cyan": {
+        "role": "tertiary",
+        "displayName": "Synapse Cyan (light)",
+        "canonical": "oklch(60.9% 0.111 221.7)",
+        "tonalRamp": [
+          "#000F1D",
+          "#002B44",
+          "#004A69",
+          "#006A8A",
+          "#008EAF",
+          "#55B3D1",
+          "#9BD5E9",
+          "#DFF2FA"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Largest statement moments only."
+      },
+      "headline-1": {
+        "displayName": "Headline 1",
+        "purpose": "Hero headline, one sentence per line."
+      },
+      "headline-2": {
+        "displayName": "Headline 2",
+        "purpose": "Section titles."
+      },
+      "headline-3": {
+        "displayName": "Headline 3",
+        "purpose": "Process steps and service names."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Card titles, FAQ questions, Why-us points."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "All paragraphs, light weight in Mist, max ~560px."
+      },
+      "small": {
+        "displayName": "Small",
+        "purpose": "Nav, buttons, labels, footer."
+      },
+      "label": {
+        "displayName": "Mono Label",
+        "purpose": "Uppercase terminal-green label on legal and 404 pages only."
+      },
+      "code": {
+        "displayName": "Code",
+        "purpose": "Code panel lines."
+      }
+    },
+    "shadows": [
+      {
+        "name": "focus-ring",
+        "value": "0 0 0 4px color-mix(in srgb, var(--color-signal) 20%, transparent)",
+        "purpose": "Focus state of form fields (not elevation)."
+      },
+      {
+        "name": "signal-fire",
+        "value": "0 0 0 12px transparent (animated from 70% terminal)",
+        "purpose": "Expanding ring when a process step dot fires (motion, not elevation)."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out-expo",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Step-dot fire and FAQ open (320ms)."
+      },
+      {
+        "name": "color-transition",
+        "value": "150ms ease (Tailwind transition-colors)",
+        "purpose": "Hover colour changes on links, buttons, borders."
+      },
+      {
+        "name": "nav-solidify",
+        "value": "300ms",
+        "purpose": "Nav background transparent → blurred Void on scroll."
+      },
+      {
+        "name": "code-type",
+        "value": "420ms steps(24) staggered 170ms per line",
+        "purpose": "Code panel types itself once."
+      },
+      {
+        "name": "art-loop",
+        "value": "7s infinite",
+        "purpose": "Service illustrations loop; paused off screen."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "md",
+        "value": "768px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px"
+      },
+      {
+        "name": "xl",
+        "value": "1280px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one filled action per view.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#\">Discuss your project</a>",
+      "css": ".ds-btn-primary{display:inline-flex;align-items:center;border-radius:9999px;background:var(--color-signal,#2E6AFF);color:#fff;padding:12px 24px;font:600 14px/1.4 Inter,ui-sans-serif,system-ui,sans-serif;text-decoration:none;transition:background-color 150ms ease}.ds-btn-primary:hover{background:var(--color-signal-hover,#1F5BF0)}.ds-btn-primary:focus-visible{outline:2px solid var(--color-signal,#2E6AFF);outline-offset:2px}"
+    },
+    {
+      "name": "Outline Button",
+      "kind": "button",
+      "refersTo": "button-outline",
+      "description": "Nav CTA at rest; secondary pill action.",
+      "html": "<a class=\"ds-btn-outline\" href=\"#\">Discuss your project</a>",
+      "css": ".ds-btn-outline{display:inline-flex;align-items:center;border-radius:9999px;border:1px solid var(--color-line,#1C2330);background:transparent;color:var(--color-snow,#F5F7FA);padding:12px 24px;font:600 14px/1.4 Inter,ui-sans-serif,system-ui,sans-serif;text-decoration:none;transition:border-color 300ms ease}.ds-btn-outline:hover{border-color:var(--color-mist,#A3ACB9)}.ds-btn-outline:focus-visible{outline:2px solid var(--color-signal,#2E6AFF);outline-offset:2px}"
+    },
+    {
+      "name": "Arrow Link",
+      "kind": "button",
+      "description": "Secondary text action with a trailing arrow.",
+      "html": "<a class=\"ds-arrow\" href=\"#\">Read the privacy policy <span aria-hidden=\"true\">→</span></a>",
+      "css": ".ds-arrow{display:inline-flex;gap:12px;align-items:center;color:var(--color-mist,#A3ACB9);font:400 15px/1.4 Inter,ui-sans-serif,sans-serif;text-decoration:none;transition:color 150ms ease}.ds-arrow span{transition:transform 150ms ease}.ds-arrow:hover{color:var(--color-snow,#F5F7FA)}.ds-arrow:hover span{transform:translateX(3px)}.ds-arrow:focus-visible{outline:2px solid var(--color-signal,#2E6AFF);outline-offset:2px;border-radius:4px}"
+    },
+    {
+      "name": "Icon Button",
+      "kind": "button",
+      "refersTo": "icon-button",
+      "description": "44px circle for theme, language and FAQ toggles.",
+      "html": "<button class=\"ds-icon-btn\" aria-label=\"Switch theme\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"><path d=\"M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z\"/></svg></button>",
+      "css": ".ds-icon-btn{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:9999px;border:1px solid var(--color-line,#1C2330);background:transparent;color:var(--color-mist,#A3ACB9);cursor:pointer;transition:border-color 150ms ease,color 150ms ease}.ds-icon-btn:hover{border-color:var(--color-mist,#A3ACB9);color:var(--color-snow,#F5F7FA)}.ds-icon-btn:focus-visible{outline:2px solid var(--color-signal,#2E6AFF);outline-offset:2px}"
+    },
+    {
+      "name": "Option Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Parallel option on a raised panel; title then light body.",
+      "html": "<div class=\"ds-card\"><h3>Product / MVP</h3><p>For teams with a new product idea that want to test their key assumptions with a first working version.</p></div>",
+      "css": ".ds-card{border-radius:24px;border:1px solid var(--color-line,#1C2330);background:var(--color-panel,#0B0F17);padding:48px;max-width:420px}.ds-card h3{margin:0;font:400 24px/1.25 Inter,ui-sans-serif,sans-serif;letter-spacing:-0.02em;color:var(--color-snow,#F5F7FA)}.ds-card p{margin:18px 0 0;font:300 18px/1.5 Inter,ui-sans-serif,sans-serif;color:var(--color-mist,#A3ACB9)}"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Inset field on Void with a signal focus ring.",
+      "html": "<label class=\"ds-field\"><span>Name</span><input type=\"text\" maxlength=\"100\"></label>",
+      "css": ".ds-field{display:block;max-width:360px}.ds-field span{display:block;font:500 14px/1.4 Inter,ui-sans-serif,sans-serif;color:var(--color-snow,#F5F7FA)}.ds-field input{margin-top:12px;display:block;width:100%;box-sizing:border-box;border-radius:12px;border:1px solid var(--color-line,#1C2330);background:var(--color-void,#05070A);color:var(--color-snow,#F5F7FA);padding:18px 24px;font:300 18px/1.5 Inter,ui-sans-serif,sans-serif;caret-color:var(--color-signal,#2E6AFF);transition:border-color 150ms,box-shadow 150ms}.ds-field input:hover{border-color:var(--color-slate,#6B7280)}.ds-field input:focus{outline:none;border-color:var(--color-signal,#2E6AFF);box-shadow:0 0 0 4px color-mix(in srgb,var(--color-signal,#2E6AFF) 20%,transparent)}"
+    },
+    {
+      "name": "Navigation Bar",
+      "kind": "nav",
+      "refersTo": "nav",
+      "description": "Fixed 72px bar; transparent, then blurred Void on scroll.",
+      "html": "<nav class=\"ds-nav\"><span class=\"ds-nav-brand\">Neurobit Technologies</span><ul><li><a href=\"#\">Services</a></li><li><a href=\"#\">About</a></li><li><a href=\"#\">FAQ</a></li></ul><a class=\"ds-nav-cta\" href=\"#\">Discuss your project</a></nav>",
+      "css": ".ds-nav{display:flex;align-items:center;justify-content:space-between;gap:24px;height:72px;padding:0 24px;background:color-mix(in srgb,var(--color-void,#05070A) 80%,transparent);backdrop-filter:blur(12px)}.ds-nav-brand{font:400 16px Inter,sans-serif;color:var(--color-snow,#F5F7FA)}.ds-nav ul{display:flex;gap:30px;list-style:none;margin:0;padding:0}.ds-nav a{font:400 14px Inter,sans-serif;color:var(--color-mist,#A3ACB9);text-decoration:none;transition:color 150ms}.ds-nav a:hover{color:var(--color-snow,#F5F7FA)}.ds-nav .ds-nav-cta{border:1px solid var(--color-line,#1C2330);border-radius:9999px;padding:12px 24px;font-weight:600;color:var(--color-snow,#F5F7FA)}.ds-nav .ds-nav-cta:hover{border-color:var(--color-mist,#A3ACB9)}"
+    },
+    {
+      "name": "Signal Step",
+      "kind": "custom",
+      "description": "Hairline process row with a pulsing terminal-green dot.",
+      "html": "<div class=\"ds-step\"><span class=\"ds-dot\"></span><h3>Discovery</h3><p>In a free first call, we clarify the problem, goals, users, and constraints.</p></div>",
+      "css": ".ds-step{display:grid;grid-template-columns:24px 1fr;column-gap:24px;row-gap:12px;align-items:baseline;border-top:1px solid var(--color-line,#1C2330);border-bottom:1px solid var(--color-line,#1C2330);padding:48px 0;max-width:640px}.ds-dot{width:10px;height:10px;border-radius:9999px;background:var(--color-terminal,#3DDC97);animation:ds-run 1.8s ease-out infinite}.ds-step h3{margin:0;font:400 36px/1.15 Inter,sans-serif;letter-spacing:-0.04em;color:var(--color-snow,#F5F7FA)}.ds-step p{grid-column:2;margin:0;font:300 18px/1.5 Inter,sans-serif;color:var(--color-mist,#A3ACB9)}@keyframes ds-run{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--color-terminal,#3DDC97) 55%,transparent)}70%,100%{box-shadow:0 0 0 10px transparent}}@media (prefers-reduced-motion:reduce){.ds-dot{animation:none}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Quiet Network",
+    "overview": "A calm, dark field with a living neuron network humming in the background. Large, light-weight type and plain sentences stay in front. The site earns trust the way the company does: by being direct and leaving out anything that pretends. There are no stock photos, invented numbers or decorative noise. Structure comes from generous space, thin hairlines and a clear typographic scale.\n\nThe mood is **calm and confident, technical but human, precise and honest, and subtly alive**. The technical world shows up as texture, never as jargon: the neuron canvas, a terminal-green pulse, a short code panel that types itself. The words are always written for a business owner. Motion is slow and ambient, and it pauses or settles completely for visitors who prefer reduced motion.\n\nDark is the default theme. The light theme keeps the same tokens with different values: a soft cool-grey ground, with near-white panels raised above it rather than set into it.",
+    "keyCharacteristics": [
+      "Type-led sections: a big regular-weight headline, then light body copy in mist.",
+      "One filled blue action per view. Everything else is text, outline or hairline.",
+      "Flat surfaces separated by 1px lines and tonal steps. No shadows.",
+      "Soft geometry: pill buttons, 24px card corners, 12px field corners.",
+      "Ambient neuron motion behind the content. One small moment per section (pulsing step dots, the typing code, looping service illustrations).",
+      "Two themes and two languages (English and Bulgarian) carry identical structure."
+    ],
+    "rules": [
+      {
+        "name": "The One Voice Rule",
+        "body": "Signal Blue is the only filled colour in the interface, and each view carries one primary action. Secondary actions are outlined pills or text links.",
+        "section": "colors"
+      },
+      {
+        "name": "The Same Names Rule",
+        "body": "Both themes use the same token names. Components never branch on theme for colour, so a new component that uses tokens is automatically correct in both.",
+        "section": "colors"
+      },
+      {
+        "name": "The Contrast Floor Rule",
+        "body": "All readable text clears WCAG AA in both themes. Check a new colour against Void (the darker surface in light mode) before using it for text.",
+        "section": "colors"
+      },
+      {
+        "name": "The Light Body Rule",
+        "body": "Paragraphs are weight 300 in Mist. Snow is reserved for headings and the single sentence that leads a block.",
+        "section": "typography"
+      },
+      {
+        "name": "The Fluid Ceiling Rule",
+        "body": "The token sizes are the desktop maximum. Headings scale down with `clamp()`, and nothing goes below the minimums listed above.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-By-Default Rule",
+        "body": "Surfaces never cast shadows. To lift something, move it one tonal step and give it a hairline.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Raised Panel Rule",
+        "body": "Panels are lighter than the ground in both themes. Fields inside a panel use Void, so they read as inset.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep exactly one Signal Blue filled action visible per view. Make every other action an outline pill, an arrow link or a text link.",
+      "Do set headlines in Inter 400 with tight tracking, and paragraphs in Inter 300 Mist at no more than ~560px wide.",
+      "Do separate content with 1px Hairline rows and tonal Panel steps rather than shadows.",
+      "Do use token names (void, panel, line, snow, mist, slate, signal, terminal) so components work in both themes without branching.",
+      "Do give every animation a reduced-motion path in which content stays fully visible.",
+      "Do ship every change in both languages with the same layout. Bulgarian copy runs longer, so check that headings still balance."
+    ],
+    "donts": [
+      "Don't add drop shadows, glows, gradients or glass panels for decoration.",
+      "Don't use Synapse Cyan or Signal Blue for body text, or Terminal Green for anything except life, success, progress and code.",
+      "Don't put a mono label or kicker above section headings on the homepage. The heading carries itself, and mono labels stay on the legal and 404 pages.",
+      "Don't use stock photography or illustrations that imply clients, results or metrics the company doesn't have.",
+      "Don't nest cards or turn parallel content rows into boxed cards.",
+      "Don't return the light theme to pure white (#FFFFFF) as the ground."
+    ]
+  }
+}
