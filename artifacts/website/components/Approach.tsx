@@ -33,11 +33,11 @@ export function Approach({ locale }: { locale: Locale }) {
               tabIndex={0}
               className="roll-row relative grid content-start gap-x-6 gap-y-4 border-b border-line py-8 focus-visible:outline-offset-[-2px] md:grid-cols-12 md:py-10"
             >
-              <p className="roll-tag flex items-center gap-3 font-mono text-label font-medium uppercase text-mist transition-colors duration-300 md:col-span-5 md:col-start-8 md:row-start-1 md:pt-3">
+              <p className="roll-tag flex items-center gap-3 font-mono text-label font-medium uppercase text-mist transition-colors duration-300 md:col-span-5 md:col-start-8 md:row-start-1 md:pt-4">
                 <span className="signal-dot" aria-hidden="true" />
                 {step.tag}
               </p>
-              <h3 className="min-w-0 text-h1 font-regular text-snow md:col-span-7 md:col-start-1 md:row-span-2 md:row-start-1">
+              <h3 className="min-w-0 text-h3 font-regular text-snow md:col-span-7 md:col-start-1 md:row-span-2 md:row-start-1">
                 <span className="sr-only">{step.title}</span>
                 <span className="roll-word" aria-hidden="true">
                   {Array.from(step.title).map((char, j) => (
