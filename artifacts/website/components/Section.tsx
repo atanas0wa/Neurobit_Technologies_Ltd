@@ -44,27 +44,24 @@ export function WideSection({
   title,
   intro,
   side = "left",
-  narrow = false,
   children,
 }: {
   id: string;
   title: string;
   intro?: string;
   side?: "left" | "right";
-  /** Header and content share one centred 640px column. */
-  narrow?: boolean;
   children: ReactNode;
 }) {
   return (
     <section id={id} aria-labelledby={`${id}-title`} className="py-10 md:py-20">
       <Container>
-        <header className={`max-w-[640px] ${narrow ? "mx-auto" : side === "right" ? "lg:ml-auto" : ""}`}>
+        <header className={`max-w-[640px] ${side === "right" ? "lg:ml-auto" : ""}`}>
           <h2 id={`${id}-title`} className="text-balance text-h2 font-regular text-snow">
             {title}
           </h2>
           {intro && <p className="mt-5 max-w-[560px] text-body font-light text-mist">{intro}</p>}
         </header>
-        <div className={`mt-10 md:mt-16 ${narrow ? "mx-auto max-w-[640px]" : ""}`}>{children}</div>
+        <div className="mt-10 md:mt-16">{children}</div>
       </Container>
     </section>
   );

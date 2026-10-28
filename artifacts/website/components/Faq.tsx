@@ -1,8 +1,11 @@
 import { site, type Locale } from "@/content/site";
 import { FaqItem } from "./FaqItem";
-import { WideSection } from "./Section";
+import { Container } from "./ui";
 
-/* FAQ cards: one open at a time, the first open by default; answers type in on first open (FaqItem). */
+/*
+ * FAQ: the title holds a narrow left column (sticky from lg) and the cards take the wider right one.
+ * One open at a time, the first open by default; answers type in each time they open (FaqItem).
+ */
 export function Faq({ locale }: { locale: Locale }) {
   const { faq } = site(locale);
   const structuredData = {
@@ -16,16 +19,21 @@ export function Faq({ locale }: { locale: Locale }) {
     })),
   };
   return (
-    <WideSection id="faq" title={faq.title} narrow>
-      <div className="space-y-2">
-        {faq.items.map((item, i) => (
-          <FaqItem key={item.question} question={item.question} answer={item.answer} label={faq.answerLabel} defaultOpen={i === 0} />
-        ))}
-      </div>
+    <section id="faq" aria-labelledby="faq-title" className="py-10 md:py-20">
+      <Container className="grid gap-10 md:gap-16 lg:grid-cols-12 lg:gap-6">
+        <h2 id="faq-title" className="text-balance text-h2 font-regular text-snow lg:sticky lg:top-[120px] lg:col-span-4 lg:self-start">
+          {faq.title}
+        </h2>
+        <div className="min-w-0 space-y-2 lg:col-span-8">
+          {faq.items.map((item, i) => (
+            <FaqItem key={item.question} question={item.question} answer={item.answer} label={faq.answerLabel} defaultOpen={i === 0} />
+          ))}
+        </div>
+      </Container>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData).replace(/</g, "\\u003c") }}
       />
-    </WideSection>
+    </section>
   );
 }

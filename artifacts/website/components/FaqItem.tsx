@@ -10,10 +10,11 @@ const OPEN_DELAY_MS = 240;
 /*
  * One FAQ card: a native <details> (works without JavaScript, the browser
  * keeps one item of the "faq" group open and exposes the expanded state).
- * The first time an item opens, its answer types in like an AI writing it.
- * The untyped rest stays in the layout, invisible, so the card opens straight
- * to its final height and nothing below moves. Screen readers get the full
- * answer from a visually hidden copy. Reduced motion shows the text at once.
+ * Every time an item opens, its answer types in like an AI writing it, and
+ * its spark twinkles faster while it does. The untyped rest stays in the
+ * layout, invisible, so the card opens straight to its final height and
+ * nothing below moves. Screen readers get the full answer from a visually
+ * hidden copy. Reduced motion shows the text at once and stills the sparks.
  */
 export function FaqItem({
   question,
@@ -30,7 +31,10 @@ export function FaqItem({
   const chars = useMemo(() => Array.from(answer), [answer]);
   // null: the whole answer is shown; a number: how many characters are typed so far.
   const [shown, setShown] = useState<number | null>(null);
-  const played = useRef(false);
+  // Last open state we acted on: the browser also fires "toggle" for an item that starts open.
+  const wasOpen = useRef(defaultOpen);
+  // The default-open item, below the fold at load, waits to type until it scrolls into view.
+  const waiting = useRef(false);
   const frame = useRef(0);
 
   const finish = useCallback(() => {
@@ -40,8 +44,7 @@ export function FaqItem({
   }, []);
 
   const play = useCallback(() => {
-    if (played.current) return;
-    played.current = true;
+    cancelAnimationFrame(frame.current);
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return finish();
     setShown(0);
     const start = performance.now() + OPEN_DELAY_MS;
@@ -58,17 +61,16 @@ export function FaqItem({
   useEffect(() => {
     const el = ref.current;
     if (!el || !defaultOpen || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    if (el.getBoundingClientRect().top < window.innerHeight) {
-      played.current = true;
-      return;
-    }
+    if (el.getBoundingClientRect().top < window.innerHeight) return;
+    waiting.current = true;
     setShown(0);
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (!entry.isIntersecting) return;
         observer.disconnect();
-        if (el.open) play();
-        else finish();
+        if (!waiting.current) return; // the visitor already toggled it
+        waiting.current = false;
+        play();
       },
       { rootMargin: "0px 0px -20% 0px" },
     );
@@ -80,9 +82,10 @@ export function FaqItem({
 
   const onToggle = () => {
     const el = ref.current;
-    if (!el) return;
+    if (!el || el.open === wasOpen.current) return;
+    wasOpen.current = el.open;
+    waiting.current = false;
     if (!el.open) {
-      // Closed mid-sentence: next time it opens, show it whole.
       if (shown !== null) finish();
       return;
     }
@@ -99,6 +102,7 @@ export function FaqItem({
       name="faq"
       open={defaultOpen}
       onToggle={onToggle}
+      data-typing={shown !== null ? "" : undefined}
       className="faq-item group rounded-3xl border border-line bg-panel transition-colors hover:border-slate has-[summary:focus-visible]:outline-2 has-[summary:focus-visible]:outline-offset-2 has-[summary:focus-visible]:outline-signal"
     >
       <summary className="flex cursor-pointer list-none items-center gap-3 rounded-3xl px-4 py-4 focus-visible:outline-none md:px-6 [&::-webkit-details-marker]:hidden">
@@ -140,20 +144,20 @@ export function FaqItem({
   );
 }
 
-/** Four-point spark in Terminal green: the "AI is answering" mark. */
+/** Four-point spark in Terminal green: the "AI is answering" mark (animated in globals.css). */
 function Sparkle() {
   return (
     <svg
       viewBox="0 0 24 24"
       aria-hidden="true"
-      className="size-5 shrink-0 text-terminal"
+      className="faq-spark size-5 shrink-0 overflow-visible text-terminal"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.25"
       strokeLinejoin="round"
     >
-      <path d="M12 3.5c.6 4.4 2.1 5.9 6.5 6.5-4.4.6-5.9 2.1-6.5 6.5-.6-4.4-2.1-5.9-6.5-6.5 4.4-.6 5.9-2.1 6.5-6.5Z" />
-      <path d="M18.5 15.5c.25 1.6.9 2.25 2.5 2.5-1.6.25-2.25.9-2.5 2.5-.25-1.6-.9-2.25-2.5-2.5 1.6-.25 2.25-.9 2.5-2.5Z" />
+      <path className="faq-spark-big" d="M12 3.5c.6 4.4 2.1 5.9 6.5 6.5-4.4.6-5.9 2.1-6.5 6.5-.6-4.4-2.1-5.9-6.5-6.5 4.4-.6 5.9-2.1 6.5-6.5Z" />
+      <path className="faq-spark-small" d="M18.5 15.5c.25 1.6.9 2.25 2.5 2.5-1.6.25-2.25.9-2.5 2.5-.25-1.6-.9-2.25-2.5-2.5 1.6-.25 2.25-.9 2.5-2.5Z" />
     </svg>
   );
 }
