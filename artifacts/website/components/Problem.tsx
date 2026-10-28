@@ -5,7 +5,7 @@ import { Container } from "./ui";
 export function Problem({ locale }: { locale: Locale }) {
   const { problem } = site(locale);
   return (
-    <section aria-labelledby="problem-title" className="py-10 md:py-20">
+    <section aria-labelledby="problem-title" className="py-8 md:py-14">
       <Container className="mx-auto max-w-[760px] text-center">
         <h2 id="problem-title" className="text-balance text-h4 font-regular text-snow">
           {problem.lead}

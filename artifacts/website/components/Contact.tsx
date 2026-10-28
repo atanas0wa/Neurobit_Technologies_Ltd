@@ -10,7 +10,7 @@ export function Contact({ locale }: { locale: Locale }) {
       title={contact.title}
       intro={contact.intro}
       more={
-        <dl className="mt-10 space-y-6">
+        <dl className="mt-8 space-y-6">
           {contact.details.map((detail) => (
             <div key={detail.label}>
               <dt className="text-[14px] font-light text-mist">{detail.label}</dt>

@@ -203,7 +203,7 @@ A near-black, cool-neutral palette with one blue voice for action and a green "s
   - Text sits in a 5-column column. Content sits in a 6-column column, offset to the opposite side, and sections alternate sides down the page.
 - **Spacing:**
   - The base unit is **6px** (Tailwind's spacing unit is overridden), so the steps are 12, 18, 24, 36 and 48px.
-  - Sections breathe with 60px vertical padding on phones and 120px from `md`.
+  - Sections breathe with 48px vertical padding on phones and 84px from `md` (96px and 168px between sections).
   - Headline-to-intro spacing is 30px.
   - Content starts 36px below a section header on phones and 48px from `md`.
 - **Breakpoints:**

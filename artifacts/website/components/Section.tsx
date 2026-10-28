@@ -23,7 +23,7 @@ export function Section({
 }) {
   const right = side === "right";
   return (
-    <section id={id} aria-labelledby={`${id}-title`} className="py-10 md:py-20">
+    <section id={id} aria-labelledby={`${id}-title`} className="py-8 md:py-14">
       <Container className="grid gap-6 md:gap-8 lg:grid-cols-12 lg:gap-6">
         <div className={`min-w-0 lg:col-span-5 ${right ? "lg:order-2 lg:col-start-8" : ""}`}>
           <h2 id={`${id}-title`} className="text-balance text-h2 font-regular text-snow">
@@ -53,7 +53,7 @@ export function WideSection({
   children: ReactNode;
 }) {
   return (
-    <section id={id} aria-labelledby={`${id}-title`} className="py-10 md:py-20">
+    <section id={id} aria-labelledby={`${id}-title`} className="py-8 md:py-14">
       <Container>
         <header className={`max-w-[640px] ${side === "right" ? "lg:ml-auto" : ""}`}>
           <h2 id={`${id}-title`} className="text-balance text-h2 font-regular text-snow">

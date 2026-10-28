@@ -6,7 +6,7 @@ export function WhyUs({ locale }: { locale: Locale }) {
   const { testimonials } = whyUs;
   return (
     <WideSection id="why-us" title={whyUs.title}>
-      <ul className="grid gap-10 md:grid-cols-3 md:gap-6">
+      <ul className="grid gap-8 md:grid-cols-3 md:gap-6">
         {whyUs.points.map((point) => (
           <li key={point.title} className="border-t border-line pt-6">
             <h3 className="text-[24px] font-regular leading-[1.25] tracking-[-0.02em] text-balance text-snow">
