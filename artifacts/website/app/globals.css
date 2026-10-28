@@ -363,6 +363,47 @@ body {
   }
 }
 
+/*
+ * Contact form (ContactForm): the focused field glows like the Ways to work
+ * with us cards. The wrapper carries where the field was clicked (--x, --y,
+ * or the icon side by default, as for keyboard focus): ::before lights a 1px
+ * ring along the field's border, ::after a faint Signal light over it.
+ */
+.glow-field {
+  --x: 24px;
+  --y: 50%;
+}
+.glow-field::before,
+.glow-field::after {
+  content: "";
+  position: absolute;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 300ms ease-out;
+  pointer-events: none;
+}
+.glow-field::before {
+  inset: -1px;
+  padding: 1px;
+  background: radial-gradient(240px circle at var(--x) var(--y), var(--color-cyan), var(--color-signal) 40%, transparent 80%);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box exclude,
+    linear-gradient(#000 0 0);
+}
+.glow-field::after {
+  inset: 0;
+  z-index: 1;
+  background: radial-gradient(260px circle at var(--x) var(--y), color-mix(in srgb, var(--color-signal) 12%, transparent), transparent 70%);
+}
+.glow-field:focus-within::before,
+.glow-field:focus-within::after {
+  opacity: 1;
+}
+
 /* About: the code panel types itself out once (CodeTyping). */
 [data-typing="ready"] .code-line {
   clip-path: inset(0 100% 0 0);

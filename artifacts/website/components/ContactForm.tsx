@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useRef, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FocusEvent, type FormEvent, type PointerEvent } from "react";
 import type { Content } from "@/content/en";
 import { buttonClass } from "./ui";
 
@@ -49,6 +49,30 @@ function FieldIcon({ name }: { name: keyof typeof icons }) {
   );
 }
 const fieldLabel = "block text-[14px] font-medium text-snow";
+/** Wraps each field for the focus glow (.glow-field in globals.css). */
+const glowField = "glow-field relative mt-2 rounded-xl";
+
+/*
+ * The focused field glows from where it was clicked: the pointer position in
+ * the field's box becomes --x, --y. Focus that no click led to (Tab) lights it
+ * from the icon side instead. Text fields match :focus-visible even when
+ * clicked, so the click is told apart by the pointerdown just before it.
+ */
+let lastPointerDown = 0;
+function placeGlow(event: PointerEvent<HTMLFormElement>) {
+  lastPointerDown = event.timeStamp;
+  const wrap = (event.target as Element).closest<HTMLElement>(".glow-field");
+  if (!wrap) return;
+  const r = wrap.getBoundingClientRect();
+  wrap.style.setProperty("--x", `${event.clientX - r.left}px`);
+  wrap.style.setProperty("--y", `${event.clientY - r.top}px`);
+}
+function placeKeyboardGlow(event: FocusEvent<HTMLFormElement>) {
+  if (event.timeStamp - lastPointerDown < 1000) return;
+  const wrap = event.target.closest<HTMLElement>(".glow-field");
+  wrap?.style.removeProperty("--x");
+  wrap?.style.removeProperty("--y");
+}
 
 /* Copy comes in as props so the client bundle carries only one language. */
 export function ContactForm({
@@ -117,7 +141,7 @@ export function ContactForm({
     : { action: `mailto:${email}?subject=${encodeURIComponent(copy.subject)}`, method: "post", encType: "text/plain" };
 
   return (
-    <form {...nativeSubmit} onSubmit={onSubmit} className="relative rounded-3xl border border-line bg-panel p-4 sm:p-6 md:p-8">
+    <form {...nativeSubmit} onSubmit={onSubmit} onPointerDown={placeGlow} onFocus={placeKeyboardGlow} className="relative rounded-3xl border border-line bg-panel p-4 sm:p-6 md:p-8">
       {/* Locked while sending so nothing typed in the meantime is silently lost. */}
       <fieldset disabled={status === "sending"} className="contents space-y-6">
         <input type="hidden" name="_subject" value={copy.subject} />
@@ -133,7 +157,7 @@ export function ContactForm({
           <label htmlFor="contact-name" className={fieldLabel}>
             {copy.name}
           </label>
-          <div className="relative mt-2">
+          <div className={glowField}>
             <input
               id="contact-name"
               name="name"
@@ -152,7 +176,7 @@ export function ContactForm({
           <label htmlFor="contact-email" className={fieldLabel}>
             {copy.email}
           </label>
-          <div className="relative mt-2">
+          <div className={glowField}>
             <input
               id="contact-email"
               name="email"
@@ -171,7 +195,7 @@ export function ContactForm({
           <label htmlFor="contact-company" className={fieldLabel}>
             {copy.company} <span className="font-light text-mist">({copy.optional})</span>
           </label>
-          <div className="relative mt-2">
+          <div className={glowField}>
             <input
               id="contact-company"
               name="company"
@@ -189,15 +213,17 @@ export function ContactForm({
           <label htmlFor="contact-message" className={fieldLabel}>
             {copy.message}
           </label>
-          <textarea
-            id="contact-message"
-            name="message"
-            required
-            maxLength={5000}
-            rows={5}
-            placeholder={copy.messagePlaceholder}
-            className={`${field} mt-2 min-h-36 resize-y`}
-          />
+          <div className={glowField}>
+            <textarea
+              id="contact-message"
+              name="message"
+              required
+              maxLength={5000}
+              rows={5}
+              placeholder={copy.messagePlaceholder}
+              className={`${field} min-h-36 resize-y`}
+            />
+          </div>
         </div>
 
         <div className="space-y-4">
