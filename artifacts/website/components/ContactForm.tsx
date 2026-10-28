@@ -13,7 +13,41 @@ const SUBMIT_TIMEOUT_MS = 20_000;
 type Status = "idle" | "sending" | "sent" | "mailto" | "error" | "timeout";
 
 const field =
-  "mt-2 block w-full rounded-xl border border-line bg-void px-4 py-3 text-body font-light text-snow transition-[border-color,box-shadow] duration-150 hover:border-slate focus:border-signal focus:outline-none focus:ring-4 focus:ring-signal/20";
+  "block w-full rounded-xl border border-line bg-void px-4 py-3 text-body font-light text-snow max-sm:text-[16px] transition-[border-color,box-shadow] duration-150 placeholder:text-mist hover:border-slate focus:border-signal focus:outline-none focus:ring-4 focus:ring-signal/20";
+/** Single-line fields leave room for the icon on the left. 16px on phones (iOS zooms into anything smaller) keeps placeholders whole. */
+const iconField = `${field} peer pl-8 max-[359px]:pl-7 max-[359px]:pr-3`;
+const fieldIcon =
+  "pointer-events-none absolute left-3 max-[359px]:left-2 top-1/2 size-[18px] -translate-y-1/2 text-slate transition-colors duration-150 peer-focus:text-signal";
+
+/* Thin line icons for the fields, drawn like the site's other 1.25px icons. */
+const icons = {
+  user: (
+    <>
+      <circle cx="12" cy="8.5" r="3.5" />
+      <path d="M5 19.5c1.2-3.3 3.8-5 7-5s5.8 1.7 7 5" />
+    </>
+  ),
+  mail: (
+    <>
+      <rect x="3.5" y="5.5" width="17" height="13" rx="2.5" />
+      <path d="m4.5 7 7.5 6 7.5-6" />
+    </>
+  ),
+  building: (
+    <>
+      <path d="M5 20.5V5.5a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v15M15 9.5h2a2 2 0 0 1 2 2v9M3.5 20.5h17" />
+      <path d="M8.5 7.5h3M8.5 11h3M8.5 14.5h3" />
+    </>
+  ),
+};
+
+function FieldIcon({ name }: { name: keyof typeof icons }) {
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true" className={fieldIcon} fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round">
+      {icons[name]}
+    </svg>
+  );
+}
 const fieldLabel = "block text-[14px] font-medium text-snow";
 
 /* Copy comes in as props so the client bundle carries only one language. */
@@ -95,18 +129,41 @@ export function ContactForm({
           </label>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2">
-          <div>
-            <label htmlFor="contact-name" className={fieldLabel}>
-              {copy.name}
-            </label>
-            <input id="contact-name" name="name" type="text" required maxLength={100} autoComplete="name" className={field} />
+        <div>
+          <label htmlFor="contact-name" className={fieldLabel}>
+            {copy.name}
+          </label>
+          <div className="relative mt-2">
+            <input
+              id="contact-name"
+              name="name"
+              type="text"
+              required
+              maxLength={100}
+              autoComplete="name"
+              placeholder={copy.namePlaceholder}
+              className={iconField}
+            />
+            <FieldIcon name="user" />
           </div>
-          <div>
-            <label htmlFor="contact-email" className={fieldLabel}>
-              {copy.email}
-            </label>
-            <input id="contact-email" name="email" type="email" required maxLength={254} autoComplete="email" className={field} />
+        </div>
+
+        <div>
+          <label htmlFor="contact-email" className={fieldLabel}>
+            {copy.email}
+          </label>
+          <div className="relative mt-2">
+            <input
+              id="contact-email"
+              name="email"
+              type="email"
+              required
+              maxLength={254}
+              autoComplete="email"
+              placeholder={copy.emailPlaceholder}
+              className={iconField}
+            />
+            <FieldIcon name="mail" />
           </div>
         </div>
 
@@ -114,7 +171,18 @@ export function ContactForm({
           <label htmlFor="contact-company" className={fieldLabel}>
             {copy.company} <span className="font-light text-mist">({copy.optional})</span>
           </label>
-          <input id="contact-company" name="company" type="text" maxLength={150} autoComplete="organization" className={field} />
+          <div className="relative mt-2">
+            <input
+              id="contact-company"
+              name="company"
+              type="text"
+              maxLength={150}
+              autoComplete="organization"
+              placeholder={copy.companyPlaceholder}
+              className={iconField}
+            />
+            <FieldIcon name="building" />
+          </div>
         </div>
 
         <div>
@@ -128,7 +196,7 @@ export function ContactForm({
             maxLength={5000}
             rows={5}
             placeholder={copy.messagePlaceholder}
-            className={`${field} min-h-36 resize-y placeholder:text-mist`}
+            className={`${field} mt-2 min-h-36 resize-y`}
           />
         </div>
 

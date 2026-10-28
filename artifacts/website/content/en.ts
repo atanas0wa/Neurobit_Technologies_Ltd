@@ -173,9 +173,12 @@ export const en = {
       { label: "Technical enquiries", value: company.devEmail, href: `mailto:${company.devEmail}` },
     ] as { label: string; value: string; href?: string }[],
     form: {
-      name: "Name",
-      email: "Email",
+      name: "Full name",
+      namePlaceholder: "Your full name",
+      email: "Email address",
+      emailPlaceholder: "you@company.com",
       company: "Company",
+      companyPlaceholder: "Your company",
       optional: "optional",
       message: "What do you need?",
       messagePlaceholder:

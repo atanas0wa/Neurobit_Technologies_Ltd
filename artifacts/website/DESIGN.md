@@ -262,6 +262,7 @@ Soft and confident, with one filled shape per view.
 - **Hover:** the border becomes Slate.
 - **Focus:** the border becomes Signal Blue, with a 4px Signal ring at 20% opacity. No browser outline.
 - **Labels:** 14px medium Snow above the field. Optional fields add "(optional)" in Mist.
+- **Layout and icons:** fields stack in one column. Single-line fields carry an 18px line icon (user, envelope, building) in Slate, 18px from the left edge, with the text starting at 48px (12px and 42px below 360px); the icon turns Signal while its field has focus. Every field has a placeholder in Mist. The message textarea has no icon and resizes vertically only. On phones fields use 16px text, the smallest size iOS does not zoom into.
 - **Disabled:** the whole fieldset is locked while sending, and the button shows a wait cursor at 70% opacity.
 
 ### Navigation

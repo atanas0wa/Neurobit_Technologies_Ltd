@@ -170,9 +170,12 @@ export const bg: Content = {
       { label: "Технически въпроси", value: company.devEmail, href: `mailto:${company.devEmail}` },
     ],
     form: {
-      name: "Име",
-      email: "Имейл",
+      name: "Име и фамилия",
+      namePlaceholder: "Вашето име",
+      email: "Имейл адрес",
+      emailPlaceholder: "име@фирма.bg",
       company: "Компания",
+      companyPlaceholder: "Вашата компания",
       optional: "по желание",
       message: "От какво имате нужда?",
       messagePlaceholder:
