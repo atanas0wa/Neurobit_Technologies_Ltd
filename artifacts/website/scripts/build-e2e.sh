@@ -8,6 +8,8 @@ cd "$(dirname "$0")/.."
 rm -rf .e2e
 mkdir -p .e2e
 NEXT_PUBLIC_FORMSPREE_ID=e2e-test-form npx --no-install next build
+node scripts/security-headers.mjs
 cp -r out .e2e/formspree
 NEXT_PUBLIC_FORMSPREE_ID= npx --no-install next build
+node scripts/security-headers.mjs
 cp -r out .e2e/mailto

@@ -27,7 +27,7 @@ export default defineConfig({
     { name: "mailto", use: { baseURL: "http://127.0.0.1:4511" } },
   ],
   webServer: [
-    { command: "serve .e2e/formspree -l 4510 --no-port-switching", url: "http://127.0.0.1:4510/", reuseExistingServer: false },
-    { command: "serve .e2e/mailto -l 4511 --no-port-switching", url: "http://127.0.0.1:4511/", reuseExistingServer: false },
+    { command: "serve .e2e/formspree -l 4510 --no-port-switching -c ../../serve.json", url: "http://127.0.0.1:4510/", reuseExistingServer: false },
+    { command: "serve .e2e/mailto -l 4511 --no-port-switching -c ../../serve.json", url: "http://127.0.0.1:4511/", reuseExistingServer: false },
   ],
 });

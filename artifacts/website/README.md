@@ -46,7 +46,7 @@ artifacts/website/
 │   └── site.ts               Locales, site(locale), localePath(), switchPath()
 ├── lib/fonts.ts              TTF loader for the OG image
 ├── next.config.ts            output: "export"
-└── vercel.json               Serves the OG image as image/png
+└── vercel.json               Vercel: security headers, OG image as image/png (generated)
 ```
 
 ## Setup
@@ -117,7 +117,22 @@ Rules the components follow:
 3. Add the `NEXT_PUBLIC_FORMSPREE_ID` environment variable.
 4. Add your domain, then set `company.url` in `content/company.ts` to the same origin. The canonical URLs, sitemap, robots.txt, OG image URLs and JSON-LD are all derived from it.
 
-Any static host can serve `out/` as an alternative. If you use another host, make sure `/opengraph-image` is served with `Content-Type: image/png`. `vercel.json` does this on Vercel.
+Any static host can serve `out/` as an alternative.
+
+## Security headers
+
+`security-headers.mjs` is the one source for the Content-Security-Policy, X-Frame-Options, X-Content-Type-Options, Referrer-Policy and Permissions-Policy headers, plus `Content-Type: image/png` for the extensionless `/opengraph-image`. Static export can't send headers from `next.config.ts`, so each host gets its own config:
+
+| Host | Config |
+|---|---|
+| Replit | `[[deployment.responseHeaders]]` in the repo's `.replit` |
+| Vercel | `vercel.json` |
+| LiteSpeed / Apache | `out/.htaccess`, written by every build |
+| Local `pnpm start` | `serve.json` |
+
+`pnpm build` runs `scripts/security-headers.mjs` after `next build`. It adds a CSP `<meta>` to every page with the SHA-256 hashes of that page's inline scripts, so only Next.js's own inline scripts run, and it fails the build if `.replit`, `vercel.json` or `serve.json` no longer match `security-headers.mjs`. After editing that file, run `pnpm run headers:sync` and commit the result. If the site starts loading something from another host, add it to the matching directive there.
+
+After publishing, check the live headers with `curl -sI https://neurobit.bg/`.
 
 ## Pre-launch checklist
 

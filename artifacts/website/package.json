@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p ${PORT:-3000}",
-    "build": "next build",
-    "start": "serve out -l ${PORT:-3000}",
+    "build": "next build && node scripts/security-headers.mjs",
+    "start": "serve out -l ${PORT:-3000} -c ../serve.json",
+    "headers:sync": "node scripts/security-headers.mjs sync",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test:e2e:build": "sh scripts/build-e2e.sh",
     "test:e2e": "playwright test"

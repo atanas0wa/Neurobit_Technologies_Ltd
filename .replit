@@ -18,3 +18,36 @@ expertMode = true
 [postMerge]
 path = "scripts/post-merge.sh"
 timeoutMs = 20000
+
+# BEGIN security headers: generated from artifacts/website/security-headers.mjs
+# Edit that file, then run: pnpm --filter @workspace/website run headers:sync
+[[deployment.responseHeaders]]
+path = "/*"
+name = "Content-Security-Policy"
+value = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self'; font-src 'self'; connect-src 'self' https://formspree.io; form-action 'self' https://formspree.io mailto:; frame-ancestors 'none'; base-uri 'self'; object-src 'none'"
+
+[[deployment.responseHeaders]]
+path = "/*"
+name = "X-Frame-Options"
+value = "DENY"
+
+[[deployment.responseHeaders]]
+path = "/*"
+name = "X-Content-Type-Options"
+value = "nosniff"
+
+[[deployment.responseHeaders]]
+path = "/*"
+name = "Referrer-Policy"
+value = "strict-origin-when-cross-origin"
+
+[[deployment.responseHeaders]]
+path = "/*"
+name = "Permissions-Policy"
+value = "accelerometer=(), autoplay=(), browsing-topics=(), camera=(), display-capture=(), encrypted-media=(), fullscreen=(), geolocation=(), gyroscope=(), hid=(), idle-detection=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), serial=(), usb=(), xr-spatial-tracking=()"
+
+[[deployment.responseHeaders]]
+path = "/opengraph-image"
+name = "Content-Type"
+value = "image/png"
+# END security headers
