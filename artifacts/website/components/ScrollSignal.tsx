@@ -8,6 +8,10 @@ import { useEffect, useRef, type ReactNode } from "react";
  * line stay lit; scrolling back up dims them again. The latest step reached
  * is marked data-current. Without JS every step renders lit (the styles key
  * off data-signal="on").
+ *
+ * It also stages the rows' entrance: if the list is still below the fold,
+ * data-reveal="ready" hides them, and "in" lets them rise in (globals.css)
+ * once the list scrolls into view. Reduced motion skips it.
  */
 export function ScrollSignal({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -38,11 +42,26 @@ export function ScrollSignal({ children }: { children: ReactNode }) {
       });
     };
 
+    let reveal: IntersectionObserver | undefined;
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && root.getBoundingClientRect().top > window.innerHeight) {
+      root.dataset.reveal = "ready";
+      reveal = new IntersectionObserver(
+        ([entry]) => {
+          if (!entry.isIntersecting) return;
+          root.dataset.reveal = "in";
+          reveal?.disconnect();
+        },
+        { rootMargin: "0px 0px -15% 0px" },
+      );
+      reveal.observe(root);
+    }
+
     update();
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onScroll);
     return () => {
       cancelAnimationFrame(frame);
+      reveal?.disconnect();
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };

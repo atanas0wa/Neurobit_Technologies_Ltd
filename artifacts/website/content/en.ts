@@ -111,11 +111,11 @@ export const en = {
   approach: {
     title: "How we work",
     steps: [
-      { title: "Discovery", body: "In a free first call, we clarify the problem, goals, users, and project constraints. This helps us define priorities and an appropriate scope for the solution, and you get an estimate." },
-      { title: "Design", body: "We establish the visual direction and key screens so it's clear how the product will look and work before development moves forward." },
-      { title: "Development", body: "We build the solution in stages and discuss progress and necessary changes, keeping the work aligned with the original goals." },
-      { title: "Launch", body: "We prepare the product for use and check the agreed functionality before handover or publication, depending on the project." },
-      { title: "Support", body: "We discuss fixes, updates, and future improvements based on the project's needs and agreed scope." },
+      { title: "Discovery", tag: "Research", body: "In a free first call, we clarify the problem, goals, users, and project constraints. This helps us define priorities and an appropriate scope for the solution, and you get an estimate." },
+      { title: "Design", tag: "Experience", body: "We establish the visual direction and key screens so it's clear how the product will look and work before development moves forward." },
+      { title: "Development", tag: "Engineering", body: "We build the solution in stages and discuss progress and necessary changes, keeping the work aligned with the original goals." },
+      { title: "Launch", tag: "Release", body: "We prepare the product for use and check the agreed functionality before handover or publication, depending on the project." },
+      { title: "Support", tag: "Care", body: "We discuss fixes, updates, and future improvements based on the project's needs and agreed scope." },
     ],
   },
 
