@@ -25,14 +25,14 @@ export function Section({
   return (
     <section id={id} aria-labelledby={`${id}-title`} className="py-10 md:py-20">
       <Container className="grid gap-10 lg:grid-cols-12 lg:gap-6">
-        <div className={`lg:col-span-5 ${right ? "lg:order-2 lg:col-start-8" : ""}`}>
+        <div className={`min-w-0 lg:col-span-5 ${right ? "lg:order-2 lg:col-start-8" : ""}`}>
           <h2 id={`${id}-title`} className="text-balance text-h2 font-regular text-snow">
             {title}
           </h2>
           {intro && <p className="mt-5 max-w-[560px] text-body font-light text-mist">{intro}</p>}
           {more}
         </div>
-        <div className={`lg:col-span-6 ${right ? "lg:order-1 lg:col-start-1" : "lg:col-start-7"}`}>{children}</div>
+        <div className={`min-w-0 lg:col-span-6 ${right ? "lg:order-1 lg:col-start-1" : "lg:col-start-7"}`}>{children}</div>
       </Container>
     </section>
   );

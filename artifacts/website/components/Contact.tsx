@@ -31,7 +31,9 @@ export function Contact({ locale }: { locale: Locale }) {
         </dl>
       }
     >
-      <div className="lg:pt-4">
+      {/* "Discuss your project" lands here, so phones open straight on the form;
+          from lg the margin keeps the section title in view beside it. */}
+      <div id="contact-form" className="lg:scroll-mt-[120px] lg:pt-4">
         <ContactForm copy={contact.form} email={company.email} privacyHref={localePath(locale, "/privacy/")} />
       </div>
     </Section>

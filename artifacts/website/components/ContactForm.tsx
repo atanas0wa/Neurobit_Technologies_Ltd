@@ -83,7 +83,7 @@ export function ContactForm({
     : { action: `mailto:${email}?subject=${encodeURIComponent(copy.subject)}`, method: "post", encType: "text/plain" };
 
   return (
-    <form {...nativeSubmit} onSubmit={onSubmit} className="relative rounded-3xl border border-line bg-panel p-6 md:p-8">
+    <form {...nativeSubmit} onSubmit={onSubmit} className="relative rounded-3xl border border-line bg-panel p-4 sm:p-6 md:p-8">
       {/* Locked while sending so nothing typed in the meantime is silently lost. */}
       <fieldset disabled={status === "sending"} className="contents space-y-6">
         <input type="hidden" name="_subject" value={copy.subject} />
@@ -137,7 +137,7 @@ export function ContactForm({
             type="submit"
             data-primary-cta
             disabled={status === "sending"}
-            className={`${buttonClass} cursor-pointer px-6 py-3 text-[15px] disabled:cursor-wait disabled:opacity-70 max-sm:w-full max-sm:justify-center max-sm:px-4 max-sm:text-center`}
+            className={`${buttonClass} cursor-pointer px-6 py-3 text-[15px] disabled:cursor-wait disabled:opacity-70 max-sm:w-full max-sm:justify-center max-sm:px-3 max-sm:text-center max-sm:leading-tight max-sm:text-balance`}
           >
             {status === "sending" ? copy.sending : FORMSPREE_URL ? copy.submit : copy.submitMailto}
           </button>

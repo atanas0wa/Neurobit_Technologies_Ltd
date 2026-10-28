@@ -20,7 +20,7 @@ export function Faq({ locale }: { locale: Locale }) {
         {faq.items.map((item, i) => (
           <details key={item.question} open={i === 0} className="faq-item group border-t border-line">
             <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 md:py-8 [&::-webkit-details-marker]:hidden">
-              <h3 className="text-[22px] font-regular tracking-[-0.02em] text-snow md:text-[24px]">{item.question}</h3>
+              <h3 className="min-w-0 hyphens-auto break-words text-[22px] font-regular tracking-[-0.02em] text-snow md:text-[24px]">{item.question}</h3>
               <span
                 aria-hidden="true"
                 className="relative flex size-[44px] shrink-0 items-center justify-center rounded-full border border-line text-mist transition-colors group-hover:border-mist group-hover:text-snow"

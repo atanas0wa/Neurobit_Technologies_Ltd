@@ -47,14 +47,14 @@ export function About({ locale }: { locale: Locale }) {
       <CodeTyping>
         <figure aria-label={about.code.label} className="overflow-hidden rounded-3xl border border-line bg-panel lg:mt-2">
           <figcaption className="border-b border-line px-5 py-3 font-mono text-[13px] text-mist">{about.code.file}</figcaption>
-          <pre className="px-3 py-5 font-mono text-[13px] leading-[1.75] sm:px-5 sm:text-[14px] md:py-6">
+          <pre className="px-3 py-5 font-mono text-[12px] min-[360px]:text-[13px] leading-[1.75] sm:px-5 sm:text-[14px] md:py-6">
             <code className="grid">
               {lines(about.code.comments).map((line, i, all) => (
-                <span key={i} className="grid grid-cols-[2.25rem_1fr]">
+                <span key={i} className="grid grid-cols-[2.25rem_minmax(0,1fr)]">
                   <span aria-hidden="true" className="select-none pr-3 text-right text-slate">
                     {i + 1}
                   </span>
-                  <span className="code-line whitespace-pre-wrap break-words" style={{ "--i": i } as CSSProperties}>
+                  <span className="code-line whitespace-pre-wrap wrap-anywhere" style={{ "--i": i } as CSSProperties}>
                     {line === null
                       ? " "
                       : typeof line === "string"

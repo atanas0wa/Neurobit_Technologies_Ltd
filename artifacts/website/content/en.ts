@@ -34,14 +34,14 @@ export const en = {
       { label: "FAQ", href: "/#faq" },
       { label: "Contact", href: "/#contact" },
     ],
-    cta: { label: "Discuss your project", href: "/#contact" },
+    cta: { label: "Discuss your project", href: "/#contact-form" },
   },
 
   hero: {
     headline: "Less manual work. More useful software for your business.",
     subline:
       "We build web platforms, mobile apps and AI automations shaped around the real work your team does. You talk directly to the people building the product - from pinning down the problem to launch.",
-    primary: { label: "Discuss your project", href: "/#contact" },
+    primary: { label: "Discuss your project", href: "/#contact-form" },
   },
 
   problem: {
@@ -135,7 +135,7 @@ export const en = {
         body: "For businesses looking to reduce repetitive manual work. We identify a specific process, assess whether automation is appropriate, and define where human oversight is needed. Then we measure the time saved.",
       },
     ],
-    cta: { label: "Discuss your project", href: "/#contact" },
+    cta: { label: "Discuss your project", href: "/#contact-form" },
   },
 
   faq: {

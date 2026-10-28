@@ -254,7 +254,7 @@ Soft and confident, with one filled shape per view.
 - **Background:** Panel.
 - **Shadow strategy:** none (see Elevation & Depth).
 - **Border:** 1px Hairline.
-- **Internal padding:** 36px on phones, 48px from `md`.
+- **Internal padding:** 36px on phones, 48px from `md`. The contact form drops to 24px below `sm` so its submit label stays on one line at 320px.
 - **Content:** a Title heading, then Body text in Mist. No icons, and never nested.
 
 ### Inputs / Fields
